@@ -1,0 +1,27 @@
+body {
+    color: brown;
+}
+.header{
+    height: 100px;
+    background-color: burlywood;
+    text-align: center;
+}
+#title {
+    color: crimson;
+}
+.work-area {
+    height: 70px;
+    border: 1px solid black;
+    margin-top: 15px;
+}
+.footer {
+    height: 70px;
+    border: 1px dotted blue;
+    margin-top: 15px;
+}
+.footer  .author{
+    color: purple;
+    float: right;
+    margin-right: 10px;
+}
+
