@@ -1,5 +1,6 @@
 body {
     color: brown;
+    margin: 0px;
 }
 .header{
     height: 100px;
@@ -8,9 +9,10 @@ body {
 }
 #title {
     color: crimson;
+    margin: 0px;
 }
 .work-area {
-    height: 70px;
+    /* height: 70px; */
     border: 1px solid black;
     margin-top: 15px;
 }
@@ -24,4 +26,29 @@ body {
     float: right;
     margin-right: 10px;
 }
+.pre-menu{
+    height:40px;
+}
+.pre-menu,.menu{
+    background-color: #262626;
+}
+.menu{
+    height: 80px;
+    text-align: center;
+    border-top: 2px solid #585858;
+}
+.menu a{
+    color: #F2F2F2;
+    margin-top: 25px;
+    margin-right: 86px;
+    display: inline-block;
+    text-decoration: none; 
+}
+.menu a.last{
+    margin-right: 0px;
+}
+.menu a:hover{
+    color: cadetblue;
+}
+
 
