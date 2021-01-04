@@ -1,28 +1,34 @@
 body {
-    color: brown;
+    color: #FFFFFF;
     margin: 0px;
+    background-color: #1A1A1A;
 }
-.header{
-    height: 100px;
-    background-color: burlywood;
-    text-align: center;
+.header, .work-area{
+
+    background-color: #262626;
+    /* text-align: center; */
+    width: 80%;
+    margin: 0px auto;
+    border-radius: 5px;
+     margin-top: 25px;
+     padding-left: 10px;
+     padding-right: 10px;
+     padding-top: 5px;
+     padding-bottom: 5px;
+
 }
 #title {
-    color: crimson;
+    color:#F2F2F2;
     margin: 0px;
 }
-.work-area {
-    /* height: 70px; */
-    border: 1px solid black;
-    margin-top: 15px;
-}
+
 .footer {
     height: 70px;
-    border: 1px dotted blue;
+    border: 1px dotted #4D4D4D;
     margin-top: 15px;
 }
 .footer  .author{
-    color: purple;
+    color: #7c7b7b;
     float: right;
     margin-right: 10px;
 }
@@ -36,10 +42,11 @@ body {
     height: 80px;
     text-align: center;
     border-top: 2px solid #585858;
+    border-bottom: 4px solid #191919;
 }
 .menu a{
     color: #F2F2F2;
-    margin-top: 25px;
+    margin-top: 30px;
     margin-right: 86px;
     display: inline-block;
     text-decoration: none; 
