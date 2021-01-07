@@ -3,7 +3,7 @@ body {
     margin: 0px;
     background-color: #1A1A1A;
 }
-.header, .work-area{
+.header, .work-area, .work-two, .work-three{
 
     background-color: #262626;
     /* text-align: center; */
@@ -18,8 +18,13 @@ body {
 
 }
 #title {
-    color:#F2F2F2;
+    color:#cec3c3;
     margin: 0px;
+  /* text-align: right; */
+  text-align: right;
+  /* border: 2px solid brown; */
+  width: 80%;
+  margin: 0px auto;
 }
 
 .footer {
@@ -48,17 +53,19 @@ body {
     text-align: center;
     border-top: 2px solid #585858;
     border-bottom: 4px solid #191919;
+    padding-left: 55px;
 }
 .menu a{
     color: #F2F2F2;
     margin-top: 30px;
-    margin-right: 86px;
+    margin-right: 105px;
     display: inline-block;
-    text-decoration: none; 
+    text-decoration: none;
+    
 }
-.menu a.last{
-    margin-right: 0px;
-}
+/* .menu a.last{ */
+    /* margin-right: 0px; */
+/* } */
 .menu a:hover{
     color: cadetblue;
 }
@@ -68,6 +75,10 @@ body {
 }
 .author a{
     color:gainsboro;
+} 
+.author a:hover{
+    color: cadetblue;
 }
+
 
 
