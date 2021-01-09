@@ -3,28 +3,32 @@ body {
     margin: 0px;
     background-color: #1A1A1A;
 }
-.header, .work-area, .work-two, .work-three{
 
+.header,
+.work-area,
+.work-two,
+.work-three,
+.work-four {
     background-color: #262626;
     /* text-align: center; */
     width: 80%;
     margin: 0px auto;
     border-radius: 5px;
-     margin-top: 25px;
-     padding-left: 10px;
-     padding-right: 10px;
-     padding-top: 5px;
-     padding-bottom: 5px;
-
+    margin-top: 25px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
+
 #title {
-    color:#cec3c3;
+    color: #cec3c3;
     margin: 0px;
-  /* text-align: right; */
-  text-align: right;
-  /* border: 2px solid brown; */
-  width: 80%;
-  margin: 0px auto;
+    /* text-align: right; */
+    text-align: right;
+    /* border: 2px solid brown; */
+    width: 80%;
+    margin: 0px auto;
 }
 
 .footer {
@@ -32,9 +36,9 @@ body {
     /* border: 1px dotted #4D4D4D; */
     margin-top: 15px;
     border-bottom: 2px solid #585858;
-
 }
-.footer  .author{
+
+.footer .author {
     color: #7c7b7b;
     float: right;
     margin-right: 30px;
@@ -42,43 +46,54 @@ body {
     color: cornsilk;
 }
 
-.pre-menu{
-    height:40px;
+.pre-menu {
+    height: 40px;
 }
-.pre-menu, .menu, .footer, .post-footer{
+
+.pre-menu,
+.menu,
+.footer,
+.post-footer {
     background-color: #262626;
 }
-.menu{
+
+.menu {
     height: 80px;
     text-align: center;
     border-top: 2px solid #585858;
     border-bottom: 4px solid #191919;
     padding-left: 55px;
 }
-.menu a{
+
+.menu a {
     color: #F2F2F2;
     margin-top: 30px;
     margin-right: 105px;
     display: inline-block;
     text-decoration: none;
-    
 }
+
+
 /* .menu a.last{ */
-    /* margin-right: 0px; */
+
+
+/* margin-right: 0px; */
+
+
 /* } */
-.menu a:hover{
+
+.menu a:hover {
     color: cadetblue;
 }
-.post-footer{
+
+.post-footer {
     height: 20px;
-    
 }
-.author a{
-    color:gainsboro;
-} 
-.author a:hover{
+
+.author a {
+    color: gainsboro;
+}
+
+.author a:hover {
     color: cadetblue;
 }
-
-
-
