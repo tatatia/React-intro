@@ -1,4 +1,12 @@
 import './App.css';
+import cvsImg from "./images/cvs.jpg";
+import gitImg from "./images/git.jpeg";
+import htmlImg from "./images/html.jpg";
+import attributeImg from "./images/attribute.png";
+import nodeImg from "./images/node.jpeg";
+import cssImg from "./images/css.png";
+
+
 
 function App() {
   return (
@@ -19,7 +27,11 @@ function App() {
       <div className="work-books">
         <div className="text-center">
           <h3>Система керування версіями</h3>
-          <img alt="image" src="https://flagstudio.ru/wp-content/uploads/2015/08/cvs.jpg" />
+          <img
+            alt="cvs"
+            src={cvsImg}
+          />
+
         </div>
         <p>Система керування версіями — інструмент, який дозволяє одночасно, не заважаючи один одному, проводити роботу
         над груповими проектами. Системи керування версіями зазвичай використовуються при розробці програмного
@@ -40,7 +52,10 @@ function App() {
       <div className="work-area">
         <div className="text-center">
           <h3>Git</h3>
-          <img alt="image" src="https://senior.ua/storage/article/content/357f8d31-c04a-4bdb-a379-6eea60d32636.jpeg" />
+          <img 
+              alt="git" 
+              src={gitImg} 
+              />
         </div>
         <p>Git зберігає дані набором зліпків. Кожного разу при фіксації поточної версії проекту Git зберігає зліпок
         того, як виглядають всі файли проекту. Але якщо файл не змінювався, то дається посилання на раніше
@@ -97,7 +112,10 @@ function App() {
         </ul>
         <p>Структура HTML сторінки:</p>
         <div className="image-left">
-          <img alt="image" src="https://wordpress-book.ru/wp-content/uploads/2019/08/doctype-html.jpg" />
+          <img 
+             alt="html" 
+             src={htmlImg}
+             />
           <p>Веб-посилання - спеціальний тег, <br />через який можна перейти з однієї веб-сторінки на іншу. Крім того,
           він дає можливість створити зміст сторінки. Веб-посилання - це те ж саме, що html-посилання або
           гіпертекстове посилання. Якщо клацнути на веб-посилання
@@ -131,14 +149,22 @@ function App() {
           <li>Значення атрибута, загорнене в прямі лапки.</li>
         </ul>
         <div className="text-center">
-          <img alt="image" src="https://mdn.mozillademos.org/files/9345/grumpy-cat-attribute-small.png" width="800" />
+          <img 
+             alt="attribute" 
+             src={attributeImg}
+             width="800" 
+             />
         </div>
       </div>
 
       <div className="work-three">
         <div className="text-center">
           <h3>Nodejs and npm</h3>
-          <img alt="image" src="https://habrastorage.org/webt/xc/4n/a1/xc4na1sca8xlufsjkj3yyo1z9m8.jpeg" width="600" />
+          <img 
+             alt="node" 
+             src={nodeImg}
+             width="600" 
+             />
         </div>
         <p>Node.js — платформа з відкритим кодом для виконання високопродуктивних мережевих застосунків, написаних мовою
         JavaScript.Якщо раніше Javascript застосовувався для обробки даних в браузері користувача, то node.js надав
@@ -171,8 +197,10 @@ function App() {
             спеціальні HTML атрибути class чи id.</p>
         <p>Анатомія правила CSS:</p>
         <div className="text-center">
-          <img alt="image"
-            src="https://media.prod.mdn.mozit.cloud/attachments/2014/11/18/9461/012655e623bef579c9bd376e227bc648/css-declaration-small.png" />
+          <img 
+             alt="css"
+             src={cssImg}
+             />
         </div>
 
         <ul>
