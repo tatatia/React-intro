@@ -9,16 +9,18 @@ import cssImg from "./images/css.png";
 
 
 function App() {
+  let title="Тестове завдання"
+  let items=[{link:"#", text:"Головна"},
+             {link:"#description", text:"Опис проекту"},
+             {link:"#about-author", text:"Про автора"},
+             {link:"#about-author", text:"Контакти"}]
   return (
     <div className="App">
       <div className="pre-menu">
-        <h1 id="title">Тестове завдання</h1>
+        <h1 id="title">{title}</h1>
       </div>
       <div className="menu">
-        <a href="#">Головна</a>
-        <a href="#description">Опис проекту</a>
-        <a href="#about-author">Про автора</a>
-        <a href="#about-author">Контакти</a>
+        {items.map(item => <a href={item.link}>{item.text}</a>)}
       </div>
       <div className="header" id="description">
         Проект створений для проходження в інтернатуру.
