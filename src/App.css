@@ -1,0 +1,108 @@
+body {
+  color: #FFFFFF;
+  margin: 0px;
+  background-color: #1A1A1A;
+}
+.pre-menu {
+  height: 40px;
+}
+
+.pre-menu,
+.menu,
+.footer,
+.post-footer {
+  background-color: #262626;
+}
+#title {
+  color: #cec3c3;
+  margin: 0px;
+  /* text-align: right; */
+  text-align: right;
+  /* border: 2px solid brown; */
+  width: 80%;
+  margin: 0px auto;
+  text-align: center;
+}
+
+.menu {
+  height: 80px;
+  text-align: center;
+  border-top: 2px solid #585858;
+  border-bottom: 4px solid #191919;
+  padding-left: 55px;
+}
+
+.menu a {
+  color: #F2F2F2;
+  margin-top: 30px;
+  margin-right: 105px;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.menu a:hover {
+  color: cadetblue;
+}
+.header,
+.work-area,
+.work-two,
+.work-three,
+.work-four,
+.work-books {
+    background-color: #262626;
+    /* text-align: center; */
+    width: 80%;
+    margin: 0px auto;
+    border-radius: 5px;
+    margin-top: 25px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.text-center {
+  text-align: center;
+}
+.image-left img {
+  margin-right: 20px;
+  float: left;
+}
+.image-left{
+  border: 1px solid red;
+
+}
+.clear-both{
+  clear:both;
+}
+.post-footer {
+  height: 20px;
+  text-align: center;
+}
+.pre-menu,
+.menu,
+.footer,
+.post-footer {
+    background-color: #262626;
+}
+.footer .author {
+  color: #7c7b7b;
+  float: right;
+  margin-right: 30px;
+  margin-top: 5px;
+  color: cornsilk;
+}
+.footer {
+  height: 70px;
+  /* border: 1px dotted #4D4D4D; */
+  margin-top: 15px;
+  border-bottom: 2px solid #585858;
+}
+
+.author a {
+  color: gainsboro;
+}
+
+.author a:hover {
+  color: cadetblue;
+}
+
