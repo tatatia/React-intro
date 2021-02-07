@@ -9,11 +9,22 @@ import cssImg from "./images/css.png";
 
 
 function App() {
-  let title="Тестове завдання"
-  let items=[{link:"#", text:"Головна"},
-             {link:"#description", text:"Опис проекту"},
-             {link:"#about-author", text:"Про автора"},
-             {link:"#about-author", text:"Контакти"}]
+  let title = "Тестове завдання"
+  let items = [
+    { link: "#", text: "Головна" },
+    { link: "#description", text: "Опис проекту" },
+    { link: "#about-author", text: "Про автора" },
+    { link: "#about-author", text: "Контакти" }
+  ]
+
+  let textBlock = { title: " ", text: " ", image: " " }
+
+  let author = {
+    name: "Слободенюк Т.В.",
+    githubUrl: "https://github.com/tatatia",
+    originalDesignUrl: "https://dribbble.com/shots/11529735-Online-Store-WebUI-Kit-Free-PSD-Download/attachments/3150018?mode=media"
+  }
+
   return (
     <div className="App">
       <div className="pre-menu">
@@ -54,10 +65,10 @@ function App() {
       <div className="work-area">
         <div className="text-center">
           <h3>Git</h3>
-          <img 
-              alt="git" 
-              src={gitImg} 
-              />
+          <img
+            alt="git"
+            src={gitImg}
+          />
         </div>
         <p>Git зберігає дані набором зліпків. Кожного разу при фіксації поточної версії проекту Git зберігає зліпок
         того, як виглядають всі файли проекту. Але якщо файл не змінювався, то дається посилання на раніше
@@ -114,10 +125,10 @@ function App() {
         </ul>
         <p>Структура HTML сторінки:</p>
         <div className="image-left">
-          <img 
-             alt="html" 
-             src={htmlImg}
-             />
+          <img
+            alt="html"
+            src={htmlImg}
+          />
           <p>Веб-посилання - спеціальний тег, <br />через який можна перейти з однієї веб-сторінки на іншу. Крім того,
           він дає можливість створити зміст сторінки. Веб-посилання - це те ж саме, що html-посилання або
           гіпертекстове посилання. Якщо клацнути на веб-посилання
@@ -151,22 +162,22 @@ function App() {
           <li>Значення атрибута, загорнене в прямі лапки.</li>
         </ul>
         <div className="text-center">
-          <img 
-             alt="attribute" 
-             src={attributeImg}
-             width="800" 
-             />
+          <img
+            alt="attribute"
+            src={attributeImg}
+            width="800"
+          />
         </div>
       </div>
 
       <div className="work-three">
         <div className="text-center">
           <h3>Nodejs and npm</h3>
-          <img 
-             alt="node" 
-             src={nodeImg}
-             width="600" 
-             />
+          <img
+            alt="node"
+            src={nodeImg}
+            width="600"
+          />
         </div>
         <p>Node.js — платформа з відкритим кодом для виконання високопродуктивних мережевих застосунків, написаних мовою
         JavaScript.Якщо раніше Javascript застосовувався для обробки даних в браузері користувача, то node.js надав
@@ -199,10 +210,10 @@ function App() {
             спеціальні HTML атрибути class чи id.</p>
         <p>Анатомія правила CSS:</p>
         <div className="text-center">
-          <img 
-             alt="css"
-             src={cssImg}
-             />
+          <img
+            alt="css"
+            src={cssImg}
+          />
         </div>
 
         <ul>
@@ -225,10 +236,10 @@ function App() {
       <div className="footer">
 
         <div className="author" id="about-author">
-          Слободенюк Т.В.<br />
-          <a href="https://github.com/tatatia" target="_blank">https://github.com/tatatia</a>
+          {author.name}<br />
+          <a href={author.githubUrl} target="_blank">{author.githubUrl}</a>
           <br />
-          <a href="https://dribbble.com/shots/11529735-Online-Store-WebUI-Kit-Free-PSD-Download/attachments/3150018?mode=media"
+          <a href={author.originalDesignUrl}
             target="_blank">Оригінал дизайну</a>
 
         </div>
