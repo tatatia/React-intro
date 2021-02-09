@@ -71,7 +71,13 @@ class App extends React.Component {
         githubUrl: "https://github.com/tatatia",
         originalDesignUrl: "https://dribbble.com/shots/11529735-Online-Store-WebUI-Kit-Free-PSD-Download/attachments/3150018?mode=media"
       },
-      posts: textBlocks 
+      posts: textBlocks,
+      menu: [
+        { link: "#", text: "Головна" },
+        { link: "#description", text: "Опис проекту" },
+        { link: "#about-author", text: "Про автора" },
+        { link: "#about-author", text: "Контакти" }
+      ]
     };
   }
 
@@ -82,9 +88,9 @@ class App extends React.Component {
           <h1 id="title">{this.state.title}</h1>
         </div>
         <div className="menu">
-          {/* {items.map(item => <a href={item.link}>{item.text}</a>)} */}
+          {this.state.menu.map(item => <a href={item.link}>{item.text}</a>)}
         </div>
-  
+
         {this.state.posts.map(block => {
           return (
             <div className="work-books">
@@ -93,8 +99,9 @@ class App extends React.Component {
               <div className="desc" dangerouslySetInnerHTML={block.text} />
             </div>
           )
-        })}
-  
+        })
+        }
+
         <div className="footer">
           <div className="author" id="about-author">
             {this.state.author.name}<br />
@@ -105,28 +112,12 @@ class App extends React.Component {
           </div>
         </div>
         <div className="post-footer"></div>
-  
+
         <script src="./node_modules/jquery/dist/jquery.js"></script>
         <script src="./js/script.js"></script>
       </div>
     );
   }
-}
-
-function App2() {
- 
-  let items = [
-    { link: "#", text: "Головна" },
-    { link: "#description", text: "Опис проекту" },
-    { link: "#about-author", text: "Про автора" },
-    { link: "#about-author", text: "Контакти" }
-  ]
-
-  
-
- 
-
-  
 }
 
 export default App;
