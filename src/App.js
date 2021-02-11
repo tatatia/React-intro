@@ -6,6 +6,8 @@ import attributeImg from "./images/attribute.png";
 import nodeImg from "./images/node.jpeg";
 import cssImg from "./images/css.png";
 import React from 'react';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 let textBlocks = [
   {
@@ -84,12 +86,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <div className="pre-menu">
-          <h1 id="title">{this.state.title}</h1>
-        </div>
-        <div className="menu">
-          {this.state.menu.map(item => <a href={item.link}>{item.text}</a>)}
-        </div>
+        <Header title={this.state.title} menu={this.state.menu} />
 
         {this.state.posts.map(block => {
           return (
@@ -102,16 +99,7 @@ class App extends React.Component {
         })
         }
 
-        <div className="footer">
-          <div className="author" id="about-author">
-            {this.state.author.name}<br />
-            <a href={this.state.author.githubUrl} target="_blank">{this.state.author.githubUrl}</a>
-            <br />
-            <a href={this.state.author.originalDesignUrl}
-              target="_blank">Оригінал дизайну</a>
-          </div>
-        </div>
-        <div className="post-footer"></div>
+        <Footer author={this.state.author} />
 
         <script src="./node_modules/jquery/dist/jquery.js"></script>
         <script src="./js/script.js"></script>
