@@ -8,6 +8,7 @@ import cssImg from "./images/css.png";
 import React from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import TextBlocks from './components/TextBlocks';
 
 let textBlocks = [
   {
@@ -87,18 +88,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header title={this.state.title} menu={this.state.menu} />
-
-        {this.state.posts.map(block => {
-          return (
-            <div className="work-books">
-              <h3>{block.title}</h3>
-              <img alt="cvs" src={block.image} />
-              <div className="desc" dangerouslySetInnerHTML={block.text} />
-            </div>
-          )
-        })
-        }
-
+        <TextBlocks posts={this.state.posts} />
         <Footer author={this.state.author} />
 
         <script src="./node_modules/jquery/dist/jquery.js"></script>

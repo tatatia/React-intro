@@ -106,3 +106,6 @@ body {
   color: cadetblue;
 }
 
+.work-books img {
+  max-width: 300px;
+} 
