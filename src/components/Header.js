@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Menu extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            activeItem: "Головна"
+            activeItem: props.activeItem
         }
 
         this.setActiveItem = this.setActiveItem.bind(this);
@@ -30,14 +31,28 @@ class Menu extends React.Component {
     }
 }
 
-function Header(props) {
+Menu.propTypes = {
+    items: PropTypes.array,
+    activeItem: PropTypes.string
+}
+Menu.defaultProps = {
+    activeItem: "Головна"
+}
+
+function Header({ title, menu }) {
     return (
         <>
             <div className="pre-menu">
-                <h1 id="title">{props.title}</h1>
+                <h1 id="title">{title}</h1>
             </div>
-            <Menu items={props.menu} />
+            <Menu items={menu} />
         </>
     );
 }
+
+Header.propTypes = {
+    title: PropTypes.string,
+    menu: PropTypes.array
+}
+
 export default Header
