@@ -67,10 +67,12 @@ body {
   margin-right: 20px;
   float: left;
 }
-.image-left{
-  border: 1px solid red;
 
+.image-left{
+  /* border: 1px solid red; */
+  margin-bottom: 10px;
 }
+
 .clear-both{
   clear:both;
 }
@@ -106,3 +108,9 @@ body {
   color: cadetblue;
 }
 
+.work-books img {
+  max-width: 300px;
+} 
+.menu a.active{
+  color: red;
+}
