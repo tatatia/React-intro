@@ -4,7 +4,7 @@ class Menu extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            activeItem: "Опис проекту"
+            activeItem: "Головна"
         }
 
         this.setActiveItem = this.setActiveItem.bind(this);

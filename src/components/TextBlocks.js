@@ -4,8 +4,11 @@ const TextBlock = (props) => {
   return (
     <div className="work-books">
       <h3>{props.title}</h3>
-      <img alt="cvs" src={props.image} />
-      <div className="desc" dangerouslySetInnerHTML={props.text} />
+      <div className="image-left">
+        <img alt="cvs" src={props.image} />
+        <div className="desc" dangerouslySetInnerHTML={props.text} />
+        <div style={{ clear: "both" }}></div>
+      </div>
     </div>
   )
 }
