@@ -1,68 +1,8 @@
 import './App.css';
-import cvsImg from "./images/cvs.jpg";
-import gitImg from "./images/git.jpeg";
-import htmlImg from "./images/html.jpg";
-import attributeImg from "./images/attribute.png";
-import nodeImg from "./images/node.jpeg";
-import cssImg from "./images/css.png";
 import React from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import TextBlocks from './components/TextBlocks';
-
-let textBlocks = [
-  {
-    title: "Система керування версіями",
-    text: { __html: "<p><strong>Система керування версіями</strong> — інструмент, який дозволяє одночасно, не заважаючи один одному, проводити роботу над груповими проектами.</p>" },
-    image: cvsImg
-  },
-  {
-    title: "Git",
-    text: {
-      __html: `<p>Основні команди Git</p>
-    <ul>
-      <li>git checkout (назва гілки) - перейти в іншу гілку.</li>
-      <li>git checkout -b (назва гілки) - створити нову гілку і перейти в неї.</li>
-      <li>git commit -m "message" - закомітити зміни в локальний репозиторій.</li>
-      <li>git add . - додати всі файли зміни в репозиторій, щоб можна було комітити. </li>
-      <li>git clone (адреса репозиторію) - зклонувати репозиторій.</li>
-      <li>git status - перевірити статус локального репозиторію.</li>
-      <li>git push - завантажити зміни на сервер, щоб було видно на github.</li>
-      <li>git pull - взяти нові дані з сервера.</li>
-      <li>git branch - показати список локальних гілок (в тому числі активну).</li>
-      <li>git merge (назва гілки) - змерджити вказану гілку в поточну</li>
-
-    </ul>` },
-    image: gitImg
-  },
-  {
-    title: "HTML",
-    text: {
-      __html: ` <p>HTML - це мова розмітки за допомогою тегів. Тобто, HTML документ буде складатися з деякої групи елементів, де
-    кожен елемент буде визначатися (починатися та закінчуватися) певним тегом (Для деяких елементів кінцевий тег
-    не є обов'язвовим) Тобто,
-    ТЕГ — це назва елементу, записана у кутових дужках ( &lt;&gt;) Кожен HTML тег має свою унікальну назву з
-        визначеним синтаксисом, яка записується латинськими літерами і не чутлива до регістру.</p>
-    <p>Елементи HTML поділяються на:</p>
-    <ul>
-      <li>Блокові елементи (block)</li>
-      <li>Рядкові (вбудовані) елементи (inline)</li>
-      <li>Рядково- (вбудований) блокові (inline-block)</li>
-    </ul>` },
-    image: htmlImg
-  },
-  {
-    title: "Nodejs and npm",
-    text: {
-      __html: `   <p>Node.js — платформа з відкритим кодом для виконання високопродуктивних мережевих застосунків, написаних мовою
-    JavaScript.Якщо раніше Javascript застосовувався для обробки даних в браузері користувача, то node.js надав
-    можливість виконувати JavaScript-скрипти
-    на сервері та відправляти користувачеві результат їхнього виконання. Платформа Node.js перетворила
-    JavaScript на мову загального використання з великою спільнотою розробників.
-    </p>`},
-    image: nodeImg
-  }
-]
 
 class App extends React.Component {
   constructor(props) {
@@ -74,7 +14,6 @@ class App extends React.Component {
         githubUrl: "https://github.com/tatatia",
         originalDesignUrl: "https://dribbble.com/shots/11529735-Online-Store-WebUI-Kit-Free-PSD-Download/attachments/3150018?mode=media"
       },
-      posts: textBlocks,
       menu: [
         { link: "#", text: "Головна" },
         { link: "#description", text: "Опис проекту" },
@@ -88,7 +27,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header title={this.state.title} menu={this.state.menu} />
-        <TextBlocks posts={this.state.posts} />
+        <TextBlocks />
         <Footer author={this.state.author} />
 
         <script src="./node_modules/jquery/dist/jquery.js"></script>
