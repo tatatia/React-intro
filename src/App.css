@@ -114,3 +114,9 @@ body {
 .menu a.active{
   color: red;
 }
+table, th, td {
+  border: 1px solid white;
+}
+table {
+  width: 100%;
+}
