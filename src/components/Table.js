@@ -2,11 +2,11 @@ import React from 'react';
 
 class Table extends React.Component {
     render() {
-        let arr = [
-            { name: "Taras", year: 1993 },
-            { name: "Ivan", year: 2010 },
-            { name: "Tanya", year: 1990 },
-            { name: "Tony", year: 1965 }
+        let people = [
+            { name: "Taras", year: 1993, height: 170 },
+            { name: "Ivan", year: 2010, height: 130 },
+            { name: "Tanya", year: 1990, height: 160 },
+            { name: "Tony", year: 1965, height: 165 }
         ]
         return (
             <div className="work-books">
@@ -15,10 +15,17 @@ class Table extends React.Component {
                         <tr>
                             <th>Name</th>
                             <th>Year</th>
+                            <th>Height</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {arr.map(item => <tr><td>{item.name}</td><td>{item.year}</td></tr>)}
+                        {people.map(person =>
+                            <tr>
+                                <td>{person.name}</td>
+                                <td>{person.year}</td>
+                                <td>{person.height}</td>
+                            </tr>
+                        )}
                     </tbody>
                 </table>
             </div>
