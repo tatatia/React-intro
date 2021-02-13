@@ -3,6 +3,7 @@ import React from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import TextBlocks from './components/TextBlocks';
+import Table from './components/Table';
 
 class App extends React.Component {
   constructor(props) {
@@ -27,11 +28,9 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header title={this.state.title} menu={this.state.menu} />
+        <Table/>
         <TextBlocks />
         <Footer author={this.state.author} />
-
-        <script src="./node_modules/jquery/dist/jquery.js"></script>
-        <script src="./js/script.js"></script>
       </div>
     );
   }
