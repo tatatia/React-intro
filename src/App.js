@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import TextBlocks from './components/TextBlocks';
 import Table from './components/Table';
+import Table2 from './components/Table2';
 
 class App extends React.Component {
   constructor(props) {
@@ -29,6 +30,7 @@ class App extends React.Component {
       <div className="App">
         <Header title={this.state.title} menu={this.state.menu} />
         <Table/>
+        <Table2/>
         <TextBlocks />
         <Footer author={this.state.author} />
       </div>
