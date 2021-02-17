@@ -7,7 +7,7 @@ class Table2 extends React.Component {
             { car: "Kia", model: "Soul", number: 8876, bodynumber: 49800, color: "yellow" },
             { car: "Skoda", model: "Fabia", number: 8811, bodynumber: 65444, color: "white" },
             { car: "Nisan", model: "Micra", number: 3332, bodynumber: 20074, color: "blue" },
-            { car: "Kia", model: "Rio", number: 1122, bodynumber: 66544, color: "ping" }
+            { car: "Kia2", model: "Rio", number: 1122, bodynumber: 66544, color: "ping" }
         ]
         return (
             <div className="work-books">
@@ -23,7 +23,7 @@ class Table2 extends React.Component {
                     </thead>
                     <tbody>
                         {cars.map(modelcar =>
-                            <tr>
+                            <tr key={modelcar.car}>
                                 <td>{modelcar.car}</td>
                                 <td>{modelcar.model}</td>
                                 <td>{modelcar.bodynumber}</td>

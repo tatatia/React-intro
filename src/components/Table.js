@@ -50,20 +50,28 @@ class Table extends React.Component {
             { name: "Tony", year: 1965, height: 165 }
         ]
 
+        people.forEach((elem, index) => {
+            console.log(elem, index)
+        })
+        for(let i = 0; i < people.length; i++){
+            console.log(people[i], i)
+        }
+
+
         return (
             <div className="work-books">
-                <a href="#" onClick={() => this.addNewElement(people)}>Add new element</a>
+                <button onClick={() => this.addNewElement(people)}>Add new element</button>
                 <table>
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th><a href="#" onClick={() => this.sortByYear(people)}>Year</a></th>
-                            <th><a href="#" onClick={() => this.sortByHeight(people)}>Height</a></th>
+                            <th><a href="#/" onClick={() => this.sortByYear(people)}>Year</a></th>
+                            <th><a href="#/" onClick={() => this.sortByHeight(people)}>Height</a></th>
                         </tr>
                     </thead>
                     <tbody>
                         {people.map(person =>
-                            <tr>
+                            <tr key={person.name}>
                                 <td>{person.name}</td>
                                 <td>{person.year}</td>
                                 <td>{person.height}</td>
@@ -71,7 +79,7 @@ class Table extends React.Component {
                         )}
                     </tbody>
                 </table>
-                <a href="#" onClick={() => this.removeElement(people)}>Delete element</a>
+                <button onClick={() => this.removeElement(people)}>Delete element</button>
             </div>
         )
     }
