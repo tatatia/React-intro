@@ -23,8 +23,9 @@ class Menu extends React.Component {
                 {this.props.items.map(item =>
                     <a
                         onClick={() => this.setActiveItem(item)}
-                        className={(item.text == this.state.activeItem) ? "active" : ""}
+                        className={(item.text === this.state.activeItem) ? "active" : ""}
                         href={item.link}
+                        key={item.text}
                     >{item.text}</a>)}
             </div>
         )
