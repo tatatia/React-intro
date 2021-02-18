@@ -123,3 +123,9 @@ table {
 a {
   color: white; 
 }
+button {
+  margin-left: 20px;
+  margin-bottom: 10px;
+  display: block;
+  width: 150px;  
+}

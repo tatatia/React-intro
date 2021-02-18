@@ -42,6 +42,24 @@ class Table extends React.Component {
         console.log(newArray)
     }
 
+    bubbleSort(people, property) {
+        for (let i = people.length - 1; i > 0; i--) {
+            let counter = 0;
+            for (let j = 0; j < i; j++) {
+                if (people[j][property] > people[j + 1][property]) {
+                    let tmp = people[j];
+                    people[j] = people[j + 1];
+                    people[j + 1] = tmp;
+                    counter++;
+                }
+            }
+            if (counter === 0) {
+                break;
+            }
+        }
+        console.log(people)
+    }
+
     render() {
         let people = [
             { name: "Taras", year: 1993, height: 170 },
@@ -50,17 +68,23 @@ class Table extends React.Component {
             { name: "Tony", year: 1965, height: 165 }
         ]
 
-        people.forEach((elem, index) => {
-            console.log(elem, index)
-        })
-        for(let i = 0; i < people.length; i++){
-            console.log(people[i], i)
-        }
+        ;
+
+        // people.forEach((elem, index) => {
+        //     console.log(elem, index)
+        // })
+        // for (let i = 0; i < people.length; i++) {
+        //     console.log(people[i], i)
+        //}
 
 
         return (
+
             <div className="work-books">
+                <button onClick={() => this.bubbleSort(people, "height")}>Bubble Sort Height</button>
+                <button onClick={() => this.bubbleSort(people, "year")}>Bubble Sort Year</button>
                 <button onClick={() => this.addNewElement(people)}>Add new element</button>
+                <button onClick={() => this.removeElement(people)}>Delete element</button>
                 <table>
                     <thead>
                         <tr>
@@ -79,7 +103,6 @@ class Table extends React.Component {
                         )}
                     </tbody>
                 </table>
-                <button onClick={() => this.removeElement(people)}>Delete element</button>
             </div>
         )
     }
