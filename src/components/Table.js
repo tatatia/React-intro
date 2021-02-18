@@ -68,18 +68,7 @@ class Table extends React.Component {
             { name: "Tony", year: 1965, height: 165 }
         ]
 
-        ;
-
-        // people.forEach((elem, index) => {
-        //     console.log(elem, index)
-        // })
-        // for (let i = 0; i < people.length; i++) {
-        //     console.log(people[i], i)
-        //}
-
-
         return (
-
             <div className="work-books">
                 <button onClick={() => this.bubbleSort(people, "height")}>Bubble Sort Height</button>
                 <button onClick={() => this.bubbleSort(people, "year")}>Bubble Sort Year</button>
