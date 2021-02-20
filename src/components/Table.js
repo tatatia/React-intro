@@ -57,15 +57,62 @@ class Table extends React.Component {
                 break;
             }
         }
-        console.log(people)
+        console.table(people)
     }
 
     render() {
         let people = [
-            { name: "Taras", year: 1993, height: 170 },
-            { name: "Ivan", year: 2010, height: 130 },
-            { name: "Tanya", year: 1990, height: 160 },
-            { name: "Tony", year: 1965, height: 165 }
+            {
+                name: "Taras",
+                events: {
+                    birthday: {
+                        day: 1,
+                        moon: "May",
+                        year: 1993
+                    },
+                    school: 2000,
+                    work: 2014
+                },
+                height: 170
+            },
+            {
+                name: "Ivan",
+                events: {
+                    birthday: {
+                        day: 14,
+                        moon: "August",
+                        year: 2010
+                    },
+                    school: 2017,
+                },
+                height: 130
+            },
+            {
+                name: "Tanya",
+                events: {
+                    birthday: {
+                        day: 6,
+                        moon: "March",
+                        year: 1990
+                    },
+                    school: 1997,
+                    work: 2009
+                },
+                height: 160
+            },
+            {
+                name: "Tony",
+                events: {
+                    birthday: {
+                        day: 6,
+                        moon: "January",
+                        year: 1965
+                    },
+                    school: 1972,
+                    work: 1988
+                },
+                height: 165
+            }
         ]
 
         return (
@@ -78,7 +125,9 @@ class Table extends React.Component {
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th><a href="#/" onClick={() => this.sortByYear(people)}>Year</a></th>
+                            <th><a href="#/" onClick={() => this.sortByYear(people)}>Birthdays</a></th>
+                            <th>Scool years</th>
+                            <th>Work years</th>
                             <th><a href="#/" onClick={() => this.sortByHeight(people)}>Height</a></th>
                         </tr>
                     </thead>
@@ -86,7 +135,11 @@ class Table extends React.Component {
                         {people.map(person =>
                             <tr key={person.name}>
                                 <td>{person.name}</td>
-                                <td>{person.year}</td>
+                                <td>{person.events.birthday.day},
+                                    {person.events.birthday.moon},
+                                    {person.events.birthday.year}</td>
+                                <td>{person.events.school}</td>
+                                <td>{(person.events.work) ? person.events.work : "-"}</td>
                                 <td>{person.height}</td>
                             </tr>
                         )}
