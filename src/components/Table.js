@@ -23,17 +23,6 @@ class Table extends React.Component {
         console.log(sortHeightArray)
     }
 
-    removeElement3(array) {
-        array.pop()
-        console.log(array)
-    }
-
-    removeElement2(array) {
-        let startIndex = array.length - 1
-        array.splice(startIndex, 1)
-        console.log(array)
-    }
-
     removeElement(array) {
         let removeIndex = array.length - 1
         let newArray = array.filter((_, index) => {
@@ -60,6 +49,44 @@ class Table extends React.Component {
         console.table(people)
     }
 
+    removeNameField(array) {
+        let newArray = array.map(({ name, ...rest }) => rest)
+        console.log(newArray)
+    }
+
+    removeField(array, fieldName) {
+        let newArray = array.map((elem) => {
+            let { [fieldName]: remove, ...newObj } = elem
+            return newObj
+        })
+        console.log(newArray)
+    }
+
+    addElementInObjects(array) {
+        let newArray = array.map((elem) => {
+            let newObj = {
+                ...elem,
+                country: "ua",
+                events: {
+                    ...elem.events,
+                    birthday: {
+                        ...elem.events.birthday,
+                        city: 'random'
+                    }
+                }
+            }
+            return newObj
+        })
+        console.log(newArray)
+    }
+
+    selectObjectsElementByKey(array, key) {
+        let newArray = array.map((elem) => {
+            return elem[key]
+        })
+        console.log(newArray)
+    }
+
     render() {
         let people = [
             {
@@ -70,8 +97,8 @@ class Table extends React.Component {
                         moon: "May",
                         year: 1993
                     },
-                    school: 2000,
-                    work: 2014
+                    school: 2008,
+                    work: 2009
                 },
                 height: 170
             },
@@ -115,12 +142,22 @@ class Table extends React.Component {
             }
         ]
 
+        this.removeNameField(people)
+        this.removeField(people, "events")
+        this.removeField(people, "height")
+        this.addElementInObjects(people)
+        this.selectObjectsElementByKey(people, "name")
+        this.selectObjectsElementByKey(people, "events")
+        this.selectObjectsElementByKey(people, "events2")
+
         return (
             <div className="work-books">
                 <button onClick={() => this.bubbleSort(people, "height")}>Bubble Sort Height</button>
                 <button onClick={() => this.bubbleSort(people, "year")}>Bubble Sort Year</button>
                 <button onClick={() => this.addNewElement(people)}>Add new element</button>
                 <button onClick={() => this.removeElement(people)}>Delete element</button>
+                <button onClick={() => this.removeNameField(people)}>Delete element obj</button>
+                <button onClick={() => this.addElementInObjects(people)}>Add element obj</button>
                 <table>
                     <thead>
                         <tr>
