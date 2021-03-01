@@ -8,16 +8,16 @@ class Table extends React.Component {
             year: 1888,
             height: 169
         })
-        console.log(newArray)
+        return newArray
     }
 
-    sortByYear(people) {
-        let sortArray = people.sort((elem, elemNext) => elem.year > elemNext.year ? 1 : -1);
+    sortByYear(array) {
+        let sortArray = array.sort((elem, elemNext) => elem.year > elemNext.year ? 1 : -1);
         console.log(sortArray)
     }
 
-    sortByHeight(people) {
-        let sortHeightArray = people
+    sortByHeight(array) {
+        let sortHeightArray = array
             .sort((elem, elemNext) => elem.height > elemNext.height ? 1 : -1)
             .reverse()
         console.log(sortHeightArray)
@@ -25,20 +25,21 @@ class Table extends React.Component {
 
     removeElement(array) {
         let removeIndex = array.length - 1
-        let newArray = array.filter((_, index) => {
-            return index !== removeIndex
-        })
-        console.log(newArray)
+        let newArray = array
+            .filter((_, index) => {
+                return index !== removeIndex
+            })
+        return newArray
     }
 
-    bubbleSort(people, property) {
-        for (let i = people.length - 1; i > 0; i--) {
+    bubbleSort(array, property) {
+        for (let i = array.length - 1; i > 0; i--) {
             let counter = 0;
             for (let j = 0; j < i; j++) {
-                if (people[j][property] > people[j + 1][property]) {
-                    let tmp = people[j];
-                    people[j] = people[j + 1];
-                    people[j + 1] = tmp;
+                if (array[j][property] > array[j + 1][property]) {
+                    let tmp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = tmp;
                     counter++;
                 }
             }
@@ -46,12 +47,12 @@ class Table extends React.Component {
                 break;
             }
         }
-        console.table(people)
+        return array
     }
 
     removeNameField(array) {
         let newArray = array.map(({ name, ...rest }) => rest)
-        console.log(newArray)
+        return newArray
     }
 
     removeField(array, fieldName) {
@@ -59,7 +60,7 @@ class Table extends React.Component {
             let { [fieldName]: remove, ...newObj } = elem
             return newObj
         })
-        console.log(newArray)
+        return newArray
     }
 
     addElementInObjects(array) {
@@ -77,14 +78,14 @@ class Table extends React.Component {
             }
             return newObj
         })
-        console.log(newArray)
+        return newArray
     }
 
     selectObjectsElementByKey(array, key) {
         let newArray = array.map((elem) => {
             return elem[key]
         })
-        console.log(newArray)
+        return newArray
     }
 
     render() {
@@ -141,14 +142,38 @@ class Table extends React.Component {
                 height: 165
             }
         ]
+        let newPeople = this.addElementInObjects(people)
+        console.log("people", people)
+        console.log("newPeople", newPeople)
 
-        this.removeNameField(people)
-        this.removeField(people, "events")
+        let newElemKey = this.selectObjectsElementByKey(people, "name")
+        console.log("name", people)
+        console.log("newElemKey", newElemKey)
+
+        let newNameField = this.removeNameField(people)
+        console.log("name", people)
+        console.log("newNameField", newNameField)
+
+        let newField = this.removeField(people, "events")
+        console.log("people", people)
+        console.log("newField", newField)
+
+        let newElem = this.removeElement(people)
+        console.log("people", people)
+        console.log("newElem", newElem)
+
+        let newAddElem = this.addNewElement(people)
+        console.log("people", people)
+        console.log("newAddElem", newAddElem)
+
+        let sortBubble = this.bubbleSort(people, "height")
+        console.log("people", people)
+        console.log("newBubleSortInHeight", sortBubble)
+
         this.removeField(people, "height")
         this.addElementInObjects(people)
         this.selectObjectsElementByKey(people, "name")
         this.selectObjectsElementByKey(people, "events")
-        this.selectObjectsElementByKey(people, "events2")
 
         return (
             <div className="work-books">
