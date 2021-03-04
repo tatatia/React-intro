@@ -12,15 +12,19 @@ class Table extends React.Component {
     }
 
     sortByYear(array) {
-        let sortArray = array.sort((elem, elemNext) => elem.year > elemNext.year ? 1 : -1);
-        console.log(sortArray)
+        let cloneArray = array.map((elem) => elem)
+        let sortArray = cloneArray.sort((elem, elemNext) => {
+            return elem.events.birthday.year > elemNext.events.birthday.year ? 1 : -1
+        });
+        return sortArray
     }
 
     sortByHeight(array) {
-        let sortHeightArray = array
+        let cloneArray = [...array]
+        let sortHeightArray = cloneArray
             .sort((elem, elemNext) => elem.height > elemNext.height ? 1 : -1)
             .reverse()
-        console.log(sortHeightArray)
+        return sortHeightArray
     }
 
     removeElement(array) {
@@ -33,13 +37,14 @@ class Table extends React.Component {
     }
 
     bubbleSort(array, property) {
-        for (let i = array.length - 1; i > 0; i--) {
+        let cloneArray = array.map((elem) => elem)
+        for (let i = cloneArray.length - 1; i > 0; i--) {
             let counter = 0;
             for (let j = 0; j < i; j++) {
-                if (array[j][property] > array[j + 1][property]) {
-                    let tmp = array[j];
-                    array[j] = array[j + 1];
-                    array[j + 1] = tmp;
+                if (cloneArray[j][property] > cloneArray[j + 1][property]) {
+                    let tmp = cloneArray[j];
+                    cloneArray[j] = cloneArray[j + 1];
+                    cloneArray[j + 1] = tmp;
                     counter++;
                 }
             }
@@ -47,7 +52,7 @@ class Table extends React.Component {
                 break;
             }
         }
-        return array
+        return cloneArray
     }
 
     removeNameField(array) {
@@ -142,6 +147,7 @@ class Table extends React.Component {
                 height: 165
             }
         ]
+
         let newPeople = this.addElementInObjects(people)
         console.log("people", people)
         console.log("newPeople", newPeople)
@@ -169,6 +175,14 @@ class Table extends React.Component {
         let sortBubble = this.bubbleSort(people, "height")
         console.log("people", people)
         console.log("newBubleSortInHeight", sortBubble)
+
+        let sortHeight = this.sortByHeight(people)
+        console.log("people", people)
+        console.log("newSort", sortHeight)
+
+        let sortedByYear = this.sortByYear(people)
+        console.log("people", people)
+        console.log("sortedByYear", sortedByYear)
 
         this.removeField(people, "height")
         this.addElementInObjects(people)
