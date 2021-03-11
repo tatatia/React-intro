@@ -1,10 +1,11 @@
-import './App.css';
-import React from 'react';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import TextBlocks from './components/TextBlocks';
-import Table from './components/Table';
-import Table2 from './components/Table2';
+import './App.css'
+import React from 'react'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import TextBlocks from './components/TextBlocks'
+import Table from './components/Table'
+import Table2 from './components/Table2'
+import Weather from './components/Weather'
 
 class App extends React.Component {
   constructor(props) {
@@ -29,6 +30,8 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header title={this.state.title} menu={this.state.menu} />
+        <Weather cities={["Kyiv","Kropyvnytskyi","Ivano-Frankivsk","Zhytomyr","Zaporizhzhia"]}/>
+        <br/><br/>
         <Table/>
         <Table2/>
         <TextBlocks />
