@@ -30,7 +30,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header title={this.state.title} menu={this.state.menu} />
-        <Weather cities={["Kyiv","Kropyvnytskyi"]}/>
+        <Weather cities={["Kyiv","Kropyvnytskyi","Ivano-Frankivsk","Zhytomyr","Zaporizhzhia"]}/>
         <br/><br/>
         <Table/>
         <Table2/>

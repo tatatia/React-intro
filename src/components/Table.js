@@ -20,8 +20,7 @@ class Table extends React.Component {
     }
 
     sortByHeight(array) {
-        let cloneArray = [...array]
-        let sortHeightArray = cloneArray
+        let sortHeightArray = [...array]
             .sort((elem, elemNext) => elem.height > elemNext.height ? 1 : -1)
             .reverse()
         return sortHeightArray
