@@ -57,7 +57,10 @@ class Table2 extends React.Component {
         })
         console.log(newArray)
     }
-
+    // ((x) => x + 1)
+    // ((x) => {
+    //     return x+1
+    // })
     removeField(array, fieldCar) {
         let newArray = array.map((elem) => {
             let { [fieldCar]: remove, ...newObj } = elem

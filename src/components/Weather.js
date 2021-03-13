@@ -56,7 +56,7 @@ class Weather extends React.Component {
                             <th>Wind Speed</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody>   
                         {this.state.cities.map((city) =>
                             <tr key={city.name}>
                                 <td>{city.name}</td>

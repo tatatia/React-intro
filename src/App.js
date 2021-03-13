@@ -6,6 +6,7 @@ import TextBlocks from './components/TextBlocks'
 import Table from './components/Table'
 import Table2 from './components/Table2'
 import Weather from './components/Weather'
+import Pokemon from './components/Pokemon'
 
 class App extends React.Component {
   constructor(props) {
@@ -33,6 +34,7 @@ class App extends React.Component {
         <Weather cities={["Kyiv","Kropyvnytskyi","Ivano-Frankivsk","Zhytomyr","Zaporizhzhia"]}/>
         <br/><br/>
         <Table/>
+        <Pokemon pocemons={["charmander","ditto"]}/>
         <Table2/>
         <TextBlocks />
         <Footer author={this.state.author} />
