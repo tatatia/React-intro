@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 class Pokemon extends React.Component {
     constructor(props) {
@@ -24,8 +24,6 @@ class Pokemon extends React.Component {
     }
 
     componentDidMount = () => {
-        // const result = await fetch('https://pokeapi.co/api/v2/pokemon-form/4/')
-        // const data = await result.json()
         this.props.pocemons.forEach(pokemonName => {
             this.getPokemonData(pokemonName).then(result => {
                 this.setState({ pocemons: [...this.state.pocemons, result] })
@@ -33,10 +31,6 @@ class Pokemon extends React.Component {
         })
         // const pokemonName = this.props.pocemons[0]
     }
-
-    // componentDidMount = async () {
-    //     this.getPokemonData()
-    // }
 
     render() {
         const { pocemons } = this.state;
@@ -52,7 +46,7 @@ class Pokemon extends React.Component {
                                 return <li key={a}>{a}</li>
                             })}
                         </ul>
-                        <img src={pocemon.image}/>
+                        <img alt="pokemon" src={pocemon.image}/>
                     </div>
                 })}
             </div>

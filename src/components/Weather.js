@@ -59,8 +59,9 @@ class Weather extends React.Component {
                     <tbody>   
                         {this.state.cities.map((city) =>
                             <tr key={city.name}>
-                                <td>{city.name}</td>
-                                <td>{city.temperature}</td>
+                                <td> <button onClick={() => this.getWeatherData(city)}>{city.name}</button></td>
+                                <td>{city.temperature}</td> 
+                                    {/* <input type={city.temperature} onInput = {this.getWeatherData}/>*/}
                                 <td>{city.feelsLike}</td>
                                 <td>{city.humidity}</td>
                                 <td>{city.pressure}</td>

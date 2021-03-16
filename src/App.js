@@ -7,6 +7,7 @@ import Table from './components/Table'
 import Table2 from './components/Table2'
 import Weather from './components/Weather'
 import Pokemon from './components/Pokemon'
+import Books from './components/Books'
 
 class App extends React.Component {
   constructor(props) {
@@ -35,6 +36,7 @@ class App extends React.Component {
         <br/><br/>
         <Table/>
         <Pokemon pocemons={["charmander","ditto"]}/>
+        <Books bookIds= {[1, 2, 3, 4]}/>
         <Table2/>
         <TextBlocks />
         <Footer author={this.state.author} />
