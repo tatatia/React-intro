@@ -9,7 +9,7 @@ class Books extends React.Component {
         }
         this.handleChange = this.handleChange.bind(this)
     }
-    
+
     getBookData = async (id) => {
         const result = await fetch(`https://anapioficeandfire.com/api/books/${id}`)
         const data = await result.json()
@@ -88,4 +88,4 @@ class Books extends React.Component {
         )
     }
 }
-export default Books;
+export default Books

@@ -58,7 +58,7 @@ class Weather extends React.Component {
         console.log(cityName)
         let pos = undefined
         for (let i = 0; i < this.state.cities.length; i++) {
-            if (this.state.cities[i].name == cityName) {
+            if (this.state.cities[i].name === cityName) {
                 pos = i
                 break
             }
