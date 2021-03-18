@@ -9,6 +9,7 @@ class Books extends React.Component {
         }
         this.handleChange = this.handleChange.bind(this)
     }
+    
     getBookData = async (id) => {
         const result = await fetch(`https://anapioficeandfire.com/api/books/${id}`)
         const data = await result.json()
@@ -32,11 +33,11 @@ class Books extends React.Component {
     }
 
     loadNewBook = () => {
-        const id = this.state.bookId
+        const id = parseInt(this.state.bookId)
         const bookIds = this.state.books.map((b) => b.id)
-        const res = bookIds.some((elem) => elem == id)
+        const res = bookIds.some((elem) => elem === id)
         if (res) {
-            alert("book redy")
+            alert("book alredy exists")
             return
         }
         console.log("res=", res)
