@@ -28,16 +28,50 @@ class Weather extends React.Component {
     }
 
     componentDidMount() {
-        this.props.cities.forEach(element => {
+        this.props.cities.forEach((element, index) => {
             // console.log("before getWeatherData")
-            this.getWeatherData(element).then(result => {
-                // console.log(element, result)
-                this.setState({
-                    cities: [...this.state.cities, result]
-                })
-            })
+            // this.getWeatherData(element).then(result => {
+            //     // console.log(element, result)
+            //     this.setState({
+            //         cities: [...this.state.cities, result]
+            //     })
+            // })
             // console.log("after getWeatherData")
+            setTimeout(() => {
+                console.log(element)
+                console.log(this.state.cities)
+                this.setState({
+                    cities: [{ name: element }, ...this.state.cities]
+                })
+            }, index * 1000)
         });
+        // const newCityNames = this.props.cities.map((cityName) => {
+        //     return { name: cityName }
+        // })
+        // console.log(newCityNames)
+        // this.setState({
+        //     cities: newCityNames
+        // })
+    }
+
+    loadWeather = (cityName) => {
+        console.log(cityName)
+        let pos = undefined
+        for (let i = 0; i < this.state.cities.length; i++) {
+            if (this.state.cities[i].name == cityName) {
+                pos = i
+                break
+            }
+        }
+        console.log(pos)
+        this.getWeatherData(cityName).then((result) => {
+            console.log(result)
+            const newCities = this.state.cities
+            newCities[pos] = result
+            this.setState({
+                cities: newCities
+            })
+        })
     }
 
     render() {
@@ -56,12 +90,12 @@ class Weather extends React.Component {
                             <th>Wind Speed</th>
                         </tr>
                     </thead>
-                    <tbody>   
+                    <tbody>
                         {this.state.cities.map((city) =>
                             <tr key={city.name}>
-                                <td> <button onClick={() => this.getWeatherData(city)}>{city.name}</button></td>
-                                <td>{city.temperature}</td> 
-                                    {/* <input type={city.temperature} onInput = {this.getWeatherData}/>*/}
+                                <td> <button onClick={() => this.loadWeather(city.name)}>{city.name}</button></td>
+                                <td>{city.temperature}</td>
+                                {/* <input type={city.temperature} onInput = {this.getWeatherData}/>*/}
                                 <td>{city.feelsLike}</td>
                                 <td>{city.humidity}</td>
                                 <td>{city.pressure}</td>
