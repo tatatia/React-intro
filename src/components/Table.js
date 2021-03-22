@@ -93,11 +93,11 @@ class Table extends React.Component {
     }
 
     handleImageLoaded = () => {
-        alert("Loaded")
+        // alert("Loaded")
     }
 
     handleOnError = () => {
-        alert("Error")
+        // alert("Error")
     }
 
     render() {

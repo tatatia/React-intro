@@ -5,11 +5,12 @@ class Books extends React.Component {
         super(props)
         this.state = {
             books: [],
-            bookId: ''
+            bookId: '',
+            activeBookId: 2
         }
         this.handleChange = this.handleChange.bind(this)
     }
-    
+
     getBookData = async (id) => {
         const result = await fetch(`https://anapioficeandfire.com/api/books/${id}`)
         const data = await result.json()
@@ -30,6 +31,7 @@ class Books extends React.Component {
                 this.setState({ books: [...this.state.books, result] })
             })
         })
+        // document.addEventListener("keydown", (e) => {console.log(e.key)})
     }
 
     loadNewBook = () => {
@@ -53,6 +55,10 @@ class Books extends React.Component {
         this.setState({ bookId: event.target.value })
     }
 
+    setActiveBookId(bookId) {
+        this.setState({ activeBookId: bookId })
+    }
+
     render() {
         const { books, bookId } = this.state;
         console.log(bookId)
@@ -73,7 +79,9 @@ class Books extends React.Component {
                     </thead>
                     <tbody>
                         {books.map((book) =>
-                            <tr key={book.id}>
+                            <tr onClick={() => this.setActiveBookId(book.id)}
+                                className={(book.id === this.state.activeBookId) ? "selectedElement" : ""}
+                                key={book.id}>
                                 <td>{book.id}</td>
                                 <td>{book.name}</td>
                                 <td>{book.authors}</td>

@@ -32,11 +32,11 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header title={this.state.title} menu={this.state.menu} />
+        <Books bookIds= {[1, 2, 3, 4]}/>
         <Weather cities={["Kyiv","Kropyvnytskyi","Ivano-Frankivsk","Zhytomyr","Zaporizhzhia"]}/>
         <br/><br/>
         <Table/>
         <Pokemon pocemons={["charmander","ditto"]}/>
-        <Books bookIds= {[1, 2, 3, 4]}/>
         <Table2/>
         <TextBlocks />
         <Footer author={this.state.author} />
