@@ -6,7 +6,7 @@ class Books extends React.Component {
         this.state = {
             books: [],
             bookId: '',
-            activeBookId: 2
+            activeBookId: 1
         }
         this.handleChange = this.handleChange.bind(this)
     }
@@ -31,7 +31,38 @@ class Books extends React.Component {
                 this.setState({ books: [...this.state.books, result] })
             })
         })
-        // document.addEventListener("keydown", (e) => {console.log(e.key)})
+        let keysPressed = {}
+        document.addEventListener('keyup', (event) => {
+            delete keysPressed[event.key]
+        })
+        document.addEventListener("keydown", (event) => {
+            keysPressed[event.key] = true
+            if (keysPressed['Control'] && event.key == 'c') {
+                this.setState({activeBookId : this.state.books.length})
+            }
+            if (event.code == "ArrowUp") {
+                let newId = this.state.activeBookId - 1
+                console.log(newId)
+                if (newId > 0) {
+                    this.setState({ activeBookId: newId })
+                }
+            }
+            if (event.code == "ArrowDown") {
+                let newId = this.state.activeBookId + 1
+                console.log(newId)
+                if (newId <= this.state.books.length) {
+                    this.setState({ activeBookId: newId })
+                }
+            }
+            console.log(event.key)
+            console.log(event.code)
+            // if(){}
+
+            // if (event.code == 'KeyZ' && (event.ctrlKey || event.metaKey)) {
+            //     alert('Отменить!')
+            //     // console.log(event.key)
+            // }
+        })
     }
 
     loadNewBook = () => {
@@ -59,9 +90,14 @@ class Books extends React.Component {
         this.setState({ activeBookId: bookId })
     }
 
+
+
     render() {
         const { books, bookId } = this.state;
         console.log(bookId)
+        // const DragHandle = SortableHandle(({ style }) => (
+        //     <span style={{ ...style, ...{ cursor: 'move' } }} >{'::::'}</span>)
+        //)
         return (
             <div className="work-books">
                 <input type="text" placeholder="enter id" value={this.state.bookId} onChange={this.handleChange} />
