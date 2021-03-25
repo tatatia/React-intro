@@ -8,6 +8,8 @@ import Table2 from './components/Table2'
 import Weather from './components/Weather'
 import Pokemon from './components/Pokemon'
 import Books from './components/Books'
+import Draggable from './components/Draggable'
+//import '/components./Draggable2.css' 
 
 class App extends React.Component {
   constructor(props) {
@@ -32,6 +34,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header title={this.state.title} menu={this.state.menu} />
+        <Draggable tasks={["learn HTML","learn CSS","learn JavaScript","learn Python","learn React"]}/>
         <Books bookIds= {[1, 2, 3, 4]}/>
         <Weather cities={["Kyiv","Kropyvnytskyi","Ivano-Frankivsk","Zhytomyr","Zaporizhzhia"]}/>
         <br/><br/>

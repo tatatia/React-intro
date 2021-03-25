@@ -56,12 +56,6 @@ class Books extends React.Component {
             }
             console.log(event.key)
             console.log(event.code)
-            // if(){}
-
-            // if (event.code == 'KeyZ' && (event.ctrlKey || event.metaKey)) {
-            //     alert('Отменить!')
-            //     // console.log(event.key)
-            // }
         })
     }
 
@@ -90,14 +84,9 @@ class Books extends React.Component {
         this.setState({ activeBookId: bookId })
     }
 
-
-
     render() {
         const { books, bookId } = this.state;
         console.log(bookId)
-        // const DragHandle = SortableHandle(({ style }) => (
-        //     <span style={{ ...style, ...{ cursor: 'move' } }} >{'::::'}</span>)
-        //)
         return (
             <div className="work-books">
                 <input type="text" placeholder="enter id" value={this.state.bookId} onChange={this.handleChange} />

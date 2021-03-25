@@ -12,9 +12,9 @@ class Menu extends React.Component {
     }
 
     setActiveItem(item) {
-        this.setState(state => ({
+        this.setState({
             activeItem: item.text
-        }))
+        })
     }
 
     render() {
