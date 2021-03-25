@@ -92,6 +92,14 @@ class Table extends React.Component {
         return newArray
     }
 
+    handleImageLoaded = () => {
+        // alert("Loaded")
+    }
+
+    handleOnError = () => {
+        // alert("Error")
+    }
+
     render() {
         let people = [
             {
@@ -220,6 +228,10 @@ class Table extends React.Component {
                         )}
                     </tbody>
                 </table>
+                <img src="https://art-holst.com.ua/wp-content/uploads/thumb_l_27943-768x768.jpg"
+                    onError={this.handleOnError}
+                    onLoad={this.handleImageLoaded}
+                />
             </div>
         )
     }

@@ -63,9 +63,9 @@ class Weather extends React.Component {
                 break
             }
         }
-        console.log(pos)
+        //console.log(pos)
         this.getWeatherData(cityName).then((result) => {
-            console.log(result)
+            //console.log(result)
             const newCities = this.state.cities
             newCities[pos] = result
             this.setState({

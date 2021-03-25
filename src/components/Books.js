@@ -5,11 +5,12 @@ class Books extends React.Component {
         super(props)
         this.state = {
             books: [],
-            bookId: ''
+            bookId: '',
+            activeBookId: 1
         }
         this.handleChange = this.handleChange.bind(this)
     }
-    
+
     getBookData = async (id) => {
         const result = await fetch(`https://anapioficeandfire.com/api/books/${id}`)
         const data = await result.json()
@@ -29,6 +30,32 @@ class Books extends React.Component {
             this.getBookData(bookId).then(result => {
                 this.setState({ books: [...this.state.books, result] })
             })
+        })
+        let keysPressed = {}
+        document.addEventListener('keyup', (event) => {
+            delete keysPressed[event.key]
+        })
+        document.addEventListener("keydown", (event) => {
+            keysPressed[event.key] = true
+            if (keysPressed['Control'] && event.key == 'c') {
+                this.setState({activeBookId : this.state.books.length})
+            }
+            if (event.code == "ArrowUp") {
+                let newId = this.state.activeBookId - 1
+                console.log(newId)
+                if (newId > 0) {
+                    this.setState({ activeBookId: newId })
+                }
+            }
+            if (event.code == "ArrowDown") {
+                let newId = this.state.activeBookId + 1
+                console.log(newId)
+                if (newId <= this.state.books.length) {
+                    this.setState({ activeBookId: newId })
+                }
+            }
+            console.log(event.key)
+            console.log(event.code)
         })
     }
 
@@ -53,6 +80,10 @@ class Books extends React.Component {
         this.setState({ bookId: event.target.value })
     }
 
+    setActiveBookId(bookId) {
+        this.setState({ activeBookId: bookId })
+    }
+
     render() {
         const { books, bookId } = this.state;
         console.log(bookId)
@@ -73,7 +104,9 @@ class Books extends React.Component {
                     </thead>
                     <tbody>
                         {books.map((book) =>
-                            <tr key={book.id}>
+                            <tr onClick={() => this.setActiveBookId(book.id)}
+                                className={(book.id === this.state.activeBookId) ? "selectedElement" : ""}
+                                key={book.id}>
                                 <td>{book.id}</td>
                                 <td>{book.name}</td>
                                 <td>{book.authors}</td>
