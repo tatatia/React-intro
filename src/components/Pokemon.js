@@ -21,8 +21,6 @@ class Pokemon extends React.Component {
             weight: data.weight,
             image: (data.sprites) ? data.sprites.front_default : null
         }
-
-
     }
 
     componentDidMount = () => {
@@ -76,6 +74,5 @@ class Pokemon extends React.Component {
             </div>
         )
     }
-
 }
 export default Pokemon

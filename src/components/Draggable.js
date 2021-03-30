@@ -31,11 +31,11 @@ class Draggable extends React.Component {
     render() {
         return (
             <div className="work-books">
-                <section class="tasks">
-                    <h1 class="tasks__title">Task list</h1>
-                    <ul class="tasks__list">
+                <section className="tasks">
+                    <h1 className="tasks__title">Task list</h1>
+                    <ul className="tasks__list">
                         {this.state.tasks.map((task) =>
-                            <li class="tasks__item"
+                            <li key={task} className="tasks__item"
                                 draggable="true"
                                 onDrop={event => this.handleDrop(event, task)}
                                 onDragOver={event => this.handleDragOver(event)}

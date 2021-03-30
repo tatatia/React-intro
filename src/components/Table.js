@@ -1,14 +1,37 @@
 import React from 'react';
 
-
 class Table extends React.Component {
-    addNewElement(array) {
-        let newArray = array.concat({
-            name: "oleh",
-            year: 1888,
-            height: 169
-        })
-        return newArray
+    constructor(props) {
+        super(props);
+        this.state = {
+            newElem: {
+                name: "Oleh",
+                year: 1888,
+                height: 169
+            },
+            people: props.people
+        }
+    }
+
+    addNewElement = () => {
+        const newPerson = this.state.newElem
+        this.setState({ people: [...this.state.people, newPerson] })
+    }
+
+    // addNewElement(array) {
+    //     let newArray = array.concat({
+    //         name: "oleh",
+    //         year: 1888,
+    //         height: 169
+    //     })
+    //     return newArray
+    // }
+
+    sortByHeightHandler = () => {
+        const notSortedPeople = this.state.people
+        const sortedPeople = this.bubbleSort(notSortedPeople, "height")
+        this.setState({ people: sortedPeople })
+        // this.setState({ people: this.bubbleSort(this.state.people, "height") }) або так
     }
 
     sortByYear(array) {
@@ -101,106 +124,55 @@ class Table extends React.Component {
     }
 
     render() {
-        let people = [
-            {
-                name: "Taras",
-                events: {
-                    birthday: {
-                        day: 1,
-                        moon: "May",
-                        year: 1993
-                    },
-                    school: 2008,
-                    work: 2009
-                },
-                height: 170
-            },
-            {
-                name: "Ivan",
-                events: {
-                    birthday: {
-                        day: 14,
-                        moon: "August",
-                        year: 2010
-                    },
-                    school: 2017,
-                },
-                height: 130
-            },
-            {
-                name: "Tanya",
-                events: {
-                    birthday: {
-                        day: 6,
-                        moon: "March",
-                        year: 1990
-                    },
-                    school: 1997,
-                    work: 2009
-                },
-                height: 160
-            },
-            {
-                name: "Tony",
-                events: {
-                    birthday: {
-                        day: 6,
-                        moon: "January",
-                        year: 1965
-                    },
-                    school: 1972,
-                    work: 1988
-                },
-                height: 165
-            }
-        ]
+        const { people, newElem } = this.state
 
-        let newPeople = this.addElementInObjects(people)
-        console.log("people", people)
-        console.log("newPeople", newPeople)
+        // let newPeople = this.addElementInObjects(people)
+        // console.log("people", people)
+        // console.log("newPeople", newPeople)
 
-        let newElemKey = this.selectObjectsElementByKey(people, "name")
-        console.log("name", people)
-        console.log("newElemKey", newElemKey)
+        // let newElemKey = this.selectObjectsElementByKey(people, "name")
+        // console.log("name", people)
+        // console.log("newElemKey", newElemKey)
 
-        let newNameField = this.removeNameField(people)
-        console.log("name", people)
-        console.log("newNameField", newNameField)
+        // let newNameField = this.removeNameField(people)
+        // console.log("name", people)
+        // console.log("newNameField", newNameField)
 
-        let newField = this.removeField(people, "events")
-        console.log("people", people)
-        console.log("newField", newField)
+        // let newField = this.removeField(people, "events")
+        // console.log("people", people)
+        // console.log("newField", newField)
 
-        let newElem = this.removeElement(people)
-        console.log("people", people)
-        console.log("newElem", newElem)
+        // let newElem = this.removeElement(people)
+        // console.log("people", people)
+        // console.log("newElem", newElem)
 
-        let newAddElem = this.addNewElement(people)
-        console.log("people", people)
-        console.log("newAddElem", newAddElem)
+        // let newAddElem = this.addNewElement(people)
+        // console.log("people", people)
+        // console.log("newAddElem", newAddElem)
 
-        let sortBubble = this.bubbleSort(people, "height")
-        console.log("people", people)
-        console.log("newBubleSortInHeight", sortBubble)
+        // let sortBubble = this.bubbleSort(people, "height")
+        // console.log("people", people)
+        // console.log("newBubleSortInHeight", sortBubble)
 
-        let sortHeight = this.sortByHeight(people)
-        console.log("people", people)
-        console.log("newSort", sortHeight)
+        // let sortHeight = this.sortByHeight(people)
+        // console.log("people", people)
+        // console.log("newSort", sortHeight)
 
-        let sortedByYear = this.sortByYear(people)
-        console.log("people", people)
-        console.log("sortedByYear", sortedByYear)
+        // let sortedByYear = this.sortByYear(people)
+        // console.log("people", people)
+        // console.log("sortedByYear", sortedByYear)
 
-        this.removeField(people, "height")
-        this.addElementInObjects(people)
-        this.selectObjectsElementByKey(people, "name")
-        this.selectObjectsElementByKey(people, "events")
+        // this.removeField(people, "height")
+        // this.addElementInObjects(people)
+        // this.selectObjectsElementByKey(people, "name")
+        // this.selectObjectsElementByKey(people, "events")
 
         return (
             <div className="work-books">
-                <button onClick={() => this.bubbleSort(people, "height")}>Bubble Sort Height</button>
+                <button onClick={this.sortByHeightHandler}>Bubble Sort Height</button>
+                {/* <button onClick={() => this.bubbleSort(people, "height")}>Bubble Sort Height</button> */}
                 <button onClick={() => this.bubbleSort(people, "year")}>Bubble Sort Year</button>
-                <button onClick={() => this.addNewElement(people)}>Add new element</button>
+                <button onClick={this.addNewElement}>Add new element</button>
                 <button onClick={() => this.removeElement(people)}>Delete element</button>
                 <button onClick={() => this.removeNameField(people)}>Delete element obj</button>
                 <button onClick={() => this.addElementInObjects(people)}>Add element obj</button>
@@ -218,11 +190,14 @@ class Table extends React.Component {
                         {people.map(person =>
                             <tr key={person.name}>
                                 <td>{person.name}</td>
-                                <td>{person.events.birthday.day},
+                                <td>{person.events && <>
+                                    {person.events.birthday.day},
                                     {person.events.birthday.moon},
-                                    {person.events.birthday.year}</td>
-                                <td>{person.events.school}</td>
-                                <td>{(person.events.work) ? person.events.work : "-"}</td>
+                                    {person.events.birthday.year}</>}
+                                    {!person.events && <>-</>}
+                                </td>
+                                <td>{(person.events && person.events.school) ? person.events.school : "-"}</td>
+                                <td>{(person.events && person.events.work) ? person.events.work : "-"}</td>
                                 <td>{person.height}</td>
                             </tr>
                         )}

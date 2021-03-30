@@ -7,7 +7,6 @@ class Menu extends React.Component {
         this.state = {
             activeItem: props.activeItem
         }
-
         this.setActiveItem = this.setActiveItem.bind(this);
     }
 
@@ -36,6 +35,7 @@ Menu.propTypes = {
     items: PropTypes.array,
     activeItem: PropTypes.string
 }
+
 Menu.defaultProps = {
     activeItem: "Головна"
 }
@@ -55,5 +55,4 @@ Header.propTypes = {
     title: PropTypes.string,
     menu: PropTypes.array
 }
-
 export default Header
