@@ -1,11 +1,13 @@
 import React from 'react'
+import loaderPokemon from "../images/loaderPokemon.gif"
 
 class Pokemon extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             pocemons: [],
-            pocemonName: ""
+            pocemonName: "",
+            isLoading: false
         }
         this.handleChange = this.handleChange.bind(this)
     }
@@ -26,37 +28,36 @@ class Pokemon extends React.Component {
     componentDidMount = () => {
         this.props.pocemons.forEach(pokemonName => {
             this.getPokemonData(pokemonName).then(result => {
-                this.setState({ pocemons: [...this.state.pocemons, result] })
+                this.setState(({ pocemons }) => ({ pocemons: [...pocemons, result] }))
             })
         })
     }
 
     loadNewPokemon = () => {
-        const name = this.state.pocemonName
-        const pocemonsName = this.state.pocemons.map((b) => b.name)
-        const result = pocemonsName.some((elem) => elem === name)
-        if (result || !name) {
+        this.setState({ isLoading: true })
+        const { pocemonName } = this.state;
+        const pocemonsName = this.state.pocemons.map((b) => b.pocemonName)
+        const result = pocemonsName.some((elem) => elem === pocemonName)
+        if (result || !pocemonName) {
             alert("Pokemon exist")
             return
         }
-        console.log("res=", result)
-        console.log("pocemonsName =", pocemonsName)
-        console.log("loadNewPocemon", name)
-        this.getPokemonData(name).then(result => {
+        this.getPokemonData(pocemonName).then(result => {
             this.setState({ pocemons: [result, ...this.state.pocemons] })
+            this.setState({ isLoading: false })
         })
+
     }
 
     handleChange(event) {
-        console.log(event)
         this.setState({ pocemonName: event.target.value })
     }
 
     render() {
-        const { pocemons, pocemonName } = this.state;
-        console.log(pocemonName)
+        const { pocemons, pocemonName, isLoading } = this.state;
         return (
             <div className="work-books">
+                {isLoading && <img className="loader" alt="loader" src={loaderPokemon} />}
                 <h1>Pocemons</h1>
                 <input type="text" placeholder="enter name" value={this.state.pocemonName} onChange={this.handleChange} />
                 <button onClick={this.loadNewPokemon}>Load pokemon</button>

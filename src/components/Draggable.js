@@ -4,8 +4,9 @@ import './Draggable.css'
 class Draggable extends React.Component {
     constructor(props) {
         super(props);
+        const { tasks } = props;
         this.state = {
-            tasks: props.tasks,
+            tasks,
             taskInFly: ""
         }
     }
@@ -20,12 +21,13 @@ class Draggable extends React.Component {
     }
 
     handleDrop = (event, task) => {
-        let array = this.state.tasks
-        let fromIndex = array.findIndex((elem) => elem === this.state.taskInFly)
-        let toIndex = array.findIndex((elem) => elem === task)
-        array.splice(fromIndex, 1)
-        array.splice(toIndex, 0, this.state.taskInFly)
-        this.setState({ tasks: array })
+        const { tasks, taskInFly } = this.state;
+        const tmpTasks = [...tasks]
+        const fromIndex = tmpTasks.findIndex((elem) => elem === taskInFly)
+        const toIndex = tmpTasks.findIndex((elem) => elem === task)
+        tmpTasks.splice(fromIndex, 1)
+        tmpTasks.splice(toIndex, 0, taskInFly)
+        this.setState({ tasks: tmpTasks })
     }
 
     render() {
