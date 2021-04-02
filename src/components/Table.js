@@ -62,6 +62,12 @@ class Table extends React.Component {
         return sortArray
     }
 
+    elementRemove = () => {
+        const removePeople = this.state.people
+        const newPeople = this.removeElement(removePeople)
+        this.setState({ people: newPeople })
+    }
+
     sortByHeight(array) {
         const sortHeightArray = [...array]
             .sort((elem, elemNext) => elem.height > elemNext.height ? 1 : -1)
@@ -200,8 +206,8 @@ class Table extends React.Component {
                 <button onClick={this.sortByYearHandler}>Sort school year</button>
                 {/* <button onClick={() => this.bubbleSort(people, "year")}>Bubble Sort Year</button> */}
                 <button onClick={this.addNewElement}>Add new element</button>
-                <button onClick={() => this.removeElement(people)}>Delete element</button>
-                <button onClick={() => this.removeNameField(people)}>Delete element obj</button>
+                <button onClick={this.elementRemove}>Delete element</button>
+                {/* <button onClick={() => this.removeElement(people)}>Delete element</button> */}
                 <button onClick={this.addNewElementInObjects}>Add element obj</button>
                 {/* <button onClick={() => this.addElementInObjects(people)}>Add element obj</button> */}
                 <table>

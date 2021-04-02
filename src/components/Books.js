@@ -1,4 +1,5 @@
 import React from 'react'
+import loaderBooks from "../images/loaderBooks.gif"
 
 class Books extends React.Component {
     constructor(props) {
@@ -6,7 +7,8 @@ class Books extends React.Component {
         this.state = {
             books: [],
             bookId: '',
-            activeBookId: 1
+            activeBookId: 1,
+            isLoading: false
         }
         this.handleChange = this.handleChange.bind(this)
     }
@@ -58,6 +60,7 @@ class Books extends React.Component {
     }
 
     loadNewBook = () => {
+        this.setState({ isLoading: true })
         const id = parseInt(this.state.bookId)
         const bookIds = this.state.books.map((b) => b.id)
         const res = bookIds.some((elem) => elem === id)
@@ -67,6 +70,7 @@ class Books extends React.Component {
         }
         this.getBookData(id).then(result => {
             this.setState({ books: [...this.state.books, result] })
+            this.setState({ isLoading: false })
         })
     }
 
@@ -79,9 +83,10 @@ class Books extends React.Component {
     }
 
     render() {
-        const { books, bookId, activeBookId } = this.state;
+        const { books, bookId, activeBookId, isLoading } = this.state;
         return (
             <div className="work-books">
+                {isLoading && <img className="loader" alt="loader" src={loaderBooks} />}
                 <input type="text" placeholder="enter id" value={bookId} onChange={this.handleChange} />
                 <button onClick={this.loadNewBook}>Load book</button>
                 <table>
