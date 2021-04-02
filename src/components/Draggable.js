@@ -4,8 +4,9 @@ import './Draggable.css'
 class Draggable extends React.Component {
     constructor(props) {
         super(props);
+        const { tasks } = props;
         this.state = {
-            tasks: props.tasks,
+            tasks,
             taskInFly: ""
         }
     }
@@ -20,22 +21,23 @@ class Draggable extends React.Component {
     }
 
     handleDrop = (event, task) => {
-        let array = this.state.tasks
-        let fromIndex = array.findIndex((elem) => elem === this.state.taskInFly)
-        let toIndex = array.findIndex((elem) => elem === task)
-        array.splice(fromIndex, 1)
-        array.splice(toIndex, 0, this.state.taskInFly)
-        this.setState({ tasks: array })
+        const { tasks, taskInFly } = this.state;
+        const tmpTasks = [...tasks]
+        const fromIndex = tmpTasks.findIndex((elem) => elem === taskInFly)
+        const toIndex = tmpTasks.findIndex((elem) => elem === task)
+        tmpTasks.splice(fromIndex, 1)
+        tmpTasks.splice(toIndex, 0, taskInFly)
+        this.setState({ tasks: tmpTasks })
     }
 
     render() {
         return (
             <div className="work-books">
-                <section class="tasks">
-                    <h1 class="tasks__title">Task list</h1>
-                    <ul class="tasks__list">
+                <section className="tasks">
+                    <h1 className="tasks__title">Task list</h1>
+                    <ul className="tasks__list">
                         {this.state.tasks.map((task) =>
-                            <li class="tasks__item"
+                            <li key={task} className="tasks__item"
                                 draggable="true"
                                 onDrop={event => this.handleDrop(event, task)}
                                 onDragOver={event => this.handleDragOver(event)}

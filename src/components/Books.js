@@ -1,4 +1,5 @@
 import React from 'react'
+import loaderBooks from "../images/loaderBooks.gif"
 
 class Books extends React.Component {
     constructor(props) {
@@ -6,7 +7,8 @@ class Books extends React.Component {
         this.state = {
             books: [],
             bookId: '',
-            activeBookId: 1
+            activeBookId: 1,
+            isLoading: false
         }
         this.handleChange = this.handleChange.bind(this)
     }
@@ -38,7 +40,7 @@ class Books extends React.Component {
         document.addEventListener("keydown", (event) => {
             keysPressed[event.key] = true
             if (keysPressed['Control'] && event.key == 'c') {
-                this.setState({activeBookId : this.state.books.length})
+                this.setState({ activeBookId: this.state.books.length })
             }
             if (event.code == "ArrowUp") {
                 let newId = this.state.activeBookId - 1
@@ -54,12 +56,11 @@ class Books extends React.Component {
                     this.setState({ activeBookId: newId })
                 }
             }
-            console.log(event.key)
-            console.log(event.code)
         })
     }
 
     loadNewBook = () => {
+        this.setState({ isLoading: true })
         const id = parseInt(this.state.bookId)
         const bookIds = this.state.books.map((b) => b.id)
         const res = bookIds.some((elem) => elem === id)
@@ -67,16 +68,13 @@ class Books extends React.Component {
             alert("book alredy exists")
             return
         }
-        console.log("res=", res)
-        console.log("bookIds =", bookIds)
-        console.log("loadNewBook", id)
         this.getBookData(id).then(result => {
             this.setState({ books: [...this.state.books, result] })
+            this.setState({ isLoading: false })
         })
     }
 
     handleChange(event) {
-        console.log(event)
         this.setState({ bookId: event.target.value })
     }
 
@@ -85,11 +83,11 @@ class Books extends React.Component {
     }
 
     render() {
-        const { books, bookId } = this.state;
-        console.log(bookId)
+        const { books, bookId, activeBookId, isLoading } = this.state;
         return (
             <div className="work-books">
-                <input type="text" placeholder="enter id" value={this.state.bookId} onChange={this.handleChange} />
+                {isLoading && <img className="loader" alt="loader" src={loaderBooks} />}
+                <input type="text" placeholder="enter id" value={bookId} onChange={this.handleChange} />
                 <button onClick={this.loadNewBook}>Load book</button>
                 <table>
                     <thead>
@@ -105,7 +103,7 @@ class Books extends React.Component {
                     <tbody>
                         {books.map((book) =>
                             <tr onClick={() => this.setActiveBookId(book.id)}
-                                className={(book.id === this.state.activeBookId) ? "selectedElement" : ""}
+                                className={(book.id === activeBookId) ? "selectedElement" : ""}
                                 key={book.id}>
                                 <td>{book.id}</td>
                                 <td>{book.name}</td>
