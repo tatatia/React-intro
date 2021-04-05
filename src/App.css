@@ -139,6 +139,11 @@ button {
   margin: 3px auto;
   display:block;
 }
+.error{
+  width: 100px;
+  color: red;
+  margin: 3px auto;
+}
 
 
 /* .tasks__title {
