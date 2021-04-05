@@ -156,7 +156,7 @@ class Table extends React.Component {
     }
 
     render() {
-        const { people, newElem, newObject } = this.state
+        const { people } = this.state
 
         // let newPeople = this.addElementInObjects(people)
         // console.log("people", people)

@@ -4,11 +4,10 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import TextBlocks from './components/TextBlocks'
 import Table from './components/Table'
-import Table2 from './components/Table2'
 import Weather from './components/Weather'
 import Pokemon from './components/Pokemon'
 import Books from './components/Books'
-import Draggable from './components/Draggable'
+import Draggable from './components/Draggable/Draggable'
 
 const peopleData = [
   {
@@ -93,7 +92,6 @@ class App extends React.Component {
         <br /><br />
         <Table people={peopleData} />
         <Pokemon pocemons={["charmander", "ditto"]} />
-        <Table2 />
         <TextBlocks />
         <Footer author={this.state.author} />
       </div>

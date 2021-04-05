@@ -1,5 +1,5 @@
 import React from 'react'
-import './Draggable.css'
+import './css/Draggable.css'
 
 class Draggable extends React.Component {
     constructor(props) {
