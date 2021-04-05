@@ -1,5 +1,5 @@
 import React from 'react'
-import loaderPokemon from "../images/loaderPokemon.gif"
+import loaderPokemon from "./images/loaderPokemon.gif"
 
 class Pokemon extends React.Component {
     constructor(props) {

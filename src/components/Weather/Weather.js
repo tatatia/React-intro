@@ -1,5 +1,5 @@
 import React from "react"
-import loader from "../images/loader.gif"
+import loader from "./images/loader.gif"
 
 
 const API_KEY = "6b02c545271af73892d7bf7af1391535"

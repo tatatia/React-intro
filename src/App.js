@@ -3,9 +3,9 @@ import React from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import TextBlocks from './components/TextBlocks'
-import Table from './components/Table'
-import Weather from './components/Weather'
-import Pokemon from './components/Pokemon'
+import Biography from './components/Biography/Biography'
+import Weather from './components/Weather/Weather'
+import Pokemon from './components/Pokemon/Pokemon'
 import Books from './components/Books/Books'
 import Draggable from './components/Draggable/Draggable'
 
@@ -90,7 +90,7 @@ class App extends React.Component {
         <Books bookIds={[1, 2, 3, 4]} />
         <Weather cities={["Kyiv", "Kropyvnytskyi", "Ivano-Frankivsk", "Zhytomyr", "Zaporizhzhia"]} />
         <br /><br />
-        <Table people={peopleData} />
+        <Biography people={peopleData} />
         <Pokemon pocemons={["charmander", "ditto"]} />
         <TextBlocks />
         <Footer author={this.state.author} />
