@@ -6,7 +6,7 @@ import TextBlocks from './components/TextBlocks'
 import Table from './components/Table'
 import Weather from './components/Weather'
 import Pokemon from './components/Pokemon'
-import Books from './components/Books'
+import Books from './components/Books/Books'
 import Draggable from './components/Draggable/Draggable'
 
 const peopleData = [
