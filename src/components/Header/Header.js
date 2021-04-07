@@ -17,12 +17,14 @@ class Menu extends React.Component {
     }
 
     render() {
+        const { activeItem } = this.state;
+        const { items } = this.props;
         return (
             <div className="menu">
-                {this.props.items.map(item =>
+                {items.map(item =>
                     <a
                         onClick={() => this.setActiveItem(item)}
-                        className={(item.text === this.state.activeItem) ? "active" : ""}
+                        className={(item.text === activeItem) ? "active" : ""}
                         href={item.link}
                         key={item.text}
                     >{item.text}</a>)}

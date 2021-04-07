@@ -46,7 +46,6 @@ class Pokemon extends React.Component {
             this.setState({ pocemons: [result, ...this.state.pocemons] })
             this.setState({ isLoading: false })
         })
-
     }
 
     handleChange(event) {
