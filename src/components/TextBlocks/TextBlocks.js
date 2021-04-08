@@ -1,8 +1,8 @@
 import React from 'react';
-import cvsImg from "../images/cvs.jpg";
-import gitImg from "../images/git.jpeg";
-import htmlImg from "../images/html.jpg";
-import nodeImg from "../images/node.jpeg";
+import cvsImg from "./images/cvs.jpg";
+import gitImg from "./images/git.jpeg";
+import htmlImg from "./images/html.jpg";
+import nodeImg from "./images/node.jpeg";
 
 const TextBlock = (props) => {
   return (

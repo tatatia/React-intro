@@ -1,6 +1,6 @@
 import React from "react"
-import loader from "../images/loader.gif"
-
+import loader from "./images/loader.gif"
+import PropTypes from 'prop-types'
 
 const API_KEY = "6b02c545271af73892d7bf7af1391535"
 
@@ -71,7 +71,7 @@ class Weather extends React.Component {
     }
 
     render() {
-        const { isLoading, cities } = this.state
+        const { isLoading, cities } = this.state;
         return (
             <div className="work-books">
                 {isLoading && <img className="loader" alt="loader" src={loader} />}
@@ -107,5 +107,8 @@ class Weather extends React.Component {
             </div>
         )
     }
+}
+Weather.propTypes = {
+    cities: PropTypes.array.isRequired
 }
 export default Weather

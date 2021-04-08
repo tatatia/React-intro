@@ -1,14 +1,13 @@
 import './App.css'
 import React from 'react'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import TextBlocks from './components/TextBlocks'
-import Table from './components/Table'
-import Table2 from './components/Table2'
-import Weather from './components/Weather'
-import Pokemon from './components/Pokemon'
-import Books from './components/Books'
-import Draggable from './components/Draggable'
+import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
+import TextBlocks from './components/TextBlocks/TextBlocks'
+import Biography from './components/Biography/Biography'
+import Weather from './components/Weather/Weather'
+import Pokemon from './components/Pokemon/Pokemon'
+import Books from './components/Books/Books'
+import Draggable from './components/Draggable/Draggable'
 
 const peopleData = [
   {
@@ -91,9 +90,8 @@ class App extends React.Component {
         <Books bookIds={[1, 2, 3, 4]} />
         <Weather cities={["Kyiv", "Kropyvnytskyi", "Ivano-Frankivsk", "Zhytomyr", "Zaporizhzhia"]} />
         <br /><br />
-        <Table people={peopleData} />
+        <Biography people={peopleData} />
         <Pokemon pocemons={["charmander", "ditto"]} />
-        <Table2 />
         <TextBlocks />
         <Footer author={this.state.author} />
       </div>

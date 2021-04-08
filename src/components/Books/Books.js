@@ -1,5 +1,6 @@
 import React from 'react'
-import loaderBooks from "../images/loaderBooks.gif"
+import loaderBooks from "./images/loaderBooks.gif"
+import PropTypes from 'prop-types'
 
 class Books extends React.Component {
     constructor(props) {
@@ -8,7 +9,8 @@ class Books extends React.Component {
             books: [],
             bookId: '',
             activeBookId: 1,
-            isLoading: false
+            isLoading: false,
+            error: ""
         }
         this.handleChange = this.handleChange.bind(this)
     }
@@ -68,10 +70,19 @@ class Books extends React.Component {
             alert("book alredy exists")
             return
         }
-        this.getBookData(id).then(result => {
-            this.setState({ books: [...this.state.books, result] })
-            this.setState({ isLoading: false })
-        })
+        this.getBookData(id)
+            .then(result => {
+                this.setState({
+                    isLoading: false,
+                    error: "",
+                    books: [...this.state.books, result]
+                })
+            }).catch((error) => {
+                this.setState({
+                    isLoading: false,
+                    error: "No book"
+                })
+            })
     }
 
     handleChange(event) {
@@ -83,9 +94,10 @@ class Books extends React.Component {
     }
 
     render() {
-        const { books, bookId, activeBookId, isLoading } = this.state;
+        const { books, bookId, activeBookId, isLoading, error } = this.state;
         return (
             <div className="work-books">
+                {error && <div className="error">{error}</div>}  {/**style={{color: "green"}} */}
                 {isLoading && <img className="loader" alt="loader" src={loaderBooks} />}
                 <input type="text" placeholder="enter id" value={bookId} onChange={this.handleChange} />
                 <button onClick={this.loadNewBook}>Load book</button>
@@ -118,5 +130,9 @@ class Books extends React.Component {
             </div>
         )
     }
+}
+Books.propTypes = {
+    books: PropTypes.array,
+    bookId: PropTypes.string
 }
 export default Books;
