@@ -1,5 +1,6 @@
 import React from 'react'
 import loaderBooks from "./images/loaderBooks.gif"
+import PropTypes from 'prop-types'
 
 class Books extends React.Component {
     constructor(props) {
@@ -129,5 +130,9 @@ class Books extends React.Component {
             </div>
         )
     }
+}
+Books.propTypes = {
+    books: PropTypes.array,
+    bookId: PropTypes.string
 }
 export default Books;

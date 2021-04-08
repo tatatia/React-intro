@@ -1,5 +1,6 @@
 import React from 'react'
 import './css/Draggable.css'
+import PropTypes from 'prop-types'
 
 class Draggable extends React.Component {
     constructor(props) {
@@ -31,12 +32,13 @@ class Draggable extends React.Component {
     }
 
     render() {
+        const { tasks } = this.state;
         return (
             <div className="work-books">
                 <section className="tasks">
                     <h1 className="tasks__title">Task list</h1>
                     <ul className="tasks__list">
-                        {this.state.tasks.map((task) =>
+                        {tasks.map((task) =>
                             <li key={task} className="tasks__item"
                                 draggable="true"
                                 onDrop={event => this.handleDrop(event, task)}
@@ -49,5 +51,8 @@ class Draggable extends React.Component {
             </div>
         )
     }
+}
+Draggable.propTypes = {
+    tasks: PropTypes.array
 }
 export default Draggable

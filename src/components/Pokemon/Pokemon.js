@@ -1,9 +1,10 @@
 import React from 'react'
 import loaderPokemon from "./images/loaderPokemon.gif"
+import PropTypes from 'prop-types'
 
 class Pokemon extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             pocemons: [],
             pocemonName: "",
@@ -35,16 +36,18 @@ class Pokemon extends React.Component {
 
     loadNewPokemon = () => {
         this.setState({ isLoading: true })
-        const { pocemonName } = this.state;
-        const pocemonsName = this.state.pocemons.map((b) => b.pocemonName)
+        const { pocemonName, pocemons } = this.state;
+        const pocemonsName = pocemons.map((b) => b.pocemonName)
         const result = pocemonsName.some((elem) => elem === pocemonName)
         if (result || !pocemonName) {
             alert("Pokemon exist")
             return
         }
         this.getPokemonData(pocemonName).then(result => {
-            this.setState({ pocemons: [result, ...this.state.pocemons] })
-            this.setState({ isLoading: false })
+            this.setState({
+                pocemons: [result, ...pocemons],
+                isLoading: false
+            })
         })
     }
 
@@ -58,7 +61,7 @@ class Pokemon extends React.Component {
             <div className="work-books">
                 {isLoading && <img className="loader" alt="loader" src={loaderPokemon} />}
                 <h1>Pocemons</h1>
-                <input type="text" placeholder="enter name" value={this.state.pocemonName} onChange={this.handleChange} />
+                <input type="text" placeholder="enter name" value={pocemonName} onChange={this.handleChange} />
                 <button onClick={this.loadNewPokemon}>Load pokemon</button>
                 {pocemons.map((pocemon) => {
                     return <div key={pocemon.name}>
@@ -74,5 +77,11 @@ class Pokemon extends React.Component {
             </div>
         )
     }
+}
+Pokemon.propTypes = {
+    pocemons: PropTypes.array
+}
+Pokemon.defaultProps = {
+    pocemons: ["ditto"]
 }
 export default Pokemon
