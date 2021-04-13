@@ -89,7 +89,7 @@ class App extends React.Component {
         <Header title={this.state.title} menu={this.state.menu} lang={lang}/>
         <Draggable tasks={["learn HTML", "learn CSS", "learn JavaScript", "learn Python", "learn React"]} />
         <Books bookIds={[1, 2, 3, 4]} />
-        <Weather cities={["Kyiv", "Kropyvnytskyi", "Ivano-Frankivsk", "Zhytomyr", "Zaporizhzhia"]} />
+        <Weather cities={["Kyiv", "Kropyvnytskyi", "Ivano-Frankivsk", "Zhytomyr", "Zaporizhzhia"]} lang={lang}/>
         <br /><br />
         <Biography people={peopleData} />
         <Pokemon pocemons={["charmander", "ditto"]} />

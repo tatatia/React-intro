@@ -1,5 +1,6 @@
 import React from 'react'
 import britishImg from './image/british.jpg'
+import ukraineImg from './image/ukraine.jpg'
 
 export default function withTranslation(WrappedComponent) {
     return class extends React.Component {
@@ -18,7 +19,7 @@ export default function withTranslation(WrappedComponent) {
                 <a
                     className={(language === "ua") ? "translate active-lang" : "translate"}
                     onClick={() => this.setLanguage("ua")}
-                    href="#" ><img src={britishImg} /></a>
+                    href="#" ><img src={ukraineImg} /></a>
                 <a
                     className={(language === "en") ? "translate active-lang" : "translate"}
                     onClick={() => this.setLanguage("en")}
