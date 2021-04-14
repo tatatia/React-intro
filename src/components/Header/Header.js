@@ -45,7 +45,6 @@ class Menu extends React.Component {
                         href={item.link}
                         key={item.text}
                     >{translations[lang][item.text]}</a>)}
-
             </div>
         )
     }

@@ -16,9 +16,9 @@ const translations = {
         "Wind Speed": "Швидкість вітру",
         "Zaporizhzhia": "Запоріжжя",
         "Zhytomyr": "Житомир",
-        "Ivano-Frankivsk":"Івано-франківськ",
-        "Kropyvnytskyi":"Кропивницький",
-        "Kyiv":"Київ"
+        "Ivano-Frankivsk": "Івано-франківськ",
+        "Kropyvnytskyi": "Кропивницький",
+        "Kyiv": "Київ"
     },
     "en": {
         "City": "City",
@@ -31,9 +31,9 @@ const translations = {
         "Wind Speed": "Wind Speed",
         "Zaporizhzhia": "Zaporizhzhia",
         "Zhytomyr": "Zhytomyr",
-        "Ivano-Frankivsk":"Ivano-Frankivsk",
-        "Kropyvnytskyi":"Kropyvnytskyi",
-        "Kyiv":"Kyiv"
+        "Ivano-Frankivsk": "Ivano-Frankivsk",
+        "Kropyvnytskyi": "Kropyvnytskyi",
+        "Kyiv": "Kyiv"
     }
 }
 
@@ -143,6 +143,7 @@ class Weather extends React.Component {
     }
 }
 Weather.propTypes = {
-    cities: PropTypes.array.isRequired
+    cities: PropTypes.array.isRequired,
+    lang: PropTypes.string
 }
 export default Weather

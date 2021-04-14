@@ -93,8 +93,8 @@ class App extends React.Component {
         <br /><br />
         <Biography people={peopleData} />
         <Pokemon pocemons={["charmander", "ditto"]} />
-        <TextBlocks />
-        <Footer author={this.state.author} />
+        <TextBlocks lang={lang}/>
+        <Footer author={this.state.author} lang={lang}/>
       </div>
     );
   }
