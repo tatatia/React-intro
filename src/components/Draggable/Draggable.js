@@ -5,19 +5,19 @@ import PropTypes from 'prop-types'
 const translations = {
     "ua": {
         "title": "Список завдань",
-        "task1": "Вивчити HTML",
-        "task2": "Вивчити CSS",
-        "task3": "Вивчити JavaScript",
-        "task4": "Вивчити Python",
-        "task5": "Вивчити React"
+        "learn HTML": "Вивчити HTML",
+        "learn CSS": "Вивчити CSS",
+        "learn JavaScript": "Вивчити JavaScript",
+        "learn Python": "Вивчити Python",
+        "learn React": "Вивчити React"
     },
     "en": {
         "title": "Task list",
-        "task1": "learn HTML",
-        "task2": "learn CSS",
-        "task3": "learn JavaScript",
-        "task4": "learn Python",
-        "task5": "learn React"
+        "learn HTML": "learn HTML",
+        "learn CSS": "learn CSS",
+        "learn JavaScript": "learn JavaScript",
+        "learn Python": "learn Python",
+        "learn React": "learn React"
     }
 }
 
@@ -64,9 +64,9 @@ class Draggable extends React.Component {
                                 onDrop={event => this.handleDrop(event, task)}
                                 onDragOver={event => this.handleDragOver(event)}
                                 onDragStart={event => this.handleDragStart(event, task)}
-                            > {task} </li>   
+                            > {translations[lang][task]} </li>
                         )}
-                    </ul> 
+                    </ul>
                 </section>
             </div>
         )
