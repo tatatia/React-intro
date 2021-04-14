@@ -1,4 +1,33 @@
-import React from 'react';
+import React from 'react'
+
+const translations = {
+    "ua": {
+        "name": "Ім'я",
+        "birthdays": "Рік народження",
+        "scoolYears": "Шкільні роки",
+        "workyears": "Pобочий рік",
+        "height": "Ріст",
+        "city": "Місто",
+        "bubbleSort": "Сортуння бульбашкою по росту",
+        "sortSchoolYear": "Сортування по шкільних роках",
+        "addNewElement": "Добавити новий елемент",
+        "deleteElement": "Видалити елемент",
+        "addElementObj": "Додати елемент obj"
+    },
+    "en": {
+        "name": "Name",
+        "birthdays": "Birthdays",
+        "scoolYears": "Scool years",
+        "workyears": "Work years",
+        "height": "Height",
+        "city": "City",
+        "bubbleSort": "Bubble Sort Height",
+        "sortSchoolYear": "Sort school year",
+        "addNewElement": "Add new element",
+        "deleteElement": "Delete element",
+        "addElementObj": "Add element obj"
+    }
+}
 
 class Biography extends React.Component {
     constructor(props) {
@@ -157,6 +186,7 @@ class Biography extends React.Component {
 
     render() {
         const { people } = this.state
+        const { lang } = this.props
 
         // let newPeople = this.addElementInObjects(people)
         // console.log("people", people)
@@ -201,26 +231,26 @@ class Biography extends React.Component {
 
         return (
             <div className="work-books">
-                <button onClick={this.sortByHeightHandlerBubble}>Bubble Sort Height</button>
+                <button onClick={this.sortByHeightHandlerBubble}>{translations[lang]["bubbleSort"]}</button>
                 {/* <button onClick={() => this.bubbleSort(people, "height")}>Bubble Sort Height</button> */}
-                <button onClick={this.sortByYearHandler}>Sort school year</button>
+                <button onClick={this.sortByYearHandler}>{translations[lang]["sortSchoolYear"]}</button>
                 {/* <button onClick={() => this.bubbleSort(people, "year")}>Bubble Sort Year</button> */}
-                <button onClick={this.addNewElement}>Add new element</button>
-                <button onClick={this.elementRemove}>Delete element</button>
+                <button onClick={this.addNewElement}>{translations[lang]["addNewElement"]}</button>
+                <button onClick={this.elementRemove}>{translations[lang]["deleteElement"]}</button>
                 {/* <button onClick={() => this.removeElement(people)}>Delete element</button> */}
-                <button onClick={this.addNewElementInObjects}>Add element obj</button>
+                <button onClick={this.addNewElementInObjects}>{translations[lang]["addElementObj"]}</button>
                 {/* <button onClick={() => this.addElementInObjects(people)}>Add element obj</button> */}
                 <table>
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th><a href="#/" onClick={this.sortByYearHandler}>Birthdays</a></th>
+                            <th>{translations[lang]["name"]}</th>
+                            <th><a href="#/" onClick={this.sortByYearHandler}>{translations[lang]["birthdays"]}</a></th>
                             {/* <th><a href="#/" onClick={() => this.sortByYear(people)}>Birthdays</a></th> */}
-                            <th>Scool years</th>
-                            <th>Work years</th>
-                            <th><a href="#/" onClick={this.sortByHeightHandler}>Height</a></th>
+                            <th>{translations[lang]["scoolYears"]}</th>
+                            <th>{translations[lang]["workyears"]}</th>
+                            <th><a href="#/" onClick={this.sortByHeightHandler}>{translations[lang]["height"]}</a></th>
                             {/* <th><a href="#/" onClick={() => this.sortByHeight(people)}>Height</a></th> */}
-                            <th>City</th>
+                            <th>{translations[lang]["city"]}</th>
                         </tr>
                     </thead>
                     <tbody>
