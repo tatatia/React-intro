@@ -1,6 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+const translations = {
+    "ua": {
+        "title": "Тестове завдання",
+        "Головна": "Головна",
+        "Опис проекту": "Опис проекту",
+        "Про автора": "Про автора",
+        "Контакти": "Контакти"
+    },
+    "en": {
+        "title": "Test task",
+        "Головна": "Home",
+        "Опис проекту": "Project description",
+        "Про автора": "About the author",
+        "Контакти": "Сontacts"
+    }
+}
 class Menu extends React.Component {
     constructor(props) {
         super(props);
@@ -18,7 +34,8 @@ class Menu extends React.Component {
 
     render() {
         const { activeItem } = this.state;
-        const { items } = this.props;
+        const { items, lang } = this.props;
+
         return (
             <div className="menu">
                 {items.map(item =>
@@ -27,7 +44,7 @@ class Menu extends React.Component {
                         className={(item.text === activeItem) ? "active" : ""}
                         href={item.link}
                         key={item.text}
-                    >{item.text}</a>)}
+                    >{translations[lang][item.text]}</a>)}
             </div>
         )
     }
@@ -35,26 +52,28 @@ class Menu extends React.Component {
 
 Menu.propTypes = {
     items: PropTypes.array,
-    activeItem: PropTypes.string
+    activeItem: PropTypes.string,
+    lang: PropTypes.string
 }
 
 Menu.defaultProps = {
     activeItem: "Головна"
 }
 
-function Header({ title, menu }) {
+function Header({ menu, lang }) {
     return (
         <>
             <div className="pre-menu">
-                <h1 id="title">{title}</h1>
+                <h1 id="title">{translations[lang]["title"]}</h1>
             </div>
-            <Menu items={menu} />
+            <Menu items={menu} lang={lang} />
         </>
     );
 }
 
 Header.propTypes = {
     title: PropTypes.string,
-    menu: PropTypes.array
+    menu: PropTypes.array,
+    lang: PropTypes.string
 }
 export default Header

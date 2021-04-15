@@ -67,7 +67,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: "Тестове завдання",
+
       author: {
         name: "Слободенюк Т.В.",
         githubUrl: "https://github.com/tatatia",
@@ -83,17 +83,18 @@ class App extends React.Component {
   }
 
   render() {
+    const { lang } = this.props
     return (
       <div className="App">
-        <Header title={this.state.title} menu={this.state.menu} />
-        <Draggable tasks={["learn HTML", "learn CSS", "learn JavaScript", "learn Python", "learn React"]} />
+        <Header title={this.state.title} menu={this.state.menu} lang={lang} />
+        <Draggable tasks={["learn HTML", "learn CSS", "learn JavaScript", "learn Python", "learn React"]} lang={lang} />
         <Books bookIds={[1, 2, 3, 4]} />
-        <Weather cities={["Kyiv", "Kropyvnytskyi", "Ivano-Frankivsk", "Zhytomyr", "Zaporizhzhia"]} />
+        <Weather cities={["Kyiv", "Kropyvnytskyi", "Ivano-Frankivsk", "Zhytomyr", "Zaporizhzhia"]} lang={lang} />
         <br /><br />
-        <Biography people={peopleData} />
-        <Pokemon pocemons={["charmander", "ditto"]} />
-        <TextBlocks />
-        <Footer author={this.state.author} />
+        <Biography people={peopleData} lang={lang} />
+        <Pokemon pocemons={["charmander", "ditto"]} lang={lang} />
+        <TextBlocks lang={lang} />
+        <Footer author={this.state.author} lang={lang} />
       </div>
     );
   }

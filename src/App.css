@@ -144,3 +144,15 @@ button {
   color: red;
   margin: 3px auto;
 }
+a.translate{
+  margin-right: 5px;
+}
+.translate img{
+  width: 20px;
+}
+.translate:hover{
+  border: 1px solid red;
+}
+.active-lang{
+  border: 1px solid blue ;
+}

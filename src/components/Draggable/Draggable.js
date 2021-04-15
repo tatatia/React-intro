@@ -2,6 +2,25 @@ import React from 'react'
 import './css/Draggable.css'
 import PropTypes from 'prop-types'
 
+const translations = {
+    "ua": {
+        "title": "Список завдань",
+        "learn HTML": "Вивчити HTML",
+        "learn CSS": "Вивчити CSS",
+        "learn JavaScript": "Вивчити JavaScript",
+        "learn Python": "Вивчити Python",
+        "learn React": "Вивчити React"
+    },
+    "en": {
+        "title": "Task list",
+        "learn HTML": "learn HTML",
+        "learn CSS": "learn CSS",
+        "learn JavaScript": "learn JavaScript",
+        "learn Python": "learn Python",
+        "learn React": "learn React"
+    }
+}
+
 class Draggable extends React.Component {
     constructor(props) {
         super(props);
@@ -33,10 +52,11 @@ class Draggable extends React.Component {
 
     render() {
         const { tasks } = this.state;
+        const { lang } = this.props;
         return (
             <div className="work-books">
                 <section className="tasks">
-                    <h1 className="tasks__title">Task list</h1>
+                    <h1 className="tasks__title">{translations[lang]["title"]}</h1>
                     <ul className="tasks__list">
                         {tasks.map((task) =>
                             <li key={task} className="tasks__item"
@@ -44,7 +64,7 @@ class Draggable extends React.Component {
                                 onDrop={event => this.handleDrop(event, task)}
                                 onDragOver={event => this.handleDragOver(event)}
                                 onDragStart={event => this.handleDragStart(event, task)}
-                            >{task}</li>
+                            > {translations[lang][task]} </li>
                         )}
                     </ul>
                 </section>
@@ -53,6 +73,7 @@ class Draggable extends React.Component {
     }
 }
 Draggable.propTypes = {
-    tasks: PropTypes.array
+    tasks: PropTypes.array,
+    lang: PropTypes.string
 }
 export default Draggable

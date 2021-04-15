@@ -4,6 +4,39 @@ import PropTypes from 'prop-types'
 
 const API_KEY = "6b02c545271af73892d7bf7af1391535"
 
+const translations = {
+    "ua": {
+        "City": "Місто",
+        "Temperature": "Температура",
+        "FeelsLike": "Відчуття, як",
+        "Humidity": "Вологість",
+        "Pressure": "Тиск",
+        "Sunrise": "Схід сонця",
+        "Sunset": "Захід сонця",
+        "Wind Speed": "Швидкість вітру",
+        "Zaporizhzhia": "Запоріжжя",
+        "Zhytomyr": "Житомир",
+        "Ivano-Frankivsk": "Івано-франківськ",
+        "Kropyvnytskyi": "Кропивницький",
+        "Kyiv": "Київ"
+    },
+    "en": {
+        "City": "City",
+        "Temperature": "Temperature",
+        "FeelsLike": "FeelsLike",
+        "Humidity": "Humidity",
+        "Pressure": "Pressure",
+        "Sunrise": "Sunrise",
+        "Sunset": "Sunset",
+        "Wind Speed": "Wind Speed",
+        "Zaporizhzhia": "Zaporizhzhia",
+        "Zhytomyr": "Zhytomyr",
+        "Ivano-Frankivsk": "Ivano-Frankivsk",
+        "Kropyvnytskyi": "Kropyvnytskyi",
+        "Kyiv": "Kyiv"
+    }
+}
+
 class Weather extends React.Component {
     constructor(props) {
         super(props)
@@ -72,26 +105,27 @@ class Weather extends React.Component {
 
     render() {
         const { isLoading, cities } = this.state;
+        const { lang } = this.props;
         return (
             <div className="work-books">
                 {isLoading && <img className="loader" alt="loader" src={loader} />}
                 <table>
                     <thead>
                         <tr>
-                            <th>City</th>
-                            <th>Temperature</th>
-                            <th>FeelsLike</th>
-                            <th>Humidity</th>
-                            <th>Pressure</th>
-                            <th>Sunrise</th>
-                            <th>Sunset</th>
-                            <th>Wind Speed</th>
+                            <th>{translations[lang]["City"]}</th>
+                            <th>{translations[lang]["Temperature"]}</th>
+                            <th>{translations[lang]["FeelsLike"]}</th>
+                            <th>{translations[lang]["Humidity"]}</th>
+                            <th>{translations[lang]["Pressure"]}</th>
+                            <th>{translations[lang]["Sunrise"]}</th>
+                            <th>{translations[lang]["Sunset"]}</th>
+                            <th>{translations[lang]["Wind Speed"]}</th>
                         </tr>
                     </thead>
                     <tbody>
                         {cities.map((city) =>
                             <tr key={city.name}>
-                                <td> <button onClick={() => this.loadWeather(city.name)}>{city.name}</button></td>
+                                <td> <button onClick={() => this.loadWeather(city.name)}>{translations[lang][city.name]}</button></td>
                                 <td>{city.temperature}</td>
                                 {/* <input type={city.temperature} onInput = {this.getWeatherData}/>*/}
                                 <td>{city.feelsLike}</td>
@@ -109,6 +143,7 @@ class Weather extends React.Component {
     }
 }
 Weather.propTypes = {
-    cities: PropTypes.array.isRequired
+    cities: PropTypes.array.isRequired,
+    lang: PropTypes.string
 }
 export default Weather

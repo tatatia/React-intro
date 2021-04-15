@@ -2,6 +2,19 @@ import React from 'react'
 import loaderPokemon from "./images/loaderPokemon.gif"
 import PropTypes from 'prop-types'
 
+const translations = {
+    "ua": {
+        "pokName": "Покемони",
+        "holder": "введіть ім'я",
+        "load": "Load покемонів"
+    },
+    "en": {
+        "pokName": "Pocemons",
+        "holder": "enter name",
+        "load": "Load pokemon"
+    }
+}
+
 class Pokemon extends React.Component {
     constructor(props) {
         super(props);
@@ -56,13 +69,14 @@ class Pokemon extends React.Component {
     }
 
     render() {
-        const { pocemons, pocemonName, isLoading } = this.state;
+        const { pocemons, pocemonName, isLoading } = this.state
+        const { lang } = this.props
         return (
             <div className="work-books">
                 {isLoading && <img className="loader" alt="loader" src={loaderPokemon} />}
-                <h1>Pocemons</h1>
-                <input type="text" placeholder="enter name" value={pocemonName} onChange={this.handleChange} />
-                <button onClick={this.loadNewPokemon}>Load pokemon</button>
+                <h1>{translations[lang]["pokName"]}</h1>
+                <input type="text" placeholder={translations[lang]["holder"]} value={pocemonName} onChange={this.handleChange} />
+                <button onClick={this.loadNewPokemon}>{translations[lang]["load"]}</button>
                 {pocemons.map((pocemon) => {
                     return <div key={pocemon.name}>
                         <p>{pocemon.name}</p>
