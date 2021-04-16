@@ -3,13 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import withTranslation from './components/Translation/Translation';
-
-const AppWithTranslation = withTranslation(App)
 
 ReactDOM.render(
   <React.StrictMode>
-    <AppWithTranslation />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

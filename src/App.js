@@ -8,6 +8,7 @@ import Weather from './components/Weather/Weather'
 import Pokemon from './components/Pokemon/Pokemon'
 import Books from './components/Books/Books'
 import Draggable from './components/Draggable/Draggable'
+import withTranslate from './components/Translation/Translation'
 
 const peopleData = [
   {
@@ -100,4 +101,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default withTranslate(App);
