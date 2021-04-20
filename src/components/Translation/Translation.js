@@ -16,16 +16,19 @@ export default function withTranslation(WrappedComponent) {
         render() {
             const { language } = this.state
             return <>
-                <a
-                    className={(language === "ua") ? "translate active-lang" : "translate"}
-                    onClick={() => this.setLanguage("ua")}
-                    href="#" ><img src={ukraineImg} /></a>
-                <a
-                    className={(language === "en") ? "translate active-lang" : "translate"}
-                    onClick={() => this.setLanguage("en")}
-                    href="#" ><img src={britishImg} /></a>
+                <div className="translation">
+                    <a
+                        className={(language === "ua") ? "translate active-lang" : "translate"}
+                        onClick={() => this.setLanguage("ua")}
+                        href="#" ><img src={ukraineImg} /></a>
+                    <a
+                        className={(language === "en") ? "translate active-lang" : "translate"}
+                        onClick={() => this.setLanguage("en")}
+                        href="#" ><img src={britishImg} /></a>
+                </div>
                 <WrappedComponent lang={this.state.language} {...this.props} />
             </>
+
         }
     };
 }
