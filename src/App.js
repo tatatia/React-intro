@@ -9,6 +9,8 @@ import Pokemon from './components/Pokemon/Pokemon'
 import Books from './components/Books/Books'
 import Draggable from './components/Draggable/Draggable'
 import withTranslate from './components/Translation/Translation'
+import { ThemeContext, themes } from './components/ThemeContext/theme-context'
+import ThemeTogglerButton from './components/ThemeContext/ThemeTogglerButton'
 
 const peopleData = [
   {
@@ -67,6 +69,7 @@ const peopleData = [
 class App extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
 
       author: {
@@ -79,24 +82,34 @@ class App extends React.Component {
         { link: "#description", text: "Опис проекту" },
         { link: "#about-author", text: "Про автора" },
         { link: "#about-author", text: "Контакти" }
-      ]
+      ],
+      theme: themes.light,
+      toggleTheme: this.toggleTheme
     };
   }
 
+  toggleTheme = () => {
+    this.setState(state => ({
+      theme: state.theme === themes.dark ? themes.light : themes.dark,
+    }))
+  }
   render() {
     const { lang } = this.props
     return (
-      <div className="App">
-        <Header title={this.state.title} menu={this.state.menu} lang={lang} />
-        <Draggable tasks={["learn HTML", "learn CSS", "learn JavaScript", "learn Python", "learn React"]} lang={lang} />
-        <Books bookIds={[1, 2, 3, 4]} />
-        <Weather cities={["Kyiv", "Kropyvnytskyi", "Ivano-Frankivsk", "Zhytomyr", "Zaporizhzhia"]} lang={lang} />
-        <br /><br />
-        <Biography people={peopleData} lang={lang} />
-        <Pokemon pocemons={["charmander", "ditto"]} lang={lang} />
-        <TextBlocks lang={lang} />
-        <Footer author={this.state.author} lang={lang} />
-      </div>
+      <ThemeContext.Provider value={this.state}>
+        <ThemeTogglerButton />
+        <div className={(this.state.theme === themes.dark) ? "App" : "App-light"}>
+          <Header title={this.state.title} menu={this.state.menu} lang={lang} />
+          <Draggable tasks={["learn HTML", "learn CSS", "learn JavaScript", "learn Python", "learn React"]} lang={lang} />
+          <Books bookIds={[1, 2, 3, 4]} />
+          <Weather cities={["Kyiv", "Kropyvnytskyi", "Ivano-Frankivsk", "Zhytomyr", "Zaporizhzhia"]} lang={lang} />
+          <br /><br />
+          <Biography people={peopleData} lang={lang} />
+          <Pokemon pocemons={["charmander", "ditto"]} lang={lang} />
+          <TextBlocks lang={lang} />
+          <Footer author={this.state.author} lang={lang} />
+        </div>
+      </ThemeContext.Provider>
     );
   }
 }

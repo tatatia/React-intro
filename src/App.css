@@ -2,7 +2,6 @@ body {
   font-family: "Tahoma", sans-serif;
   color: #FFFFFF;
   margin: 0px;
-  background-color: #1A1A1A;
 }
 .pre-menu {
   height: 40px;
@@ -129,11 +128,9 @@ button {
   margin-bottom: 10px;
   width: 150px;  
 }
-
 .selectedElement td {
   border: 3px solid red;
 }
-
 .loader{
   width: 50px;
   margin: 3px auto;
@@ -155,4 +152,31 @@ a.translate{
 }
 .active-lang{
   border: 1px solid blue ;
+}
+.App{
+  background-color: #1A1A1A;
+}
+.App-light{
+  background-color:  #716aa1;
+}
+.App-light .work-books{
+ background-color:  #4d4485;
+}
+.App-light .menu{
+background-color: #5b5295;
+}
+.App-light .pre-menu{
+  background-color:#342d62;
+}
+.App-light .footer{
+  background-color:#5b5295;
+}
+.translation, .toggle-theme{
+  float: left;
+}
+.App-light .post-footer{
+  background-color:#342d62;
+} 
+.App-light .work-books .tasks__list >li{
+  background-color: #342d62;
 }

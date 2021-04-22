@@ -271,7 +271,8 @@ class Biography extends React.Component {
                         )}
                     </tbody>
                 </table>
-                <img src="https://art-holst.com.ua/wp-content/uploads/thumb_l_27943-768x768.jpg"
+                <img src="https://i.artfile.ru/2560x1648_1101855_[www.ArtFile.ru].jpg"
+                
                     onError={this.handleOnError}
                     onLoad={this.handleImageLoaded}
                 />
