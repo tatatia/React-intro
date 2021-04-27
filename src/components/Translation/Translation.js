@@ -28,7 +28,6 @@ export default function withTranslation(WrappedComponent) {
                 </div>
                 <WrappedComponent lang={this.state.language} {...this.props} />
             </>
-
         }
     };
 }

@@ -63,24 +63,12 @@ class Weather extends React.Component {
 
     componentDidMount() {
         this.props.cities.forEach((element, index) => {
-            // this.getWeatherData(element).then(result => {
-            //     this.setState({
-            //         cities: [...this.state.cities, result]
-            //     })
-            // })
             setTimeout(() => {
                 this.setState({
                     cities: [{ name: element }, ...this.state.cities]
                 })
             }, index * 1000)
-            // this.setState(({ cities }) => ({ cities: [{ name: element }, ...cities] }))
         });
-        // const newCityNames = this.props.cities.map((cityName) => {
-        //     return { name: cityName }
-        // })
-        // this.setState({
-        //     cities: newCityNames
-        // })
     }
 
     loadWeather = (cityName) => {
@@ -127,7 +115,6 @@ class Weather extends React.Component {
                             <tr key={city.name}>
                                 <td> <button onClick={() => this.loadWeather(city.name)}>{translations[lang][city.name]}</button></td>
                                 <td>{city.temperature}</td>
-                                {/* <input type={city.temperature} onInput = {this.getWeatherData}/>*/}
                                 <td>{city.feelsLike}</td>
                                 <td>{city.humidity}</td>
                                 <td>{city.pressure}</td>
