@@ -1,5 +1,5 @@
 import React from 'react'
-import loaderBooks from "./images/loaderBooks.gif"
+import loaderBooks from '../../assets/images/loaderBooks.gif'
 import PropTypes from 'prop-types'
 
 class Books extends React.Component {
@@ -97,7 +97,7 @@ class Books extends React.Component {
         const { books, bookId, activeBookId, isLoading, error } = this.state;
         return (
             <div className="work-books">
-                {error && <div className="error">{error}</div>}  
+                {error && <div className="error">{error}</div>}
                 {isLoading && <img className="loader" alt="loader" src={loaderBooks} />}
                 <input type="text" placeholder="enter id" value={bookId} onChange={this.handleChange} />
                 <button onClick={this.loadNewBook}>Load book</button>

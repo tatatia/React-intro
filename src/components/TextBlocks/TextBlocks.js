@@ -1,8 +1,8 @@
 import React from 'react';
-import cvsImg from "./images/cvs.jpg";
-import gitImg from "./images/git.jpeg";
-import htmlImg from "./images/html.jpg";
-import nodeImg from "./images/node.jpeg";
+import cvsImg from "../../assets/images/cvs.jpg";
+import gitImg from "../../assets/images/git.jpeg";
+import htmlImg from "../../assets/images/html.jpg";
+import nodeImg from "../../assets/images/node.jpeg";
 
 const translations = {
   "ua": {

@@ -1,6 +1,6 @@
 import React from 'react'
-import britishImg from './image/british.jpg'
-import ukraineImg from './image/ukraine.jpg'
+import britishImg from '../../assets/images/british.jpg'
+import ukraineImg from '../../assets/images/ukraine.jpg'
 
 export default function withTranslation(WrappedComponent) {
     return class extends React.Component {
