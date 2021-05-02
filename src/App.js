@@ -8,9 +8,9 @@ import Weather from './components/Weather/Weather'
 import Pokemon from './components/Pokemon/Pokemon'
 import Books from './components/Books/Books'
 import Draggable from './components/Draggable/Draggable'
-import withTranslate from './components/Translation/Translation'
-import { ThemeContext, themes } from './components/ThemeContext/theme-context'
-import ThemeTogglerButton from './components/ThemeContext/ThemeTogglerButton'
+import withTranslate from './hoc/Translation/Translation'
+import { ThemeContext, themes } from './contexts/ThemeContext/theme-context'
+import ThemeTogglerButton from './contexts/ThemeContext/ThemeTogglerButton'
 
 const peopleData = [
   {
