@@ -1,5 +1,5 @@
 import React from 'react'
-import loaderPokemon from "./images/loaderPokemon.gif"
+import loaderPokemon from "../../assets/images/loaderPokemon.gif"
 import PropTypes from 'prop-types'
 
 const translations = {

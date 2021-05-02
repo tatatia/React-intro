@@ -51,28 +51,21 @@ class Biography extends React.Component {
     }
 
     addNewElement = () => {
-        const newPerson = this.state.newElem
-        this.setState({ people: [...this.state.people, newPerson] })
+        const { newElem, people } = this.state
+        const newPerson = newElem
+        this.setState({ people: [...people, newPerson] })
     }
 
-    // addNewElement(array) {
-    //     const newArray = array.concat({
-    //         name: "oleh",
-    //         year: 1688,
-    //         height: 169
-    //     })
-    //     return newArray
-    // }
-
     sortByHeightHandlerBubble = () => {
-        const notSortedPeople = this.state.people
+        const { people } = this.state
+        const notSortedPeople = people
         const sortedPeople = this.bubbleSort(notSortedPeople, "height")
         this.setState({ people: sortedPeople })
-        // this.setState({ people: this.bubbleSort(this.state.people, "height") }) або так
     }
 
     sortByYearHandler = () => {
-        const notSortedPeople = this.state.people
+        const { people } = this.state
+        const notSortedPeople = people
         const sortedPeople = this.sortByYear(notSortedPeople, "shcool")
         this.setState({ people: sortedPeople })
     }
@@ -177,79 +170,30 @@ class Biography extends React.Component {
     }
 
     handleImageLoaded = () => {
-        // alert("Loaded")
     }
 
     handleOnError = () => {
-        // alert("Error")
     }
 
     render() {
         const { people } = this.state
         const { lang } = this.props
 
-        // let newPeople = this.addElementInObjects(people)
-        // console.log("people", people)
-        // console.log("newPeople", newPeople)
-
-        // let newElemKey = this.selectObjectsElementByKey(people, "name")
-        // console.log("name", people)
-        // console.log("newElemKey", newElemKey)
-
-        // let newNameField = this.removeNameField(people)
-        // console.log("name", people)
-        // console.log("newNameField", newNameField)
-
-        // let newField = this.removeField(people, "events")
-        // console.log("people", people)
-        // console.log("newField", newField)
-
-        // let newElem = this.removeElement(people)
-        // console.log("people", people)
-        // console.log("newElem", newElem)
-
-        // let newAddElem = this.addNewElement(people)
-        // console.log("people", people)
-        // console.log("newAddElem", newAddElem)
-
-        // let sortBubble = this.bubbleSort(people, "height")
-        // console.log("people", people)
-        // console.log("newBubleSortInHeight", sortBubble)
-
-        // let sortHeight = this.sortByHeight(people)
-        // console.log("people", people)
-        // console.log("newSort", sortHeight)
-
-        // let sortedByYear = this.sortByYear(people)
-        // console.log("people", people)
-        // console.log("sortedByYear", sortedByYear)
-
-        // this.removeField(people, "height")
-        // this.addElementInObjects(people)
-        // this.selectObjectsElementByKey(people, "name")
-        // this.selectObjectsElementByKey(people, "events")
-
         return (
             <div className="work-books">
                 <button onClick={this.sortByHeightHandlerBubble}>{translations[lang]["bubbleSort"]}</button>
-                {/* <button onClick={() => this.bubbleSort(people, "height")}>Bubble Sort Height</button> */}
                 <button onClick={this.sortByYearHandler}>{translations[lang]["sortSchoolYear"]}</button>
-                {/* <button onClick={() => this.bubbleSort(people, "year")}>Bubble Sort Year</button> */}
                 <button onClick={this.addNewElement}>{translations[lang]["addNewElement"]}</button>
                 <button onClick={this.elementRemove}>{translations[lang]["deleteElement"]}</button>
-                {/* <button onClick={() => this.removeElement(people)}>Delete element</button> */}
                 <button onClick={this.addNewElementInObjects}>{translations[lang]["addElementObj"]}</button>
-                {/* <button onClick={() => this.addElementInObjects(people)}>Add element obj</button> */}
                 <table>
                     <thead>
                         <tr>
                             <th>{translations[lang]["name"]}</th>
                             <th><a href="#/" onClick={this.sortByYearHandler}>{translations[lang]["birthdays"]}</a></th>
-                            {/* <th><a href="#/" onClick={() => this.sortByYear(people)}>Birthdays</a></th> */}
                             <th>{translations[lang]["scoolYears"]}</th>
                             <th>{translations[lang]["workyears"]}</th>
                             <th><a href="#/" onClick={this.sortByHeightHandler}>{translations[lang]["height"]}</a></th>
-                            {/* <th><a href="#/" onClick={() => this.sortByHeight(people)}>Height</a></th> */}
                             <th>{translations[lang]["city"]}</th>
                         </tr>
                     </thead>
@@ -272,7 +216,6 @@ class Biography extends React.Component {
                     </tbody>
                 </table>
                 <img src="https://i.artfile.ru/2560x1648_1101855_[www.ArtFile.ru].jpg"
-                
                     onError={this.handleOnError}
                     onLoad={this.handleImageLoaded}
                 />

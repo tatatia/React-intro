@@ -8,9 +8,9 @@ import Weather from './components/Weather/Weather'
 import Pokemon from './components/Pokemon/Pokemon'
 import Books from './components/Books/Books'
 import Draggable from './components/Draggable/Draggable'
-import withTranslate from './components/Translation/Translation'
-import { ThemeContext, themes } from './components/ThemeContext/theme-context'
-import ThemeTogglerButton from './components/ThemeContext/ThemeTogglerButton'
+import withTranslate from './hoc/Translation/Translation'
+import { ThemeContext, themes } from './contexts/ThemeContext/theme-context'
+import ThemeTogglerButton from './contexts/ThemeContext/ThemeTogglerButton'
 
 const peopleData = [
   {
@@ -94,20 +94,22 @@ class App extends React.Component {
     }))
   }
   render() {
-    const { lang } = this.props
+    const { lang, translate } = this.props
+    const { theme, toggleTheme, title, menu, author } = this.state
     return (
-      <ThemeContext.Provider value={this.state}>
+      // {theme: theme, toggleTheme: toggleTheme} == { theme, toggleTheme }
+      <ThemeContext.Provider value={{ theme, toggleTheme }}>
         <ThemeTogglerButton />
-        <div className={(this.state.theme === themes.dark) ? "App" : "App-light"}>
-          <Header title={this.state.title} menu={this.state.menu} lang={lang} />
-          <Draggable tasks={["learn HTML", "learn CSS", "learn JavaScript", "learn Python", "learn React"]} lang={lang} />
+        <div className={(theme === themes.dark) ? "App" : "App-light"}>
+          <Header title={title} menu={menu} lang={lang} />
+          <Draggable tasks={["learn HTML", "learn CSS", "learn JavaScript", "learn Python", "learn React"]} translate={translate} />
           <Books bookIds={[1, 2, 3, 4]} />
           <Weather cities={["Kyiv", "Kropyvnytskyi", "Ivano-Frankivsk", "Zhytomyr", "Zaporizhzhia"]} lang={lang} />
           <br /><br />
           <Biography people={peopleData} lang={lang} />
           <Pokemon pocemons={["charmander", "ditto"]} lang={lang} />
           <TextBlocks lang={lang} />
-          <Footer author={this.state.author} lang={lang} />
+          <Footer author={author} lang={lang} />
         </div>
       </ThemeContext.Provider>
     );

@@ -1,5 +1,5 @@
 import React from "react"
-import loader from "./images/loader.gif"
+import loader from "../../assets/images/loader.gif"
 import PropTypes from 'prop-types'
 
 const API_KEY = "6b02c545271af73892d7bf7af1391535"
@@ -63,38 +63,27 @@ class Weather extends React.Component {
 
     componentDidMount() {
         this.props.cities.forEach((element, index) => {
-            // this.getWeatherData(element).then(result => {
-            //     this.setState({
-            //         cities: [...this.state.cities, result]
-            //     })
-            // })
             setTimeout(() => {
                 this.setState({
                     cities: [{ name: element }, ...this.state.cities]
                 })
             }, index * 1000)
-            // this.setState(({ cities }) => ({ cities: [{ name: element }, ...cities] }))
         });
-        // const newCityNames = this.props.cities.map((cityName) => {
-        //     return { name: cityName }
-        // })
-        // this.setState({
-        //     cities: newCityNames
-        // })
     }
 
     loadWeather = (cityName) => {
+        const { cities } = this.state
         this.setState({ isLoading: true })
         console.log(cityName)
         let pos = undefined
-        for (let i = 0; i < this.state.cities.length; i++) {
-            if (this.state.cities[i].name == cityName) {
+        for (let i = 0; i < cities.length; i++) {
+            if (cities[i].name == cityName) {
                 pos = i
                 break
             }
         }
         this.getWeatherData(cityName).then((result) => {
-            const newCities = this.state.cities
+            const newCities = cities
             newCities[pos] = result
             this.setState({
                 cities: newCities
@@ -127,7 +116,6 @@ class Weather extends React.Component {
                             <tr key={city.name}>
                                 <td> <button onClick={() => this.loadWeather(city.name)}>{translations[lang][city.name]}</button></td>
                                 <td>{city.temperature}</td>
-                                {/* <input type={city.temperature} onInput = {this.getWeatherData}/>*/}
                                 <td>{city.feelsLike}</td>
                                 <td>{city.humidity}</td>
                                 <td>{city.pressure}</td>
