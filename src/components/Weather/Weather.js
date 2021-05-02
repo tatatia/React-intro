@@ -72,17 +72,18 @@ class Weather extends React.Component {
     }
 
     loadWeather = (cityName) => {
+        const { cities } = this.state
         this.setState({ isLoading: true })
         console.log(cityName)
         let pos = undefined
-        for (let i = 0; i < this.state.cities.length; i++) {
-            if (this.state.cities[i].name == cityName) {
+        for (let i = 0; i < cities.length; i++) {
+            if (cities[i].name == cityName) {
                 pos = i
                 break
             }
         }
         this.getWeatherData(cityName).then((result) => {
-            const newCities = this.state.cities
+            const newCities = cities
             newCities[pos] = result
             this.setState({
                 cities: newCities

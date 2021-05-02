@@ -51,18 +51,21 @@ class Biography extends React.Component {
     }
 
     addNewElement = () => {
-        const newPerson = this.state.newElem
-        this.setState({ people: [...this.state.people, newPerson] })
+        const { newElem, people } = this.state
+        const newPerson = newElem
+        this.setState({ people: [...people, newPerson] })
     }
 
     sortByHeightHandlerBubble = () => {
-        const notSortedPeople = this.state.people
+        const { people } = this.state
+        const notSortedPeople = people
         const sortedPeople = this.bubbleSort(notSortedPeople, "height")
         this.setState({ people: sortedPeople })
     }
 
     sortByYearHandler = () => {
-        const notSortedPeople = this.state.people
+        const { people } = this.state
+        const notSortedPeople = people
         const sortedPeople = this.sortByYear(notSortedPeople, "shcool")
         this.setState({ people: sortedPeople })
     }

@@ -30,7 +30,8 @@ class Books extends React.Component {
     }
 
     componentDidMount = () => {
-        this.props.bookIds.forEach(bookId => {
+        const { bookIds } = this.props;
+        bookIds.forEach(bookId => {
             this.getBookData(bookId).then(result => {
                 this.setState({ books: [...this.state.books, result] })
             })
@@ -40,21 +41,22 @@ class Books extends React.Component {
             delete keysPressed[event.key]
         })
         document.addEventListener("keydown", (event) => {
+            const { books, activeBookId } = this.state;
             keysPressed[event.key] = true
             if (keysPressed['Control'] && event.key == 'c') {
-                this.setState({ activeBookId: this.state.books.length })
+                this.setState({ activeBookId: books.length })
             }
             if (event.code == "ArrowUp") {
-                let newId = this.state.activeBookId - 1
+                let newId = activeBookId - 1
                 console.log(newId)
                 if (newId > 0) {
                     this.setState({ activeBookId: newId })
                 }
             }
             if (event.code == "ArrowDown") {
-                let newId = this.state.activeBookId + 1
+                let newId = activeBookId + 1
                 console.log(newId)
-                if (newId <= this.state.books.length) {
+                if (newId <= books.length) {
                     this.setState({ activeBookId: newId })
                 }
             }
@@ -62,9 +64,10 @@ class Books extends React.Component {
     }
 
     loadNewBook = () => {
+        const { bookId, books } = this.state;
         this.setState({ isLoading: true })
-        const id = parseInt(this.state.bookId)
-        const bookIds = this.state.books.map((b) => b.id)
+        const id = parseInt(bookId)
+        const bookIds = books.map((b) => b.id)
         const res = bookIds.some((elem) => elem === id)
         if (res) {
             alert("book alredy exists")
@@ -75,7 +78,7 @@ class Books extends React.Component {
                 this.setState({
                     isLoading: false,
                     error: "",
-                    books: [...this.state.books, result]
+                    books: [...books, result]
                 })
             }).catch((error) => {
                 this.setState({

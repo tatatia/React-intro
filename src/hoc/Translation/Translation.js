@@ -26,7 +26,7 @@ export default function withTranslation(WrappedComponent) {
                         onClick={() => this.setLanguage("en")}
                         href="#" ><img src={britishImg} /></a>
                 </div>
-                <WrappedComponent lang={this.state.language} {...this.props} />
+                <WrappedComponent lang={language} {...this.props} />
             </>
         }
     };
