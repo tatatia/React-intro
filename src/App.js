@@ -95,11 +95,13 @@ class App extends React.Component {
   }
   render() {
     const { lang } = this.props
+    const { theme, toggleTheme, title, menu, author } = this.state
     return (
-      <ThemeContext.Provider value={this.state}>
+      // {theme: theme, toggleTheme: toggleTheme} == { theme, toggleTheme }
+      <ThemeContext.Provider value={{ theme, toggleTheme }}>
         <ThemeTogglerButton />
-        <div className={(this.state.theme === themes.dark) ? "App" : "App-light"}>
-          <Header title={this.state.title} menu={this.state.menu} lang={lang} />
+        <div className={(theme === themes.dark) ? "App" : "App-light"}>
+          <Header title={title} menu={menu} lang={lang} />
           <Draggable tasks={["learn HTML", "learn CSS", "learn JavaScript", "learn Python", "learn React"]} lang={lang} />
           <Books bookIds={[1, 2, 3, 4]} />
           <Weather cities={["Kyiv", "Kropyvnytskyi", "Ivano-Frankivsk", "Zhytomyr", "Zaporizhzhia"]} lang={lang} />
@@ -107,7 +109,7 @@ class App extends React.Component {
           <Biography people={peopleData} lang={lang} />
           <Pokemon pocemons={["charmander", "ditto"]} lang={lang} />
           <TextBlocks lang={lang} />
-          <Footer author={this.state.author} lang={lang} />
+          <Footer author={author} lang={lang} />
         </div>
       </ThemeContext.Provider>
     );
