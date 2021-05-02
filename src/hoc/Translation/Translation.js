@@ -2,6 +2,24 @@ import React from 'react'
 import britishImg from '../../assets/images/british.jpg'
 import ukraineImg from '../../assets/images/ukraine.jpg'
 
+const translations = {
+    "ua": {
+        "Task list": "Список завдань",
+        "learn HTML": "Вивчити HTML",
+        "learn CSS": "Вивчити CSS",
+        "learn JavaScript": "Вивчити JavaScript",
+        "learn Python": "Вивчити Python",
+        "learn React": "Вивчити React"
+    },
+    "ru": {
+        "Task list": "Список завдань",
+        "learn HTML": "Вивчити HTML",
+        "learn CSS": "Вивчити CSS",
+        "learn JavaScript": "Вивчити JavaScript",
+        "learn Python": "Вивчити Python",
+        "learn React": "Вивчити React"
+    }
+}
 export default function withTranslation(WrappedComponent) {
     return class extends React.Component {
         constructor(props) {
@@ -10,9 +28,16 @@ export default function withTranslation(WrappedComponent) {
                 language: "ua"
             }
         }
+
         setLanguage = (lang) => {
             this.setState({ language: lang })
         }
+
+        translate = (text) => {
+            const lang = this.state.language
+            return translations[lang] && translations[lang][text] ? translations[lang][text] : text
+        }
+
         render() {
             const { language } = this.state
             return <>
@@ -26,7 +51,7 @@ export default function withTranslation(WrappedComponent) {
                         onClick={() => this.setLanguage("en")}
                         href="#" ><img src={britishImg} /></a>
                 </div>
-                <WrappedComponent lang={language} {...this.props} />
+                <WrappedComponent lang={language} translate={this.translate} {...this.props} />
             </>
         }
     };

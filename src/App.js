@@ -94,7 +94,7 @@ class App extends React.Component {
     }))
   }
   render() {
-    const { lang } = this.props
+    const { lang, translate } = this.props
     const { theme, toggleTheme, title, menu, author } = this.state
     return (
       // {theme: theme, toggleTheme: toggleTheme} == { theme, toggleTheme }
@@ -102,7 +102,7 @@ class App extends React.Component {
         <ThemeTogglerButton />
         <div className={(theme === themes.dark) ? "App" : "App-light"}>
           <Header title={title} menu={menu} lang={lang} />
-          <Draggable tasks={["learn HTML", "learn CSS", "learn JavaScript", "learn Python", "learn React"]} lang={lang} />
+          <Draggable tasks={["learn HTML", "learn CSS", "learn JavaScript", "learn Python", "learn React"]} translate={translate} />
           <Books bookIds={[1, 2, 3, 4]} />
           <Weather cities={["Kyiv", "Kropyvnytskyi", "Ivano-Frankivsk", "Zhytomyr", "Zaporizhzhia"]} lang={lang} />
           <br /><br />
