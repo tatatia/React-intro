@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 const translations = {
@@ -16,47 +16,29 @@ const translations = {
     }
 }
 
-class Menu extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            activeItem: props.activeItem
-        }
-        this.setActiveItem = this.setActiveItem.bind(this);
-    }
-
-    setActiveItem(item) {
-        this.setState({
-            activeItem: item.text
-        })
-    }
-
-    render() {
-        const { activeItem } = this.state;
-        const { items, lang } = this.props;
-
-        return (
-            <div className="menu">
-                {items.map(item =>
-                    <a
-                        onClick={() => this.setActiveItem(item)}
-                        className={(item.text === activeItem) ? "active" : ""}
-                        href={item.link}
-                        key={item.text}
-                    >{translations[lang][item.text]}</a>)}
-            </div>
-        )
-    }
+function Menu({ items, lang, defaultActiveItem}) {
+    const [activeItem, setActiveItem] = useState(defaultActiveItem)
+    return (
+        <div className="menu">
+            {items.map(item =>
+                <a
+                    onClick={() => setActiveItem(item.text)}
+                    className={(item.text === activeItem) ? "active" : ""}
+                    href={item.link}
+                    key={item.text}
+                >{translations[lang][item.text]}</a>)}
+        </div>
+    )
 }
 
 Menu.propTypes = {
     items: PropTypes.array,
-    activeItem: PropTypes.string,
+    defaultActiveItem: PropTypes.string,
     lang: PropTypes.string
 }
 
 Menu.defaultProps = {
-    activeItem: "Головна"
+    defaultActiveItem: "Головна"
 }
 
 export default Menu
