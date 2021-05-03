@@ -107,7 +107,7 @@ class App extends React.Component {
           <Weather citiesList={["Kyiv", "Kropyvnytskyi", "Ivano-Frankivsk", "Zhytomyr", "Zaporizhzhia"]} lang={lang} />
           <br /><br />
           <Biography people={peopleData} lang={lang} />
-          <Pokemon pocemons={["charmander", "ditto"]} lang={lang} />
+          <Pokemon defaultPocemons={["charmander", "ditto"]} lang={lang} />
           <TextBlocks lang={lang} />
           <Footer author={author} lang={lang} />
         </div>

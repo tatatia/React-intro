@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import loaderPokemon from "../../assets/images/loaderPokemon.gif"
 import PropTypes from 'prop-types'
 
@@ -15,18 +15,12 @@ const translations = {
     }
 }
 
-class Pokemon extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            pocemons: [],
-            pocemonName: "",
-            isLoading: false
-        }
-        this.handleChange = this.handleChange.bind(this)
-    }
+function Pokemon({ lang, defaultPocemons }) {
+    const [pocemons, setPocemons] = useState([])
+    const [pocemonName, setPocemonName] = useState("")
+    const [isLoading, setIsLoading] = useState(false)
 
-    getPokemonData = async (pokemonName) => {
+    const getPokemonData = async (pokemonName) => {
         const result = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
         const data = await result.json()
         console.log(data)
@@ -39,63 +33,57 @@ class Pokemon extends React.Component {
         }
     }
 
-    componentDidMount = () => {
-        this.props.pocemons.forEach(pokemonName => {
-            this.getPokemonData(pokemonName).then(result => {
-                this.setState(({ pocemons }) => ({ pocemons: [...pocemons, result] }))
+    useEffect(() => {
+        defaultPocemons.forEach(pokemonName => {
+            getPokemonData(pokemonName).then(result => {
+                setPocemons((pocemons) => [...pocemons, result])
             })
         })
+    }, [])
+
+    function handleChange(event) {
+        setPocemonName(event.target.value)
     }
 
-    loadNewPokemon = () => {
-        this.setState({ isLoading: true })
-        const { pocemonName, pocemons } = this.state;
+    const loadNewPokemon = () => {
+        setIsLoading(true)
         const pocemonsName = pocemons.map((b) => b.pocemonName)
         const result = pocemonsName.some((elem) => elem === pocemonName)
         if (result || !pocemonName) {
             alert("Pokemon exist")
             return
         }
-        this.getPokemonData(pocemonName).then(result => {
-            this.setState({
-                pocemons: [result, ...pocemons],
-                isLoading: false
-            })
+        getPokemonData(pocemonName).then(result => {
+            setPocemons([result, ...pocemons])
+            setIsLoading(false)
         })
     }
-
-    handleChange(event) {
-        this.setState({ pocemonName: event.target.value })
-    }
-
-    render() {
-        const { pocemons, pocemonName, isLoading } = this.state
-        const { lang } = this.props
-        return (
-            <div className="work-books">
-                {isLoading && <img className="loader" alt="loader" src={loaderPokemon} />}
-                <h1>{translations[lang]["pokName"]}</h1>
-                <input type="text" placeholder={translations[lang]["holder"]} value={pocemonName} onChange={this.handleChange} />
-                <button onClick={this.loadNewPokemon}>{translations[lang]["load"]}</button>
-                {pocemons.map((pocemon) => {
-                    return <div key={pocemon.name}>
-                        <p>{pocemon.name}</p>
-                        <ul>
-                            {pocemon.abilities.map((a) => {
-                                return <li key={a}>{a}</li>
-                            })}
-                        </ul>
-                        <img alt="pokemon" src={pocemon.image} />
-                    </div>
-                })}
-            </div>
-        )
-    }
+    
+    return (
+        <div className="work-books">
+            {isLoading && <img className="loader" alt="loader" src={loaderPokemon} />}
+            <h1>{translations[lang]["pokName"]}</h1>
+            <input type="text" placeholder={translations[lang]["holder"]} value={pocemonName} onChange={handleChange} />
+            <button onClick={loadNewPokemon}>{translations[lang]["load"]}</button>
+            {pocemons.map((pocemon) => {
+                return <div key={pocemon.name}>
+                    <p>{pocemon.name}</p>
+                    <ul>
+                        {pocemon.abilities.map((a) => {
+                            return <li key={a}>{a}</li>
+                        })}
+                    </ul>
+                    <img alt="pokemon" src={pocemon.image} />
+                </div>
+            })}
+        </div>
+    )
 }
+
 Pokemon.propTypes = {
     pocemons: PropTypes.array
 }
 Pokemon.defaultProps = {
-    pocemons: ["ditto"]
+    defaultPocemons: ["ditto"]
 }
 export default Pokemon
