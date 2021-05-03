@@ -104,7 +104,7 @@ class App extends React.Component {
           <Header title={title} menu={menu} lang={lang} />
           <Draggable tasksList={["learn HTML", "learn CSS", "learn JavaScript", "learn Python", "learn React"]} translate={translate} />
           <Books bookIds={[1, 2, 3, 4]} />
-          <Weather cities={["Kyiv", "Kropyvnytskyi", "Ivano-Frankivsk", "Zhytomyr", "Zaporizhzhia"]} lang={lang} />
+          <Weather citiesList={["Kyiv", "Kropyvnytskyi", "Ivano-Frankivsk", "Zhytomyr", "Zaporizhzhia"]} lang={lang} />
           <br /><br />
           <Biography people={peopleData} lang={lang} />
           <Pokemon pocemons={["charmander", "ditto"]} lang={lang} />
