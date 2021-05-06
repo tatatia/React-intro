@@ -1,21 +1,48 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import loaderBooks from '../../assets/images/loaderBooks.gif'
 import PropTypes from 'prop-types'
 
-class Books extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            books: [],
-            bookId: '',
-            activeBookId: 1,
-            isLoading: false,
-            error: ""
-        }
-        this.handleChange = this.handleChange.bind(this)
-    }
+function Books({ bookIds }) {
+    const [books, setBooks] = useState([])
+    const [bookId, setBookId] = useState("")
+    const [activeBookId, setActiveBookId] = useState(1)
+    const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState("")
 
-    getBookData = async (id) => {
+    useEffect(() => {
+        bookIds.forEach((bookId) => {
+            getBookData(bookId).then(result => {
+                setBooks((books) => [...books, result])
+            })
+        })
+
+        let keysPressed = {}
+        document.addEventListener('keyup', (event) => {
+            delete keysPressed[event.key]
+        })
+        document.addEventListener("keydown", (event) => {
+            keysPressed[event.key] = true
+            if (keysPressed['Control'] && event.key == 'c') {
+                setActiveBookId(books.length)
+            }
+            if (event.code == "ArrowUp") {
+                let newId = activeBookId - 1
+                console.log(newId)
+                if (newId > 0) {
+                    setActiveBookId(newId)
+                }
+            }
+            if (event.code == "ArrowDown") {
+                let newId = activeBookId + 1
+                console.log(newId)
+                if (newId <= books.length) {
+                    setActiveBookId(newId)
+                }
+            }
+        })
+    }, [])
+
+    const getBookData = async (id) => {
         const result = await fetch(`https://anapioficeandfire.com/api/books/${id}`)
         const data = await result.json()
         console.log("data", data)
@@ -29,43 +56,8 @@ class Books extends React.Component {
         }
     }
 
-    componentDidMount = () => {
-        const { bookIds } = this.props;
-        bookIds.forEach(bookId => {
-            this.getBookData(bookId).then(result => {
-                this.setState({ books: [...this.state.books, result] })
-            })
-        })
-        let keysPressed = {}
-        document.addEventListener('keyup', (event) => {
-            delete keysPressed[event.key]
-        })
-        document.addEventListener("keydown", (event) => {
-            const { books, activeBookId } = this.state;
-            keysPressed[event.key] = true
-            if (keysPressed['Control'] && event.key == 'c') {
-                this.setState({ activeBookId: books.length })
-            }
-            if (event.code == "ArrowUp") {
-                let newId = activeBookId - 1
-                console.log(newId)
-                if (newId > 0) {
-                    this.setState({ activeBookId: newId })
-                }
-            }
-            if (event.code == "ArrowDown") {
-                let newId = activeBookId + 1
-                console.log(newId)
-                if (newId <= books.length) {
-                    this.setState({ activeBookId: newId })
-                }
-            }
-        })
-    }
-
-    loadNewBook = () => {
-        const { bookId, books } = this.state;
-        this.setState({ isLoading: true })
+    const loadNewBook = () => {
+        setIsLoading(true)
         const id = parseInt(bookId)
         const bookIds = books.map((b) => b.id)
         const res = bookIds.some((elem) => elem === id)
@@ -73,69 +65,58 @@ class Books extends React.Component {
             alert("book alredy exists")
             return
         }
-        this.getBookData(id)
+        getBookData(id)
             .then(result => {
-                this.setState({
-                    isLoading: false,
-                    error: "",
-                    books: [...books, result]
-                })
+                setIsLoading(false)
+                setError("")
+                setBooks([...books, result])
             }).catch((error) => {
-                this.setState({
-                    isLoading: false,
-                    error: "No book"
-                })
+                setIsLoading(false)
+                setError("No book")
             })
     }
 
-    handleChange(event) {
-        this.setState({ bookId: event.target.value })
+    function handleChange(event) {
+        setBookId(event.target.value)
     }
-
-    setActiveBookId(bookId) {
-        this.setState({ activeBookId: bookId })
-    }
-
-    render() {
-        const { books, bookId, activeBookId, isLoading, error } = this.state;
-        return (
-            <div className="work-books">
-                {error && <div className="error">{error}</div>}
-                {isLoading && <img className="loader" alt="loader" src={loaderBooks} />}
-                <input type="text" placeholder="enter id" value={bookId} onChange={this.handleChange} />
-                <button onClick={this.loadNewBook}>Load book</button>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Number book</th>
-                            <th>Name book</th>
-                            <th>Authors</th>
-                            <th>Country</th>
-                            <th>Publisher</th>
-                            <th>Media Type</th>
+    console.log(activeBookId)
+    return (
+        <div className="work-books">
+            {error && <div className="error">{error}</div>}
+            {isLoading && <img className="loader" alt="loader" src={loaderBooks} />}
+            <input type="text" placeholder="enter id" value={bookId} onChange={handleChange} />
+            <button onClick={loadNewBook}>Load book</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Number book</th>
+                        <th>Name book</th>
+                        <th>Authors</th>
+                        <th>Country</th>
+                        <th>Publisher</th>
+                        <th>Media Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {books.map((book) =>
+                        <tr onClick={() => setActiveBookId(book.id)}
+                            className={(book.id === activeBookId) ? "selectedElement" : ""}
+                            key={book.id}>
+                            <td>{book.id}</td>
+                            <td>{book.name}</td>
+                            <td>{book.authors}</td>
+                            <td>{book.country}</td>
+                            <td>{book.publisher}</td>
+                            <td>{book.mediaType}</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        {books.map((book) =>
-                            <tr onClick={() => this.setActiveBookId(book.id)}
-                                className={(book.id === activeBookId) ? "selectedElement" : ""}
-                                key={book.id}>
-                                <td>{book.id}</td>
-                                <td>{book.name}</td>
-                                <td>{book.authors}</td>
-                                <td>{book.country}</td>
-                                <td>{book.publisher}</td>
-                                <td>{book.mediaType}</td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
-            </div>
-        )
-    }
+                    )}
+                </tbody>
+            </table>
+        </div>
+    )
 }
+
 Books.propTypes = {
-    books: PropTypes.array,
-    bookId: PropTypes.string
+    bookIds: PropTypes.array
 }
 export default Books;
