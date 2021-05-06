@@ -102,12 +102,12 @@ class App extends React.Component {
         <ThemeTogglerButton />
         <div className={(theme === themes.dark) ? "App" : "App-light"}>
           <Header title={title} menu={menu} lang={lang} />
-          <Draggable tasks={["learn HTML", "learn CSS", "learn JavaScript", "learn Python", "learn React"]} translate={translate} />
+          <Draggable tasksList={["learn HTML", "learn CSS", "learn JavaScript", "learn Python", "learn React"]} translate={translate} />
           <Books bookIds={[1, 2, 3, 4]} />
-          <Weather cities={["Kyiv", "Kropyvnytskyi", "Ivano-Frankivsk", "Zhytomyr", "Zaporizhzhia"]} lang={lang} />
+          <Weather citiesList={["Kyiv", "Kropyvnytskyi", "Ivano-Frankivsk", "Zhytomyr", "Zaporizhzhia"]} lang={lang} />
           <br /><br />
           <Biography people={peopleData} lang={lang} />
-          <Pokemon pocemons={["charmander", "ditto"]} lang={lang} />
+          <Pokemon defaultPocemons={["charmander", "ditto"]} lang={lang} />
           <TextBlocks lang={lang} />
           <Footer author={author} lang={lang} />
         </div>

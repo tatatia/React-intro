@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import loader from "../../assets/images/loader.gif"
 import PropTypes from 'prop-types'
 
@@ -37,20 +37,17 @@ const translations = {
     }
 }
 
-class Weather extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            cities: [],
-            isLoading: false
-        }
-    }
+function Weather({ lang, citiesList }) {
+    const newCities = citiesList.map((elem) => ({ name: elem }))
 
-    getWeatherData = async (city) => {
-        const result = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`)
+    const [cities, setCities] = useState(newCities)
+    const [isLoading, setIsLoading] = useState(false)
+
+    const getWeatherData = async (cityName) => {
+        const result = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}&units=metric`)
         const data = await result.json()
         return {
-            name: city,
+            name: cityName,
             temperature: data.main.temp,
             feelsLike: data.main.feels_like,
             humidity: data.main.humidity,
@@ -61,19 +58,8 @@ class Weather extends React.Component {
         }
     }
 
-    componentDidMount() {
-        this.props.cities.forEach((element, index) => {
-            setTimeout(() => {
-                this.setState({
-                    cities: [{ name: element }, ...this.state.cities]
-                })
-            }, index * 1000)
-        });
-    }
-
-    loadWeather = (cityName) => {
-        const { cities } = this.state
-        this.setState({ isLoading: true })
+    const loadWeather = (cityName) => {
+        setIsLoading(true)
         console.log(cityName)
         let pos = undefined
         for (let i = 0; i < cities.length; i++) {
@@ -82,56 +68,52 @@ class Weather extends React.Component {
                 break
             }
         }
-        this.getWeatherData(cityName).then((result) => {
+        getWeatherData(cityName).then((result) => {
             const newCities = cities
             newCities[pos] = result
-            this.setState({
-                cities: newCities
-            })
-            this.setState({ isLoading: false })
+            setCities(newCities)
+            setIsLoading(false)
         })
     }
 
-    render() {
-        const { isLoading, cities } = this.state;
-        const { lang } = this.props;
-        return (
-            <div className="work-books">
-                {isLoading && <img className="loader" alt="loader" src={loader} />}
-                <table>
-                    <thead>
-                        <tr>
-                            <th>{translations[lang]["City"]}</th>
-                            <th>{translations[lang]["Temperature"]}</th>
-                            <th>{translations[lang]["FeelsLike"]}</th>
-                            <th>{translations[lang]["Humidity"]}</th>
-                            <th>{translations[lang]["Pressure"]}</th>
-                            <th>{translations[lang]["Sunrise"]}</th>
-                            <th>{translations[lang]["Sunset"]}</th>
-                            <th>{translations[lang]["Wind Speed"]}</th>
+    return (
+        <div className="work-books">
+            {isLoading && <img className="loader" alt="loader" src={loader} />}
+            <table>
+                <thead>
+                    <tr>
+                        <th>{translations[lang]["City"]}</th>
+                        <th>{translations[lang]["Temperature"]}</th>
+                        <th>{translations[lang]["FeelsLike"]}</th>
+                        <th>{translations[lang]["Humidity"]}</th>
+                        <th>{translations[lang]["Pressure"]}</th>
+                        <th>{translations[lang]["Sunrise"]}</th>
+                        <th>{translations[lang]["Sunset"]}</th>
+                        <th>{translations[lang]["Wind Speed"]}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {cities.map((city) =>
+                        <tr key={city.name}>
+                            <td> <button onClick={() => loadWeather(city.name)}>{translations[lang][city.name]}</button></td>
+                            <td>{city.temperature}</td>
+                            <td>{city.feelsLike}</td>
+                            <td>{city.humidity}</td>
+                            <td>{city.pressure}</td>
+                            <td>{city.sunrise}</td>
+                            <td>{city.sunset}</td>
+                            <td>{city.windSpeed}</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        {cities.map((city) =>
-                            <tr key={city.name}>
-                                <td> <button onClick={() => this.loadWeather(city.name)}>{translations[lang][city.name]}</button></td>
-                                <td>{city.temperature}</td>
-                                <td>{city.feelsLike}</td>
-                                <td>{city.humidity}</td>
-                                <td>{city.pressure}</td>
-                                <td>{city.sunrise}</td>
-                                <td>{city.sunset}</td>
-                                <td>{city.windSpeed}</td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
-            </div>
-        )
-    }
+                    )}
+                </tbody>
+            </table>
+        </div>
+    )
 }
+
 Weather.propTypes = {
-    cities: PropTypes.array.isRequired,
+    citiesList: PropTypes.array.isRequired,
     lang: PropTypes.string
 }
+
 export default Weather
