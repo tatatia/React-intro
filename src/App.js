@@ -111,7 +111,7 @@ class App extends React.Component {
                              lang={lang}/>
                     <br/><br/>
                     <Biography people={peopleData} lang={lang}/>
-                    <Pokemon defaultPocemons={["charmander", "ditto"]} lang={lang}/>
+                    <Pokemon defaultPokemons={["charmander", "ditto"]} lang={lang}/>
                     <TextBlocks lang={lang}/>
                     <Footer author={author} lang={lang}/>
                 </div>
