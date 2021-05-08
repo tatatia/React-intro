@@ -93,6 +93,7 @@ class App extends React.Component {
       theme: state.theme === themes.dark ? themes.light : themes.dark,
     }))
   }
+
   render() {
     const { lang, translate } = this.props
     const { theme, toggleTheme, title, menu, author } = this.state
