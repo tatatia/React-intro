@@ -51,29 +51,29 @@ class Biography extends React.Component {
     }
 
     addNewElement = () => {
-        const { newElem, people } = this.state
+        const {newElem, people} = this.state
         const newPerson = newElem
-        this.setState({ people: [...people, newPerson] })
+        this.setState({people: [...people, newPerson]})
     }
 
     sortByHeightHandlerBubble = () => {
-        const { people } = this.state
+        const {people} = this.state
         const notSortedPeople = people
         const sortedPeople = this.bubbleSort(notSortedPeople, "height")
-        this.setState({ people: sortedPeople })
+        this.setState({people: sortedPeople})
     }
 
     sortByYearHandler = () => {
-        const { people } = this.state
+        const {people} = this.state
         const notSortedPeople = people
         const sortedPeople = this.sortByYear(notSortedPeople, "shcool")
-        this.setState({ people: sortedPeople })
+        this.setState({people: sortedPeople})
     }
 
     sortByHeightHandler = () => {
         const notSortedPeople = this.state.people
         const sortedPeople = this.sortByHeight(notSortedPeople, "height")
-        this.setState({ people: sortedPeople })
+        this.setState({people: sortedPeople})
     }
 
     sortByYear(array) {
@@ -87,7 +87,7 @@ class Biography extends React.Component {
     elementRemove = () => {
         const removePeople = this.state.people
         const newPeople = this.removeElement(removePeople)
-        this.setState({ people: newPeople })
+        this.setState({people: newPeople})
     }
 
     sortByHeight(array) {
@@ -126,13 +126,13 @@ class Biography extends React.Component {
     }
 
     removeNameField(array) {
-        const newArray = array.map(({ name, ...rest }) => rest)
+        const newArray = array.map(({name, ...rest}) => rest)
         return newArray
     }
 
     removeField(array, fieldName) {
         const newArray = array.map((elem) => {
-            const { [fieldName]: remove, ...newObj } = elem
+            const {[fieldName]: remove, ...newObj} = elem
             return newObj
         })
         return newArray
@@ -141,7 +141,7 @@ class Biography extends React.Component {
     addNewElementInObjects = () => {
         const people = this.state.people
         const peopleNewData = this.addElementInObjects(people)
-        this.setState({ people: peopleNewData })
+        this.setState({people: peopleNewData})
     }
 
     addElementInObjects(array) {
@@ -176,8 +176,8 @@ class Biography extends React.Component {
     }
 
     render() {
-        const { people } = this.state
-        const { lang } = this.props
+        const {people} = this.state
+        const {lang} = this.props
 
         return (
             <div className="work-books">
@@ -188,39 +188,40 @@ class Biography extends React.Component {
                 <button onClick={this.addNewElementInObjects}>{translations[lang]["addElementObj"]}</button>
                 <table>
                     <thead>
-                        <tr>
-                            <th>{translations[lang]["name"]}</th>
-                            <th><a href="#/" onClick={this.sortByYearHandler}>{translations[lang]["birthdays"]}</a></th>
-                            <th>{translations[lang]["scoolYears"]}</th>
-                            <th>{translations[lang]["workyears"]}</th>
-                            <th><a href="#/" onClick={this.sortByHeightHandler}>{translations[lang]["height"]}</a></th>
-                            <th>{translations[lang]["city"]}</th>
-                        </tr>
+                    <tr>
+                        <th>{translations[lang]["name"]}</th>
+                        <th><a href="#/" onClick={this.sortByYearHandler}>{translations[lang]["birthdays"]}</a></th>
+                        <th>{translations[lang]["scoolYears"]}</th>
+                        <th>{translations[lang]["workyears"]}</th>
+                        <th><a href="#/" onClick={this.sortByHeightHandler}>{translations[lang]["height"]}</a></th>
+                        <th>{translations[lang]["city"]}</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        {people.map(person =>
-                            <tr key={person.name}>
-                                <td>{person.name}</td>
-                                <td>{person.events && <>
-                                    {person.events.birthday.day},
-                                    {person.events.birthday.moon},
-                                    {person.events.birthday.year}</>}
-                                    {!person.events && <>-</>}
-                                </td>
-                                <td>{(person.events && person.events.school) ? person.events.school : "-"}</td>
-                                <td>{(person.events && person.events.work) ? person.events.work : "-"}</td>
-                                <td>{person.height}</td>
-                                <td>{person.city}</td>
-                            </tr>
-                        )}
+                    {people.map(person =>
+                        <tr key={person.name}>
+                            <td>{person.name}</td>
+                            <td>{person.events && <>
+                                {person.events.birthday.day},
+                                {person.events.birthday.moon},
+                                {person.events.birthday.year}</>}
+                                {!person.events && <>-</>}
+                            </td>
+                            <td>{(person.events && person.events.school) ? person.events.school : "-"}</td>
+                            <td>{(person.events && person.events.work) ? person.events.work : "-"}</td>
+                            <td>{person.height}</td>
+                            <td>{person.city}</td>
+                        </tr>
+                    )}
                     </tbody>
                 </table>
                 <img src="https://i.artfile.ru/2560x1648_1101855_[www.ArtFile.ru].jpg"
-                    onError={this.handleOnError}
-                    onLoad={this.handleImageLoaded}
+                     onError={this.handleOnError}
+                     onLoad={this.handleImageLoaded}
                 />
             </div>
         )
     }
 }
+
 export default Biography

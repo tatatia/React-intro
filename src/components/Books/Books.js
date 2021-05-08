@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, {useState, useEffect} from 'react'
 import loaderBooks from '../../assets/images/loaderBooks.gif'
 import PropTypes from 'prop-types'
 
-function Books({ bookIds }) {
+function Books({bookIds}) {
     const [books, setBooks] = useState([])
     const [bookId, setBookId] = useState("")
     const [activeBookId, setActiveBookId] = useState(1)
@@ -22,17 +22,17 @@ function Books({ bookIds }) {
         })
         document.addEventListener("keydown", (event) => {
             keysPressed[event.key] = true
-            if (keysPressed['Control'] && event.key == 'c') {
+            if (keysPressed['Control'] && event.key === 'c') {
                 setActiveBookId(books.length)
             }
-            if (event.code == "ArrowUp") {
+            if (event.code === "ArrowUp") {
                 let newId = activeBookId - 1
                 console.log(newId)
                 if (newId > 0) {
                     setActiveBookId(newId)
                 }
             }
-            if (event.code == "ArrowDown") {
+            if (event.code === "ArrowDown") {
                 let newId = activeBookId + 1
                 console.log(newId)
                 if (newId <= books.length) {
@@ -71,45 +71,46 @@ function Books({ bookIds }) {
                 setError("")
                 setBooks([...books, result])
             }).catch((error) => {
-                setIsLoading(false)
-                setError("No book")
-            })
+            setIsLoading(false)
+            setError("No book")
+        })
     }
 
     function handleChange(event) {
         setBookId(event.target.value)
     }
+
     console.log(activeBookId)
     return (
         <div className="work-books">
             {error && <div className="error">{error}</div>}
-            {isLoading && <img className="loader" alt="loader" src={loaderBooks} />}
-            <input type="text" placeholder="enter id" value={bookId} onChange={handleChange} />
+            {isLoading && <img className="loader" alt="loader" src={loaderBooks}/>}
+            <input type="text" placeholder="enter id" value={bookId} onChange={handleChange}/>
             <button onClick={loadNewBook}>Load book</button>
             <table>
                 <thead>
-                    <tr>
-                        <th>Number book</th>
-                        <th>Name book</th>
-                        <th>Authors</th>
-                        <th>Country</th>
-                        <th>Publisher</th>
-                        <th>Media Type</th>
-                    </tr>
+                <tr>
+                    <th>Number book</th>
+                    <th>Name book</th>
+                    <th>Authors</th>
+                    <th>Country</th>
+                    <th>Publisher</th>
+                    <th>Media Type</th>
+                </tr>
                 </thead>
                 <tbody>
-                    {books.map((book) =>
-                        <tr onClick={() => setActiveBookId(book.id)}
-                            className={(book.id === activeBookId) ? "selectedElement" : ""}
-                            key={book.id}>
-                            <td>{book.id}</td>
-                            <td>{book.name}</td>
-                            <td>{book.authors}</td>
-                            <td>{book.country}</td>
-                            <td>{book.publisher}</td>
-                            <td>{book.mediaType}</td>
-                        </tr>
-                    )}
+                {books.map((book) =>
+                    <tr onClick={() => setActiveBookId(book.id)}
+                        className={(book.id === activeBookId) ? "selectedElement" : ""}
+                        key={book.id}>
+                        <td>{book.id}</td>
+                        <td>{book.name}</td>
+                        <td>{book.authors}</td>
+                        <td>{book.country}</td>
+                        <td>{book.publisher}</td>
+                        <td>{book.mediaType}</td>
+                    </tr>
+                )}
                 </tbody>
             </table>
         </div>

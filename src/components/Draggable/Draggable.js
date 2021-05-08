@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import './css/Draggable.css'
 import PropTypes from 'prop-types'
 
-function Draggable({ translate, tasksList }) {
+function Draggable({translate, tasksList}) {
     const [tasks, setTasks] = useState(tasksList)
     const [taskInFly, setTaskInFly] = useState("")
 

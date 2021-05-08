@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import PropTypes from 'prop-types'
 
 const translations = {
@@ -16,7 +16,7 @@ const translations = {
     }
 }
 
-function Menu({ items, lang, defaultActiveItem}) {
+function Menu({items, lang, defaultActiveItem}) {
     const [activeItem, setActiveItem] = useState(defaultActiveItem)
     return (
         <div className="menu">
