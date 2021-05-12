@@ -8,113 +8,127 @@ import Weather from './components/Weather/Weather'
 import Pokemon from './components/Pokemon/Pokemon'
 import Books from './components/Books/Books'
 import Draggable from './components/Draggable/Draggable'
-import withTranslate from './hoc/Translation/Translation'
-import { ThemeContext, themes } from './contexts/ThemeContext/theme-context'
+import {ThemeContext, themes} from './contexts/ThemeContext/theme-context'
 import ThemeTogglerButton from './contexts/ThemeContext/ThemeTogglerButton'
+import {withTranslation} from "react-i18next";
+import ukraineImg from "./assets/images/ukraine.jpg";
+import britishImg from "./assets/images/british.jpg";
 
 const peopleData = [
-  {
-    name: "Taras",
-    events: {
-      birthday: {
-        day: 1,
-        moon: "May",
-        year: 1993
-      },
-      school: 2008,
-      work: 2009
+    {
+        name: "Taras",
+        events: {
+            birthday: {
+                day: 1,
+                moon: "May",
+                year: 1993
+            },
+            school: 2008,
+            work: 2009
+        },
+        height: 170
     },
-    height: 170
-  },
-  {
-    name: "Ivan",
-    events: {
-      birthday: {
-        day: 14,
-        moon: "August",
-        year: 2010
-      },
-      school: 2017,
+    {
+        name: "Ivan",
+        events: {
+            birthday: {
+                day: 14,
+                moon: "August",
+                year: 2010
+            },
+            school: 2017,
+        },
+        height: 130
     },
-    height: 130
-  },
-  {
-    name: "Tanya",
-    events: {
-      birthday: {
-        day: 6,
-        moon: "March",
-        year: 1990
-      },
-      school: 1997,
-      work: 2009
+    {
+        name: "Tanya",
+        events: {
+            birthday: {
+                day: 6,
+                moon: "March",
+                year: 1990
+            },
+            school: 1997,
+            work: 2009
+        },
+        height: 160
     },
-    height: 160
-  },
-  {
-    name: "Tony",
-    events: {
-      birthday: {
-        day: 6,
-        moon: "January",
-        year: 1965
-      },
-      school: 1972,
-      work: 1988
-    },
-    height: 165
-  }
+    {
+        name: "Tony",
+        events: {
+            birthday: {
+                day: 6,
+                moon: "January",
+                year: 1965
+            },
+            school: 1972,
+            work: 1988
+        },
+        height: 165
+    }
 ]
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
+    constructor(props) {
+        super(props);
 
-    this.state = {
+        this.state = {
 
-      author: {
-        name: "Слободенюк Т.В.",
-        githubUrl: "https://github.com/tatatia",
-        originalDesignUrl: "https://dribbble.com/shots/11529735-Online-Store-WebUI-Kit-Free-PSD-Download/attachments/3150018?mode=media"
-      },
-      menu: [
-        { link: "#", text: "Головна" },
-        { link: "#description", text: "Опис проекту" },
-        { link: "#about-author", text: "Про автора" },
-        { link: "#about-author", text: "Контакти" }
-      ],
-      theme: themes.light,
-      toggleTheme: this.toggleTheme
-    };
-  }
+            author: {
+                name: "Слободенюк Т.В.",
+                githubUrl: "https://github.com/tatatia",
+                originalDesignUrl: "https://dribbble.com/shots/11529735-Online-Store-WebUI-Kit-Free-PSD-Download/attachments/3150018?mode=media"
+            },
+            menu: [
+                {link: "#", text: "Головна"},
+                {link: "#description", text: "Опис проекту"},
+                {link: "#about-author", text: "Про автора"},
+                {link: "#about-author", text: "Контакти"}
+            ],
+            theme: themes.light,
+            toggleTheme: this.toggleTheme
+        };
+    }
 
-  toggleTheme = () => {
-    this.setState(state => ({
-      theme: state.theme === themes.dark ? themes.light : themes.dark,
-    }))
-  }
+    toggleTheme = () => {
+        this.setState(state => ({
+            theme: state.theme === themes.dark ? themes.light : themes.dark,
+        }))
+    }
 
-  render() {
-    const { lang, translate } = this.props
-    const { theme, toggleTheme, title, menu, author } = this.state
-    return (
-      // {theme: theme, toggleTheme: toggleTheme} == { theme, toggleTheme }
-      <ThemeContext.Provider value={{ theme, toggleTheme }}>
-        <ThemeTogglerButton />
-        <div className={(theme === themes.dark) ? "App" : "App-light"}>
-          <Header title={title} menu={menu} lang={lang} />
-          <Draggable tasksList={["learn HTML", "learn CSS", "learn JavaScript", "learn Python", "learn React"]} translate={translate} />
-          <Books bookIds={[1, 2, 3, 4]} />
-          <Weather citiesList={["Kyiv", "Kropyvnytskyi", "Ivano-Frankivsk", "Zhytomyr", "Zaporizhzhia"]} lang={lang} />
-          <br /><br />
-          <Biography people={peopleData} lang={lang} />
-          <Pokemon defaultPocemons={["charmander", "ditto"]} lang={lang} />
-          <TextBlocks lang={lang} />
-          <Footer author={author} lang={lang} />
-        </div>
-      </ThemeContext.Provider>
-    );
-  }
+    render() {
+        const {i18n} = this.props
+        const {theme, toggleTheme, title, menu, author} = this.state
+        return (
+            // {theme: theme, toggleTheme: toggleTheme} == { theme, toggleTheme }
+            <ThemeContext.Provider value={{theme, toggleTheme}}>
+                <div className="translation">
+                    <a
+                        className={(i18n.language === "ua") ? "translate active-lang" : "translate"}
+                        onClick={() => i18n.changeLanguage("ua")}
+                        href="#"><img src={ukraineImg}/></a>
+                    <a
+                        className={(i18n.language === "en") ? "translate active-lang" : "translate"}
+                        onClick={() => i18n.changeLanguage("en")}
+                        href="#"><img src={britishImg}/></a>
+                </div>
+                <ThemeTogglerButton/>
+                <div className={(theme === themes.dark) ? "App" : "App-light"}>
+                    <Header title={title} menu={menu}/>
+                    <Draggable
+                        tasksList={["learn HTML", "learn CSS", "learn JavaScript", "learn Python", "learn React"]}
+                    />
+                    <Books bookIds={[1, 2, 3, 4]}/>
+                    <Weather citiesList={["Kyiv", "Kropyvnytskyi", "Ivano-Frankivsk", "Zhytomyr", "Zaporizhzhia"]}/>
+                    <br/><br/>
+                    <Biography people={peopleData}/>
+                    <Pokemon defaultPokemons={["charmander", "ditto"]}/>
+                    <TextBlocks lang={i18n.language}/>
+                    <Footer author={author}/>
+                </div>
+            </ThemeContext.Provider>
+        );
+    }
 }
 
-export default withTranslate(App);
+export default withTranslation()(App);

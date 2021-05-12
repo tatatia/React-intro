@@ -1,23 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, {useState, useEffect} from 'react'
 import loaderPokemon from "../../assets/images/loaderPokemon.gif"
 import PropTypes from 'prop-types'
+import {useTranslation} from "react-i18next"
 
-const translations = {
-    "ua": {
-        "pokName": "Покемони",
-        "holder": "введіть ім'я",
-        "load": "Load покемонів"
-    },
-    "en": {
-        "pokName": "Pocemons",
-        "holder": "enter name",
-        "load": "Load pokemon"
-    }
-}
-
-function Pokemon({ lang, defaultPocemons }) {
-    const [pocemons, setPocemons] = useState([])
-    const [pocemonName, setPocemonName] = useState("")
+function Pokemon({lang, defaultPokemons}) {
+    const {t} = useTranslation()
+    const [pokemons, setPokemons] = useState([])
+    const [pokemonName, setPokemonName] = useState("")
     const [isLoading, setIsLoading] = useState(false)
 
     const getPokemonData = async (pokemonName) => {
@@ -34,46 +23,46 @@ function Pokemon({ lang, defaultPocemons }) {
     }
 
     useEffect(() => {
-        defaultPocemons.forEach(pokemonName => {
+        defaultPokemons.forEach(pokemonName => {
             getPokemonData(pokemonName).then(result => {
-                setPocemons((pocemons) => [...pocemons, result])
+                setPokemons((pokemons) => [...pokemons, result])
             })
         })
     }, [])
 
     function handleChange(event) {
-        setPocemonName(event.target.value)
+        setPokemonName(event.target.value)
     }
 
     const loadNewPokemon = () => {
         setIsLoading(true)
-        const pocemonsName = pocemons.map((b) => b.pocemonName)
-        const result = pocemonsName.some((elem) => elem === pocemonName)
-        if (result || !pocemonName) {
+        const pokemonNames = pokemons.map((b) => b.pokemonName)
+        const result = pokemonNames.some((elem) => elem === pokemonName)
+        if (result || !pokemonName) {
             alert("Pokemon exist")
             return
         }
-        getPokemonData(pocemonName).then(result => {
-            setPocemons([result, ...pocemons])
+        getPokemonData(pokemonName).then(result => {
+            setPokemons([result, ...pokemons])
             setIsLoading(false)
         })
     }
-    
+
     return (
         <div className="work-books">
-            {isLoading && <img className="loader" alt="loader" src={loaderPokemon} />}
-            <h1>{translations[lang]["pokName"]}</h1>
-            <input type="text" placeholder={translations[lang]["holder"]} value={pocemonName} onChange={handleChange} />
-            <button onClick={loadNewPokemon}>{translations[lang]["load"]}</button>
-            {pocemons.map((pocemon) => {
-                return <div key={pocemon.name}>
-                    <p>{pocemon.name}</p>
+            {isLoading && <img className="loader" alt="loader" src={loaderPokemon}/>}
+            <h1>{t("pokemons.pokName")}</h1>
+            <input type="text" placeholder={t("pokemons.holder")} value={pokemonName} onChange={handleChange}/>
+            <button onClick={loadNewPokemon}>{t("pokemons.load")}</button>
+            {pokemons.map((pokemon) => {
+                return <div key={pokemon.name}>
+                    <p>{pokemon.name}</p>
                     <ul>
-                        {pocemon.abilities.map((a) => {
+                        {pokemon.abilities.map((a) => {
                             return <li key={a}>{a}</li>
                         })}
                     </ul>
-                    <img alt="pokemon" src={pocemon.image} />
+                    <img alt="pokemon" src={pokemon.image}/>
                 </div>
             })}
         </div>
@@ -81,9 +70,9 @@ function Pokemon({ lang, defaultPocemons }) {
 }
 
 Pokemon.propTypes = {
-    pocemons: PropTypes.array
+    defaultPokemons: PropTypes.array
 }
 Pokemon.defaultProps = {
-    defaultPocemons: ["ditto"]
+    defaultPokemons: ["ditto"]
 }
 export default Pokemon

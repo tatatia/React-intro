@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import './css/Draggable.css'
 import PropTypes from 'prop-types'
+import {useTranslation} from "react-i18next"
 
-function Draggable({ translate, tasksList }) {
+function Draggable({tasksList}) {
+    const {t} = useTranslation()
     const [tasks, setTasks] = useState(tasksList)
     const [taskInFly, setTaskInFly] = useState("")
 
@@ -27,7 +29,7 @@ function Draggable({ translate, tasksList }) {
     return (
         <div className="work-books">
             <section className="tasks">
-                <h1 className="tasks__title">{translate("Task list")}</h1>
+                <h1 className="tasks__title">{t("draggable.taskList")}</h1>
                 <ul className="tasks__list">
                     {tasks.map((task) =>
                         <li key={task} className="tasks__item"
@@ -35,7 +37,7 @@ function Draggable({ translate, tasksList }) {
                             onDrop={event => handleDrop(event, task)}
                             onDragOver={event => handleDragOver(event)}
                             onDragStart={event => handleDragStart(event, task)}
-                        > {translate(task)} </li>
+                        > {t("draggable." + task)} </li>
                     )}
                 </ul>
             </section>
@@ -45,6 +47,5 @@ function Draggable({ translate, tasksList }) {
 
 Draggable.propTypes = {
     tasksList: PropTypes.array,
-    lang: PropTypes.string
 }
 export default Draggable
