@@ -8,9 +8,11 @@ import Weather from './components/Weather/Weather'
 import Pokemon from './components/Pokemon/Pokemon'
 import Books from './components/Books/Books'
 import Draggable from './components/Draggable/Draggable'
-import withTranslate from './hoc/Translation/Translation'
 import {ThemeContext, themes} from './contexts/ThemeContext/theme-context'
 import ThemeTogglerButton from './contexts/ThemeContext/ThemeTogglerButton'
+import {withTranslation} from "react-i18next";
+import ukraineImg from "./assets/images/ukraine.jpg";
+import britishImg from "./assets/images/british.jpg";
 
 const peopleData = [
     {
@@ -95,29 +97,39 @@ class App extends React.Component {
     }
 
     render() {
-        const {lang, translate} = this.props
+        const {i18n} = this.props
         const {theme, toggleTheme, title, menu, author} = this.state
         return (
             // {theme: theme, toggleTheme: toggleTheme} == { theme, toggleTheme }
             <ThemeContext.Provider value={{theme, toggleTheme}}>
+                <div className="translation">
+                    <a
+                        className={(i18n.language === "ua") ? "translate active-lang" : "translate"}
+                        onClick={() => i18n.changeLanguage("ua")}
+                        href="#"><img src={ukraineImg}/></a>
+                    <a
+                        className={(i18n.language === "en") ? "translate active-lang" : "translate"}
+                        onClick={() => i18n.changeLanguage("en")}
+                        href="#"><img src={britishImg}/></a>
+                </div>
                 <ThemeTogglerButton/>
                 <div className={(theme === themes.dark) ? "App" : "App-light"}>
-                    <Header title={title} menu={menu} lang={lang}/>
+                    <Header title={title} menu={menu} />
                     <Draggable
                         tasksList={["learn HTML", "learn CSS", "learn JavaScript", "learn Python", "learn React"]}
-                        translate={translate}/>
+                    />
                     <Books bookIds={[1, 2, 3, 4]}/>
-                    <Weather citiesList={["Kyiv", "Kropyvnytskyi", "Ivano-Frankivsk", "Zhytomyr", "Zaporizhzhia"]}
-                             lang={lang}/>
-                    <br/><br/>
-                    <Biography people={peopleData} lang={lang}/>
-                    <Pokemon defaultPokemons={["charmander", "ditto"]} lang={lang}/>
-                    <TextBlocks lang={lang}/>
-                    <Footer author={author} lang={lang}/>
+                    {/*<Weather citiesList={["Kyiv", "Kropyvnytskyi", "Ivano-Frankivsk", "Zhytomyr", "Zaporizhzhia"]}*/}
+                    {/*         lang={lang}/>*/}
+                    {/*<br/><br/>*/}
+                    {/*<Biography people={peopleData} lang={lang}/>*/}
+                    {/*<Pokemon defaultPokemons={["charmander", "ditto"]} lang={lang}/>*/}
+                    {/*<TextBlocks lang={lang}/>*/}
+                    {/*<Footer author={author} lang={lang}/>*/}
                 </div>
             </ThemeContext.Provider>
         );
     }
 }
 
-export default withTranslate(App);
+export default withTranslation()(App);

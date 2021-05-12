@@ -1,31 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Menu from './Menu'
+import {useTranslation} from "react-i18next"
 
-const translations = {
-    "ua": {
-        "title": "Тестове завдання"
-    },
-    "en": {
-        "title": "Test task"
-    }
-}
-
-
-function Header({ menu, lang }) {
+function Header({menu}) {
+    const {t} = useTranslation()
     return (
         <>
             <div className="pre-menu">
-                <h1 id="title">{translations[lang]["title"]}</h1>
+                <h1 id="title">{t("header.title")}</h1>
             </div>
-            <Menu items={menu} lang={lang} />
+            <Menu items={menu}/>
         </>
     );
 }
 
 Header.propTypes = {
     title: PropTypes.string,
-    menu: PropTypes.array,
-    lang: PropTypes.string
+    menu: PropTypes.array
 }
 export default Header

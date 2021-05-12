@@ -1,22 +1,9 @@
 import React, {useState} from 'react'
 import PropTypes from 'prop-types'
+import {useTranslation} from "react-i18next"
 
-const translations = {
-    "ua": {
-        "Головна": "Головна",
-        "Опис проекту": "Опис проекту",
-        "Про автора": "Про автора",
-        "Контакти": "Контакти"
-    },
-    "en": {
-        "Головна": "Home",
-        "Опис проекту": "Project description",
-        "Про автора": "About the author",
-        "Контакти": "Сontacts"
-    }
-}
-
-function Menu({items, lang, defaultActiveItem}) {
+function Menu({items, defaultActiveItem}) {
+    const {t} = useTranslation()
     const [activeItem, setActiveItem] = useState(defaultActiveItem)
     return (
         <div className="menu">
@@ -26,7 +13,7 @@ function Menu({items, lang, defaultActiveItem}) {
                     className={(item.text === activeItem) ? "active" : ""}
                     href={item.link}
                     key={item.text}
-                >{translations[lang][item.text]}</a>)}
+                >{t("menu." + item.text)}</a>)}
         </div>
     )
 }
@@ -34,7 +21,6 @@ function Menu({items, lang, defaultActiveItem}) {
 Menu.propTypes = {
     items: PropTypes.array,
     defaultActiveItem: PropTypes.string,
-    lang: PropTypes.string
 }
 
 Menu.defaultProps = {
