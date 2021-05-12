@@ -114,18 +114,17 @@ class App extends React.Component {
                 </div>
                 <ThemeTogglerButton/>
                 <div className={(theme === themes.dark) ? "App" : "App-light"}>
-                    <Header title={title} menu={menu} />
+                    <Header title={title} menu={menu}/>
                     <Draggable
                         tasksList={["learn HTML", "learn CSS", "learn JavaScript", "learn Python", "learn React"]}
                     />
                     <Books bookIds={[1, 2, 3, 4]}/>
-                    {/*<Weather citiesList={["Kyiv", "Kropyvnytskyi", "Ivano-Frankivsk", "Zhytomyr", "Zaporizhzhia"]}*/}
-                    {/*         lang={lang}/>*/}
-                    {/*<br/><br/>*/}
-                    {/*<Biography people={peopleData} lang={lang}/>*/}
-                    {/*<Pokemon defaultPokemons={["charmander", "ditto"]} lang={lang}/>*/}
-                    {/*<TextBlocks lang={lang}/>*/}
-                    {/*<Footer author={author} lang={lang}/>*/}
+                    <Weather citiesList={["Kyiv", "Kropyvnytskyi", "Ivano-Frankivsk", "Zhytomyr", "Zaporizhzhia"]}/>
+                    <br/><br/>
+                    <Biography people={peopleData}/>
+                    <Pokemon defaultPokemons={["charmander", "ditto"]}/>
+                    <TextBlocks lang={i18n.language}/>
+                    <Footer author={author}/>
                 </div>
             </ThemeContext.Provider>
         );

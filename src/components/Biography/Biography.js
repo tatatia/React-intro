@@ -1,33 +1,5 @@
 import React from 'react'
-
-const translations = {
-    "ua": {
-        "name": "Ім'я",
-        "birthdays": "Рік народження",
-        "scoolYears": "Шкільні роки",
-        "workyears": "Pобочий рік",
-        "height": "Ріст",
-        "city": "Місто",
-        "bubbleSort": "Сортуння бульбашкою по росту",
-        "sortSchoolYear": "Сортування по шкільних роках",
-        "addNewElement": "Добавити новий елемент",
-        "deleteElement": "Видалити елемент",
-        "addElementObj": "Додати елемент obj"
-    },
-    "en": {
-        "name": "Name",
-        "birthdays": "Birthdays",
-        "scoolYears": "Scool years",
-        "workyears": "Work years",
-        "height": "Height",
-        "city": "City",
-        "bubbleSort": "Bubble Sort Height",
-        "sortSchoolYear": "Sort school year",
-        "addNewElement": "Add new element",
-        "deleteElement": "Delete element",
-        "addElementObj": "Add element obj"
-    }
-}
+import {withTranslation} from "react-i18next";
 
 class Biography extends React.Component {
     constructor(props) {
@@ -177,24 +149,24 @@ class Biography extends React.Component {
 
     render() {
         const {people} = this.state
-        const {lang} = this.props
+        const {t} = this.props
 
         return (
             <div className="work-books">
-                <button onClick={this.sortByHeightHandlerBubble}>{translations[lang]["bubbleSort"]}</button>
-                <button onClick={this.sortByYearHandler}>{translations[lang]["sortSchoolYear"]}</button>
-                <button onClick={this.addNewElement}>{translations[lang]["addNewElement"]}</button>
-                <button onClick={this.elementRemove}>{translations[lang]["deleteElement"]}</button>
-                <button onClick={this.addNewElementInObjects}>{translations[lang]["addElementObj"]}</button>
+                <button onClick={this.sortByHeightHandlerBubble}>{t("biography.bubbleSort")}</button>
+                <button onClick={this.sortByYearHandler}>{t("biography.sortSchoolYear")}</button>
+                <button onClick={this.addNewElement}>{t("biography.addNewElement")}</button>
+                <button onClick={this.elementRemove}>{t("biography.deleteElement")}</button>
+                <button onClick={this.addNewElementInObjects}>{t("biography.addElementObj")}</button>
                 <table>
                     <thead>
                     <tr>
-                        <th>{translations[lang]["name"]}</th>
-                        <th><a href="#/" onClick={this.sortByYearHandler}>{translations[lang]["birthdays"]}</a></th>
-                        <th>{translations[lang]["scoolYears"]}</th>
-                        <th>{translations[lang]["workyears"]}</th>
-                        <th><a href="#/" onClick={this.sortByHeightHandler}>{translations[lang]["height"]}</a></th>
-                        <th>{translations[lang]["city"]}</th>
+                        <th>{t("biography.name")}</th>
+                        <th><a href="#/" onClick={this.sortByYearHandler}>{t("biography.birthdays")}</a></th>
+                        <th>{t("biography.scoolYears")}</th>
+                        <th>{t("biography.workyears")}</th>
+                        <th><a href="#/" onClick={this.sortByHeightHandler}>{t("biography.height")}</a></th>
+                        <th>{t("biography.city")}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -224,4 +196,4 @@ class Biography extends React.Component {
     }
 }
 
-export default Biography
+export default withTranslation()(Biography)

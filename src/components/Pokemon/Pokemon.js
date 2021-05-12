@@ -1,21 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, {useState, useEffect} from 'react'
 import loaderPokemon from "../../assets/images/loaderPokemon.gif"
 import PropTypes from 'prop-types'
+import {useTranslation} from "react-i18next"
 
-const translations = {
-    "ua": {
-        "pokName": "Покемони",
-        "holder": "введіть ім`я",
-        "load": "Load покемонів"
-    },
-    "en": {
-        "pokName": "Pokemons",
-        "holder": "enter name",
-        "load": "Load pokemon"
-    }
-}
-
-function Pokemon({ lang, defaultPokemons }) {
+function Pokemon({lang, defaultPokemons}) {
+    const {t} = useTranslation()
     const [pokemons, setPokemons] = useState([])
     const [pokemonName, setPokemonName] = useState("")
     const [isLoading, setIsLoading] = useState(false)
@@ -58,13 +47,13 @@ function Pokemon({ lang, defaultPokemons }) {
             setIsLoading(false)
         })
     }
-    
+
     return (
         <div className="work-books">
-            {isLoading && <img className="loader" alt="loader" src={loaderPokemon} />}
-            <h1>{translations[lang]["pokName"]}</h1>
-            <input type="text" placeholder={translations[lang]["holder"]} value={pokemonName} onChange={handleChange} />
-            <button onClick={loadNewPokemon}>{translations[lang]["load"]}</button>
+            {isLoading && <img className="loader" alt="loader" src={loaderPokemon}/>}
+            <h1>{t("pokemons.pokName")}</h1>
+            <input type="text" placeholder={t("pokemons.holder")} value={pokemonName} onChange={handleChange}/>
+            <button onClick={loadNewPokemon}>{t("pokemons.load")}</button>
             {pokemons.map((pokemon) => {
                 return <div key={pokemon.name}>
                     <p>{pokemon.name}</p>
@@ -73,7 +62,7 @@ function Pokemon({ lang, defaultPokemons }) {
                             return <li key={a}>{a}</li>
                         })}
                     </ul>
-                    <img alt="pokemon" src={pokemon.image} />
+                    <img alt="pokemon" src={pokemon.image}/>
                 </div>
             })}
         </div>
