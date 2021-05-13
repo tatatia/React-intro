@@ -123,7 +123,7 @@ class App extends React.Component {
                     <br/><br/>
                     <Biography people={peopleData}/>
                     <Pokemon defaultPokemons={["charmander", "ditto"]}/>
-                    <TextBlocks lang={i18n.language}/>
+                    <TextBlocks />
                     <Footer author={author}/>
                 </div>
             </ThemeContext.Provider>
