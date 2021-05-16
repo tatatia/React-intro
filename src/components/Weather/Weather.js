@@ -3,7 +3,7 @@ import loader from "../../assets/images/loader.gif"
 import PropTypes from 'prop-types'
 import {useTranslation} from "react-i18next"
 
-const API_KEY = "6b02c545271af73892d7bf7af1391535"
+const API_KEY = process.env.REACT_APP_WEATHER_API_KEY
 
 function Weather({citiesList}) {
     const {t} = useTranslation()
