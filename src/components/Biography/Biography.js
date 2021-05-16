@@ -87,10 +87,9 @@ function Biography({t, peopleDefault}) {
     }
 
     const sortByHeight = (array) => {
-        const sortHeightArray = [...array]
+        return [...array]
             .sort((elem, elemNext) => elem.height > elemNext.height ? 1 : -1)
             .reverse()
-        return sortHeightArray
     }
 
     const elementRemove = () => {
