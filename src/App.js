@@ -9,7 +9,7 @@ import Pokemon from './components/Pokemon/Pokemon'
 import Books from './components/Books/Books'
 import Draggable from './components/Draggable/Draggable'
 import {ThemeContext, themes} from './contexts/ThemeContext/theme-context'
-import ThemeTogglerButton from './contexts/ThemeContext/ThemeTogglerButton'
+import ThemeTogglerButton from './components/ThemeToggleButton/ThemeTogglerButton'
 import {withTranslation} from "react-i18next";
 import ukraineImg from "./assets/images/ukraine.jpg";
 import britishImg from "./assets/images/british.jpg";
@@ -121,7 +121,7 @@ class App extends React.Component {
                     <Books bookIds={[1, 2, 3, 4]}/>
                     <Weather citiesList={["Kyiv", "Kropyvnytskyi", "Ivano-Frankivsk", "Zhytomyr", "Zaporizhzhia"]}/>
                     <br/><br/>
-                    <Biography people={peopleData}/>
+                    <Biography peopleDefault={peopleData}/>
                     <Pokemon defaultPokemons={["charmander", "ditto"]}/>
                     <TextBlocks />
                     <Footer author={author}/>

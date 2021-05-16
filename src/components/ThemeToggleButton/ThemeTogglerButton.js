@@ -1,5 +1,5 @@
 import React from 'react'
-import {ThemeContext} from './theme-context'
+import {ThemeContext} from '../../contexts/ThemeContext/theme-context'
 
 function ThemeTogglerButton() {
     return (
