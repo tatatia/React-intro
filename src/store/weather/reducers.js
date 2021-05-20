@@ -4,6 +4,7 @@ export const initialState = {
     cities: [],
     isLoading: false
 }
+
 export default function weatherReducer(state = initialState, action) {
     switch (action.type) {
         case INIT_CITIES:
