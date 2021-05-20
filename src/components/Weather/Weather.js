@@ -1,47 +1,42 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import loader from "../../assets/images/loader.gif"
 import PropTypes from 'prop-types'
 import {useTranslation} from "react-i18next"
+import {useDispatch, useSelector} from "react-redux";
+import {fetchWeatherFinish, fetchWeatherStart, initCities} from "../../store/weather/actions";
 
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY
 
-function Weather({citiesList}) {
-    const {t} = useTranslation()
-    const newCities = citiesList.map((elem) => ({name: elem}))
-
-    const [cities, setCities] = useState(newCities)
-    const [isLoading, setIsLoading] = useState(false)
-
-    const getWeatherData = async (cityName) => {
-        const result = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}&units=metric`)
-        const data = await result.json()
-        return {
-            name: cityName,
-            temperature: data.main.temp,
-            feelsLike: data.main.feels_like,
-            humidity: data.main.humidity,
-            pressure: data.main.pressure,
-            sunrise: data.sys.sunrise,
-            sunset: data.sys.sunset,
-            windSpeed: data.wind.speed
-        }
+const getWeatherData = async (cityName) => {
+    const result = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}&units=metric`)
+    const data = await result.json()
+    return {
+        name: cityName,
+        temperature: data.main.temp,
+        feelsLike: data.main.feels_like,
+        humidity: data.main.humidity,
+        pressure: data.main.pressure,
+        sunrise: data.sys.sunrise,
+        sunset: data.sys.sunset,
+        windSpeed: data.wind.speed
     }
+}
+
+function Weather({citiesList}) {
+    const dispatch = useDispatch()
+    const state = useSelector(state => state.weatherReducer)
+    const {t} = useTranslation()
+    const cities = state.cities
+    const isLoading = state.isLoading
+
+    useEffect(() => {
+        dispatch(initCities(citiesList))
+    }, [])
 
     const loadWeather = (cityName) => {
-        setIsLoading(true)
-        console.log(cityName)
-        let pos = undefined
-        for (let i = 0; i < cities.length; i++) {
-            if (cities[i].name == cityName) {
-                pos = i
-                break
-            }
-        }
+        dispatch(fetchWeatherStart(cityName))
         getWeatherData(cityName).then((result) => {
-            const newCities = cities
-            newCities[pos] = result
-            setCities(newCities)
-            setIsLoading(false)
+            dispatch(fetchWeatherFinish(result))
         })
     }
 

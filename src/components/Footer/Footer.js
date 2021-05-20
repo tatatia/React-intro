@@ -22,6 +22,6 @@ const Footer = (props) => {
     )
 }
 Footer.propTypes = {
-    author: PropTypes.string,
+    author: PropTypes.object
 }
 export default Footer
