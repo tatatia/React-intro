@@ -2,25 +2,9 @@ import React, {useEffect, useState} from "react"
 import loader from "../../assets/images/loader.gif"
 import PropTypes from 'prop-types'
 import {useTranslation} from "react-i18next"
-import {useDispatch, useSelector} from "react-redux";
-import {fetchWeatherFinish, fetchWeatherStart, initCities} from "../../store/weather/actions";
+import {useDispatch, useSelector} from "react-redux"
+import {initCities, loadWeather} from "../../store/weather/actions"
 
-const API_KEY = process.env.REACT_APP_WEATHER_API_KEY
-
-const getWeatherData = async (cityName) => {
-    const result = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}&units=metric`)
-    const data = await result.json()
-    return {
-        name: cityName,
-        temperature: data.main.temp,
-        feelsLike: data.main.feels_like,
-        humidity: data.main.humidity,
-        pressure: data.main.pressure,
-        sunrise: data.sys.sunrise,
-        sunset: data.sys.sunset,
-        windSpeed: data.wind.speed
-    }
-}
 
 function Weather({citiesList}) {
     const dispatch = useDispatch()
@@ -33,11 +17,8 @@ function Weather({citiesList}) {
         dispatch(initCities(citiesList))
     }, [])
 
-    const loadWeather = (cityName) => {
-        dispatch(fetchWeatherStart(cityName))
-        getWeatherData(cityName).then((result) => {
-            dispatch(fetchWeatherFinish(result))
-        })
+    const loadWeatherHandler = (cityName) => {
+        loadWeather(cityName)(dispatch)
     }
 
     return (
@@ -60,7 +41,7 @@ function Weather({citiesList}) {
                 {cities.map((city) =>
                     <tr key={city.name}>
                         <td>
-                            <button onClick={() => loadWeather(city.name)}>{t("weather." + city.name)}</button>
+                            <button onClick={() => loadWeatherHandler(city.name)}>{t("weather." + city.name)}</button>
                         </td>
                         <td>{city.temperature}</td>
                         <td>{city.feelsLike}</td>
