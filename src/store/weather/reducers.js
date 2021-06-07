@@ -21,7 +21,7 @@ export default function weatherReducer(state = initialState, action) {
         case FETCH_WEATHER_FINISH:
             let pos = undefined
             for (let i = 0; i < state.cities.length; i++) {
-                if (state.cities[i].name == state.cityName) {
+                if (state.cities[i].name === state.cityName) {
                     pos = i
                     break
                 }

@@ -9,35 +9,52 @@ function Books({bookIds}) {
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState("")
 
-    useEffect(() => {
-        bookIds.forEach((bookId) => {
-            getBookData(bookId).then(result => {
-                setBooks((books) => [...books, result])
-            })
-        })
+    let keysPressed = {}
 
-        let keysPressed = {}
-        document.addEventListener('keyup', (event) => {
-            delete keysPressed[event.key]
-        })
-        document.addEventListener("keydown", (event) => {
-            keysPressed[event.key] = true
-            if (keysPressed['Control'] && event.key === 'c') {
-                setActiveBookId(books.length)
+    const keyUpHandler = (event) => {
+        delete keysPressed[event.key]
+    }
+
+    const keyDownHandler = (event) => {
+        keysPressed[event.key] = true
+        if (keysPressed['Control'] && event.key === 'c') {
+            setActiveBookId(books.length)
+        }
+        if (event.code === "ArrowUp") {
+            let newId = activeBookId - 1
+            console.log(newId)
+            if (newId > 0) {
+                setActiveBookId(newId)
             }
-            if (event.code === "ArrowUp") {
-                let newId = activeBookId - 1
-                console.log(newId)
-                if (newId > 0) {
-                    setActiveBookId(newId)
-                }
+            event.preventDefault()
+        }
+        if (event.code === "ArrowDown") {
+            console.log(activeBookId)
+            let newId = activeBookId + 1
+            console.log(newId, books.length, activeBookId)
+            if (newId <= books.length) {
+                setActiveBookId(newId)
             }
-            if (event.code === "ArrowDown") {
-                let newId = activeBookId + 1
-                console.log(newId)
-                if (newId <= books.length) {
-                    setActiveBookId(newId)
-                }
+            event.preventDefault()
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('keyup', keyUpHandler)
+        document.addEventListener("keydown", keyDownHandler)
+        return () => {
+            document.removeEventListener("keyup", keyUpHandler)
+            document.removeEventListener("keydown", keyDownHandler)
+        }
+    }, [books, activeBookId])
+
+    useEffect(() => {
+        const idsInState = books.map((book) => book.id)
+        bookIds.forEach((bookId) => {
+            if (!idsInState.includes(bookId)) {
+                getBookData(bookId).then(result => {
+                    setBooks((books) => [...books, result])
+                })
             }
         })
     }, [])
